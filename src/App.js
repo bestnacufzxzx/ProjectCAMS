@@ -137,6 +137,24 @@ export default class App extends Component{
             <AdminMenuBar></AdminMenuBar>
             <Route exact path="/" component={ShowCourse} />
             <Route exact path="/admin/ShowCourse" component={ShowCourse} />
+            <Route exact path="/admin/course/Updatacourse" component={Updatacourse} />
+            <Route exact path="/admin/Showlocation" component={Showlocation} />
+            <Route exact path="/admin/Editlocation/:buildingID" component={Editlocation} />
+            <Route exact path="/admin/Createlocation" component={Createlocation} />
+            <Route exact path="/admin/Showimportteacher" component={Showimportteacher} />
+            <Route exact path="/admin/Createimportteacher" component={Createimportteacher} />
+            <Route exact path="/admin/Showimportstudent" component={Showimportstudent} />
+            <Route exact path="/admin/Createimportstudent" component={Createimportstudent} />
+            <Route exact path="/admin/EditImportteacher/:lecturerID" component={EditImportteacher} />
+            <Route exact path="/admin/EditImportstudent/:studentID" component={EditImportstudent} />
+            <Route exact path="/admin/ShowAccountStudent" component={ShowAccountStudent} />
+            <Route exact path="/admin/CreateAccountStudent" component={CreateAccountStudent} />
+            <Route exact path="/admin/ShowAccountTeacher" component={ShowAccountTeacher} />
+            <Route exact path="/admin/CreateAccountTeacher" component={CreateAccountTeacher} />
+            <Route exact path="/admin/EditAccountTeacher/:user_id" component={EditAccountTeacher} />
+            <Route exact path="/admin/EditAccountStudent/:user_id" component={EditAccountStudent} />
+            <Route exact path="/admin/Showteaching/:courseID" component={Showteaching} />
+            <Route exact path="/admin/Createteaching/:courseID/" component={Createteaching} /> 
             <AdminFooter></AdminFooter>
           </BrowserRouter>
         );
@@ -147,6 +165,13 @@ export default class App extends Component{
             <StudentMenuBar></StudentMenuBar>
             <Route exact path="/" component={Registercourses} />
             <Route exact path="/student" component={Registercourses} />
+            <Route exact path="/student/Listcourse" component={Listcourse} /> 
+            <Route exact path="/student/Profile" component={StudentProfile} /> 
+            <Route exact path="/student/Camera" component={Camera} /> 
+            <Route exact path="/student/Showhistorycourse/:historyclassID/:historyuser_ID" component={Showhistorycourse} /> 
+            <Route exact path="/student/Timetreatment" component={Timetreatment} /> 
+            <Route exact path="/student/Cameras/:classID" component={Cameras} /> 
+            <Route exact path="/student/Checkname/:courseID" component={Checkname} /> 
             <StudentFooter></StudentFooter>
           </BrowserRouter>
         );
