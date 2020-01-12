@@ -1,0 +1,204 @@
+import React , { Component} from 'react';
+import './App.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
+import { BrowserRouter, Route} from "react-router-dom";
+
+
+
+// import Containers from './Containers/containers';
+// import MenuBar from './Layout/MenuBar';
+// import Header from './Layout/Header';
+// import Footer from './Layout/Footer';
+// import Content from './Layout/Content';
+
+// pade auth
+import MenuBar from './auth/Layout/MenuBar';
+import Header from './auth/Layout/Header';
+import Footer from './auth/Layout/Footer';
+import Content from './auth/Layout/Content';
+
+
+
+// page admin
+// import MenuBar from './admin/Layout/MenuBar';
+// import Header from './admin/Layout/Header';
+// import Footer from './admin/Layout/Footer';
+// import Content from './admin/Layout/Content';
+
+// page lecturer
+// import MenuBar from './lecturer/Layout/MenuBar';
+// import Header from './lecturer/Layout/Header';
+// import Footer from './lecturer/Layout/Footer';
+// import Content from './lecturer/Layout/Content';
+
+// page coursecoordinator
+// import MenuBar from './coursecoordinator/Layout/MenuBar';
+// import Header from './coursecoordinator/Layout/Header';
+// import Footer from './coursecoordinator/Layout/Footer';
+// import Content from './coursecoordinator/Layout/Content';
+
+//page student
+// import MenuBar from './student/Layout/MenuBar';
+// import Header from './student/Layout/Header';
+// import Footer from './student/Layout/Footer';
+// import Content from './student/Layout/Content';
+
+//page parent
+// import MenuBar from './parent/Layout/MenuBar';
+// import Header from './parent/Layout/Header';
+// import Footer from './parent/Layout/Footer';
+// import Content from './parent/Layout/Content';
+
+
+
+//page auth
+import Auth from './auth/auth';
+
+
+
+// page admin
+// import ShowCourse from './admin/course/ShowCourse';
+// import Updatacourse from './admin/course/Updatacourse';
+// import ImportCourse from './admin/course/ImportCourse';
+// import Showlocation from './admin/setlocationmap/Showlocation';
+// import Editlocation from './admin/setlocationmap/editlocatonmap/Editlocation';
+// import Createlocation from './admin/setlocationmap/createlocation/Createlocation';
+// import Showimportteacher from './admin/Importteacher/Showimportteacher';
+// import Createimportteacher from './admin/Importteacher/importteacher/Createimportteacher';
+// import Showimportstudent from './admin/Importstudent/Showimportstudent';
+// import Createimportstudent from './admin/Importstudent/Importstudents/Createimportstudent';
+// import EditImportteacher from './admin/Importteacher/EditImportteacher/EditImportteacher';
+// import EditImportstudent from './admin/Importstudent/EditImportstudent/EditImportstudent';
+// import ShowAccountStudent from './admin/AccountStudent/ShowAccountStudent';
+// import CreateAccountStudent from './admin/AccountStudent/CreateAccountStudent/CreateAccountStudent';
+// import ShowAccountTeacher from './admin/AccountTeacher/ShowAccountlecturer';
+// import CreateAccountTeacher from './admin/AccountTeacher/CreateAccountlecturer/CreateAccountlecturer';
+// import EditAccountTeacher from './admin/AccountTeacher/EditAccountlecturer/EditAccountlecturer';
+// import EditAccountStudent from './admin/AccountStudent/EditAccountStudent/EditAccountStudent';
+
+
+// page lecturer
+// import Attendancelocation from './lecturer/Attendancelocation/Attendancelocation';
+// import Course from './lecturer/Course/Course';
+// import CreateAttendencelocation from './lecturer/Attendancelocation/CreateAttendencelocation/CreateAttendencelocation';
+// import EditCourse from './lecturer/Course/EditCourse/EditCourse';
+// import CreateCourse from './lecturer/Course/CreateCourse/CreateCourse';
+// import Timetreatment from './lecturer/Timetreatment/Timetreatment';
+// import Profile from './lecturer/Profile/Profile';
+// import Showhistorycourse from './lecturer/Showhistorycourse/Showhistorycourse';
+// import Teachs from './lecturer/Teachs/Teachs';
+
+// page coursecoordinator
+// import CreateRegistrationlink from './coursecoordinator/CreateRegistrationlink/CreateRegistrationlink';
+// import Showhistorycourse from './coursecoordinator/Showhistorycourse/Showhistorycourse';
+// import Timetreatment from './coursecoordinator/Timetreatment/Timetreatment';
+// import ShowRegistrationlink from './coursecoordinator/ShowRegistrationlink/ShowRegistrationlink';
+
+// page student
+// import Listcourse from './student/Listcourse';
+// import Profile from './student/Profile/Profile';
+// import Camera from './student/Cameras';
+// import Showhistorycourse from './student/Showhistorycourse';
+// import Timetreatment from './student/Timetreatment';
+// import Cameras from './student/Cameras';
+// import Registercourses from './student/Registercourses';
+// import Checkname from './student/Checkname';
+// import Test from './student/Test/Test';
+
+// page parent
+// import ShowStudenthistory from './parent/ShowStudenthistory';
+// import Studyhistory from './parent/Studyhistory';
+
+
+
+// const store = configStore();
+
+export default class App extends Component () {
+  render(){
+      let role = localStorage.getItem('role');
+    return (
+      <BrowserRouter>
+        <Header></Header>
+        <MenuBar></MenuBar>
+          {/* <Route exact path="/" component={Content}/> */}
+  
+                                      {/* page auth */}
+            <Route exact path="/" component={Auth} />
+            
+  
+                                      {/* page admin*/}
+            { (role == 1) }?
+              <div>
+                {/* <Route exact path="/admin/ShowCourse" component={ShowCourse} />
+                <Route exact path="/admin/course/ImportCourse" component={ImportCourse} />
+                <Route exact path="/admin/course/Updatacourse" component={Updatacourse} />
+                <Route exact path="/admin/Showlocation" component={Showlocation} />
+                <Route exact path="/admin/Editlocation" component={Editlocation} />
+                <Route exact path="/admin/Createlocation" component={Createlocation} />
+                <Route exact path="/admin/Showimportteacher" component={Showimportteacher} />
+                <Route exact path="/admin/Createimportteacher" component={Createimportteacher} />
+                <Route exact path="/admin/Showimportstudent" component={Showimportstudent} />
+                <Route exact path="/admin/Createimportstudent" component={Createimportstudent} />
+                <Route exact path="/admin/EditImportteacher" component={EditImportteacher} />
+                <Route exact path="/admin/EditImportstudent" component={EditImportstudent} />
+                <Route exact path="/admin/ShowAccountStudent" component={ShowAccountStudent} />
+                <Route exact path="/admin/CreateAccountStudent" component={CreateAccountStudent} />
+                <Route exact path="/admin/ShowAccountTeacher" component={ShowAccountTeacher} />
+                <Route exact path="/admin/CreateAccountTeacher" component={CreateAccountTeacher} />
+                <Route exact path="/admin/EditAccountTeacher" component={EditAccountTeacher} />
+                <Route exact path="/admin/EditAccountStudent" component={EditAccountStudent} /> */}
+              </div>
+            : ""}
+           
+  
+  
+  
+                                      {/* page lecturer*/}
+            {/* <Route exact path="/lecturer/Attendancelocation" component={Attendancelocation} />
+            <Route exact path="/lecturer/Course" component={Course} />
+            <Route exact path="/lecturer/CreateAttendencelocation" component={CreateAttendencelocation} />
+            <Route exact path="/lecturer/EditCourse" component={EditCourse} />
+            <Route exact path="/lecturer/CreateCourse" component={CreateCourse} />
+            <Route exact path="/lecturer/Timetreatment" component={Timetreatment} />
+            <Route exact path="/lecturer/Profile" component={Profile} /> 
+            <Route exact path="/lecturer/Showhistorycourse" component={Showhistorycourse} /> 
+            <Route exact path="/lecturer/Teachs/:courseID" component={Teachs} />  */}
+  
+  
+                                  {/* page coursecoordinator*/}
+            {/* <Route exact path="/coursecoordinator/CreateRegistrationlink" component={CreateRegistrationlink} /> 
+            <Route exact path="/coursecoordinator/Showhistorycourse" component={Showhistorycourse} /> 
+            <Route exact path="/coursecoordinator/Timetreatment" component={Timetreatment} /> 
+            <Route exact path="/coursecoordinator/ShowRegistrationlink" component={ShowRegistrationlink} />   */}
+  
+             
+  
+                                      {/* page student */}
+                                    
+            {/* <Route exact path="/student" component={Registercourses} /> 
+            <Route exact path="/student/Listcourse" component={Listcourse} /> 
+            <Route exact path="/student/Profile" component={Profile} /> 
+            <Route exact path="/student/Camera" component={Camera} /> 
+            <Route exact path="/student/Showhistorycourse/:historyclassID/:historyuser_ID" component={Showhistorycourse} /> 
+            <Route exact path="/student/Timetreatment" component={Timetreatment} /> 
+            <Route exact path="/student/Cameras/:classID" component={Cameras} /> 
+            <Route exact path="/student/Checkname/:courseID" component={Checkname} /> 
+            <Route exact path="/student/Test" component={Test} />  */}
+  
+  
+  
+                                      {/* page parent*/}
+            {/* <Route exact path="/parent/ShowStudenthistory" component={ShowStudenthistory} /> 
+            <Route exact path="/parent/Studyhistory" component={Studyhistory} />  */}
+  
+  
+   {/*    <Containers>
+  
+          </Containers> */}
+        <Footer></Footer>
+      </BrowserRouter>
+    );
+  }
+}
+
+
