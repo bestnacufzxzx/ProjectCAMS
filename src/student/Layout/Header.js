@@ -1,21 +1,8 @@
 import React, {Component} from 'react';
 import { Link } from "react-router-dom";
+import Logout from '../../auth/Logout';
 
 export default class Header extends Component {
-
-    state = {
-        fName : '',
-        lName : ''
-    }
-
-    componentDidMount = () =>{
-        let fName = localStorage.getItem("firstName");
-        let lName = localStorage.getItem("lastName");
-        this.setState({
-            Fname:fName,
-            Lname:lName
-        })
-      }
 
     render(){
         // const { fName, lName } = this.state
@@ -41,48 +28,7 @@ export default class Header extends Component {
                     <div className="navbar-custom-menu">
                         <ul className="nav navbar-nav">
                         {/* User Account: style can be found in dropdown.less */}
-                        <li className="dropdown user user-menu">
-                            <a href="fake_url" className="dropdown-toggle" data-toggle="dropdown">
-                            <img src="/dist/img/user2-160x160.jpg" className="user-image" alt="User" />
-                            <span className="hidden-xs"> {this.state.Fname} {this.state.Lname}</span> {/* พัฒนะศักดิ์ พิเศษศิลป์ */}
-                            </a>
-                            <ul className="dropdown-menu">
-                            {/* User image */}
-                            <li className="user-header">
-                                <img src="/dist/img/user2-160x160.jpg" className="img-circle" alt="User" />
-                                <p>
-                                Alexander Pierce - Web Developer
-                                <small>Member since Nov. 2012</small>
-                                </p>
-                            </li>
-                            {/* Menu Body */}
-                            {/* <li className="user-body">
-                                <div className="row">
-                                <div className="col-xs-4 text-center">
-                                    <a href="fake_url">Followers</a>
-                                </div>
-                                <div className="col-xs-4 text-center">
-                                    <a href="fake_url">Sales</a>
-                                </div>
-                                <div className="col-xs-4 text-center">
-                                    <a href="fake_url">Friends</a>
-                                </div>
-                                </div>
-                            </li> */}
-                            {/* Menu Footer*/}
-                            <li className="user-footer">
-                                <div className="pull-left">
-                                <Link to="/student/Profile" >
-                                    <button type="button" className="btn btn-default btn-flat" data-toggle="modal" data-target="#modal-default">ข้อมูลส่วนตัว</button>
-                                </Link>
-                                {/* <a href="fake_url" className="btn btn-default btn-flat">Profile</a> */}
-                                </div>
-                                <div className="pull-right">
-                                <a href="fake_url" className="btn btn-default btn-flat">ออกจากระบบ</a>
-                                </div>
-                            </li>
-                            </ul>
-                        </li>
+                        <Logout></Logout>
                         {/* Control Sidebar Toggle Button */}
                         {/* <li>
                             <a href="fake_url" data-toggle="control-sidebar"><i className="fa fa-gears" /></a>

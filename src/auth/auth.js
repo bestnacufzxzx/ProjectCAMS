@@ -94,6 +94,10 @@ export default class Auth extends Component {
         return true;
 
     }
+
+    RefreshPage = () => { 
+        window.location.href = ''; 
+    }
     
 
     handleSubmit = () => {
@@ -115,9 +119,9 @@ export default class Auth extends Component {
                 
                
                 // this.alertdata();
-                alert(data.message);
+                // alert(data.message);
 
-                // this.RefreshPage();
+                this.RefreshPage();
 
             }            
             if(this.state.username && this.state.password){
