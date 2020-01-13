@@ -39,7 +39,9 @@ export default class Createimportteacher extends Component {
             temp.tel = v[3];
             temp.username = v[4];
 
-            file.push(temp);
+            if (temp.fname){
+                file.push(temp);
+            }
         });
         this.setState({
             file: file
@@ -54,13 +56,17 @@ export default class Createimportteacher extends Component {
     }
 
     importHandle = () => {
-        axios.post('http://localhost/cams_services/teachers/import', this.state.data)
+        console.log(this.state.data)
+        axios.post('http://localhost/cams_server/api/lecturers/import_lecturer',
+        {'lecturer': this.state.data})
         .then(response => {
           console.log(response);
         })
         .catch(error => {
           console.log("====>",error);
         });
+        console.log(this.state.data)
+
     }
 
     clearShowFileImport = () => {

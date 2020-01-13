@@ -86,8 +86,9 @@ export default class Auth extends Component {
                 }else if(data.role == 7){
                     this.RefreshPage();
 
+                }else{
+                    this.RefreshPage();
                 }
-                this.RefreshPage();
 
             }
 

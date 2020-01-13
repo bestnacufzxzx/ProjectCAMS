@@ -62,7 +62,7 @@ import StudentFooter from './student/Layout/Footer';
 // page admin
 import ShowCourse from './admin/course/ShowCourse';
 import Updatacourse from './admin/course/Updatacourse';
-// import ImportCourse from './admin/course/ImportCourse';
+import ImportCourse from './admin/course/ImportCourse';
 import Showlocation from './admin/Setlocationmap/Showlocation';
 import Editlocation from './admin/Setlocationmap/Editlocatonmap/Editlocation';
 import Createlocation from './admin/Setlocationmap/Createlocation/Createlocation';
@@ -143,6 +143,7 @@ export default class App extends Component{
               <AdminMenuBar></AdminMenuBar>
               <Route exact path="/" component={ShowCourse} />
               <Route exact path="/admin/ShowCourse" component={ShowCourse} />
+              <Route exact path="/admin/course/ImportCourse" component={ImportCourse} />
               <Route exact path="/admin/course/Updatacourse" component={Updatacourse} />
               <Route exact path="/admin/Showlocation" component={Showlocation} />
               <Route exact path="/admin/Editlocation/:buildingID" component={Editlocation} />
