@@ -60,7 +60,7 @@ export default class EditImportteacher extends Component {
         })
         .then(res => {
         alert("บันทึกสำเร็จ")
-            this.RefreshPage();
+            // this.RefreshPage();
         })
         .catch(error => {
             console.log("====>",error.status);
