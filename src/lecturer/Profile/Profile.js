@@ -23,7 +23,7 @@ export default class Profile extends Component {
     }
 
     componentWillMount () {
-        localStorage.setItem("user_id", '4');
+        // localStorage.setItem("user_id", '4');
         let lecturerID = localStorage.getItem("lecturerID");
         // this.setState({user_id});
         // const  lecturerID  = this.props.match.params.lecturerID;

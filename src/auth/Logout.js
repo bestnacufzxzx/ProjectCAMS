@@ -26,8 +26,7 @@ export default class Logout extends Component {
         return(
             <li className="dropdown user user-menu">
                 <a href="fake_url" className="dropdown-toggle" data-toggle="dropdown">
-                    <img src="/dist/img/user2-160x160.jpg" className="user-image" alt="User" />
-                    <span className="hidden-xs"> {this.state.name}</span>
+                    <i className="fa fa-gears"></i><span className="hidden-xs"> {this.state.name}</span>
                 </a>
                 <ul className="dropdown-menu">
                     {/* <li className="user-header">

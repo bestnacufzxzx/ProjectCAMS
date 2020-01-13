@@ -165,7 +165,7 @@ export default class App extends Component{
             </BrowserRouter>
           </body>
         );
-      }else if(role == 4 || role == 5 || role == 6){
+      }else if(role == 3 || role == 4 || role == 5 || role == 6){
         return (
           <body class="hold-transition skin-blue sidebar-mini" >
           <BrowserRouter>
@@ -204,7 +204,7 @@ export default class App extends Component{
             <Route exact path="/student/Listcourse" component={Listcourse} /> 
             <Route exact path="/student/Profile" component={StudentProfile} /> 
             <Route exact path="/student/Camera" component={Camera} /> 
-            <Route exact path="/student/Showhistorycourse/:historyclassID/:historyuser_ID" component={Showhistorycourse} /> 
+            <Route exact path="/student/Showhistorycourse/:historycourseID/:historyuser_ID" component={Showhistorycourse} /> 
             <Route exact path="/student/Timetreatment" component={Timetreatment} /> 
             <Route exact path="/student/Cameras/:classID" component={Cameras} /> 
             <Route exact path="/student/Checkname/:courseID" component={Checkname} /> 

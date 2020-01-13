@@ -28,7 +28,7 @@ export default class Teachs extends Component {
         )
     }
     componentWillMount = () => {
-        localStorage.setItem("lecturerID", '2');
+        // localStorage.setItem("lecturerID", '2');
  
         this.setState({courseID: this.props.match.params.courseID})
         // console.log(this.state.classID)

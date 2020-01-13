@@ -61,7 +61,7 @@ export default class Cameras extends Component {
             
             let IsInside = classifyPoint(vs, point);
             if(IsInside <= 0){
-                let user_ID = localStorage.getItem("user_ID");
+                let user_ID = localStorage.getItem("username");
                 console.log(user_ID);
                 axios.post('http://localhost/cams_server/api/Checknamestudent/postCheckname', { classID: this.state.classID, picture:picture, studentID:user_ID, latitude:latitude, longitude:longitude }  )
                 .then(res => {

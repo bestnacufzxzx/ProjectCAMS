@@ -81,16 +81,16 @@ export default class Listcourse extends Component {
         // console.log(firstName,lastName);
 
       }
-      componentWillMount = () => {
-        localStorage.setItem("user_ID", '59142901');
-      }
+    //   componentWillMount = () => {
+    //     localStorage.setItem("user_ID", '59142901');
+    //   }
 
     componentDidMount = () =>{
         const script = document.createElement("script");
         script.src = '../js/Showimportteacher/content.js';
         // script.async = true;
         document.body.appendChild(script);
-        let user_ID = localStorage.getItem("user_ID");
+        let user_ID = localStorage.getItem("username");
 
         axios.get(`${API_URL}`+user_ID)
         .then(res => {

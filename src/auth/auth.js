@@ -17,6 +17,7 @@ export default class Auth extends Component {
     handleChange = (event) => {
         this.setState({[event.target.name]: event.target.value});
     }
+
     validate = () =>{
         let  usernameError = "";
         let  passwordError = "";
@@ -52,15 +53,54 @@ export default class Auth extends Component {
             let data = res.data
             console.log(data)
 
-            
             if(data.status){
                 localStorage.setItem('token', data.token);
                 localStorage.setItem('user_id', data.id);
                 localStorage.setItem('name', data.name);
                 localStorage.setItem('role', data.role);
+                localStorage.setItem('username', this.state.username);
+
+                if(data.role == 3 || data.role == 4 ||  data.role == 5 ||  data.role == 6){
+                    let user_id = data.id
+
+                    axios.get('http://localhost/cams_server/api/loginusername/get_username_student_login?user_id='+user_id)
+                    .then(response => {
+                    const result = response.data.response;
+                    result.forEach(element => {
+                        if(element.user_id === user_id){
+                            this.setState({ 
+                                user_id : element.user_id,
+                                lecturerID : element.lecturerID,
+                              
+                            })
+                            console.log(this.state.lecturerID )
+                            localStorage.setItem('lecturerID', this.state.lecturerID);
+                            this.RefreshPage();
+
+                        }
+                    });
+            
+                    })
+                    .catch(error => {
+                    });
+                }else if(data.role == 7){
+                    this.RefreshPage();
+
+                }
                 this.RefreshPage();
 
-            }            
+            }
+
+            
+            // if(data.status){
+            //     // localStorage.setItem('token', data.token);
+            //     // localStorage.setItem('user_id', data.id);
+            //     // localStorage.setItem('name', data.name);
+            //     // localStorage.setItem('role', data.role);
+            //     // localStorage.setItem('username', this.state.username);
+            //     this.RefreshPage();
+
+            // }            
             if(this.state.username && this.state.password){
                 alert(data.message);
             }

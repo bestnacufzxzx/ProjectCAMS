@@ -8,16 +8,14 @@ export default class Timetreatment extends Component {
 
     state = {
         courses : [],
-        // show: false
-
     }
     
-    renderButton(classID){
-        let historyuser_ID = localStorage.getItem("user_ID");
+    renderButton(courseID){
+        let historyuser_ID = localStorage.getItem("username");
         console.log(historyuser_ID);
-        let historyclassID = classID; //+historyclassID
+        let historycourseID = courseID; //+historycourseID
         return (
-            <Link to={'/student/Showhistorycourse/'+historyclassID+'/'+historyuser_ID}> 
+            <Link to={'/student/Showhistorycourse/'+historycourseID+'/'+historyuser_ID}> 
                 <button type="button" className="btn btn-block btn-primary btn-sm" > ประวัติการเข้าเรียน</button>
 
                 {/* <button type="button" className="btn btn-info" >ประวัติการเข้าเรียน</button> */}
@@ -25,12 +23,8 @@ export default class Timetreatment extends Component {
         );
     }
 
-    // componentWillMount(){
-    //     localStorage.setItem("user_ID", '59142901');
-    //     }
-
     componentDidMount(){
-        let user_ID = localStorage.getItem("user_ID");
+        let user_ID = localStorage.getItem("username");
         axios.get('http://localhost/cams_server/api/checknamestudent/getHistoryByCourse?user_ID='+user_ID)
         .then(res => {
         this.setState({ courses: res.data });
@@ -38,12 +32,6 @@ export default class Timetreatment extends Component {
         .catch(error => {
         console.log("====>",error.status);
         });
-
-        // const script = document.createElement("script");
-        // script.src = '../js/Showimportteacher/content.js';
-        // script.async = true;
-        // document.body.appendChild(script);
-
     }
 
     render() {
@@ -52,7 +40,6 @@ export default class Timetreatment extends Component {
              <div className="content-wrapper">
                 <Breadcrumb header="แสดงรายชื่อวิชา" subheader="" arrow={
                     [
-                        // {"icon":"", "title":"นักศึกษา", "link":"#", "active":"active"}
                     ]
                 } />
 
@@ -103,7 +90,7 @@ export default class Timetreatment extends Component {
                                                                 <td>{course.courseName}</td>
                                                                 <td> 
                                                                     {/* {course.time.time} */}
-                                                                  { this.renderButton(course.classID) }
+                                                                  { this.renderButton(course.courseID) }
                                                                 </td>
                                                             </tr>
                                                         ))}
