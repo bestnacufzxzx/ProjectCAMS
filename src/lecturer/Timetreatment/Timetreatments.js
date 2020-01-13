@@ -4,7 +4,7 @@ import axios from 'axios';
 import { Link } from "react-router-dom";
 // import Historysbystudent from '../Historysbystudent/Historysbystudent';
 
-export default class Timetreatment extends Component {
+export default class Timetreatments extends Component {
 
 
     state = {

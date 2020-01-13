@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import service_uri from '../components/variable/service_uri';
 import axios from 'axios';
+import baseurl from '../auth/Baseurl';
 const initialState = {
     usernameError: "",
     passwordError: "",
@@ -45,7 +46,7 @@ export default class Auth extends Component {
 
     handleSubmit = () => {
         const isValid = this.validate();
-        axios.post(service_uri+'Auth/login', {
+        axios.post(baseurl+'api/Auth/login', {
             username: this.state.username,
             password: this.state.password
         })
@@ -63,7 +64,7 @@ export default class Auth extends Component {
                 if(data.role == 3 || data.role == 4 ||  data.role == 5 ||  data.role == 6){
                     let user_id = data.id
 
-                    axios.get('http://localhost/cams_server/api/loginusername/get_username_student_login?user_id='+user_id)
+                    axios.get(baseurl+'api/loginusername/get_username_student_login?user_id='+user_id)
                     .then(response => {
                     const result = response.data.response;
                     result.forEach(element => {
@@ -75,6 +76,7 @@ export default class Auth extends Component {
                             })
                             console.log(this.state.lecturerID )
                             localStorage.setItem('lecturerID', this.state.lecturerID);
+                            alert(data.message);
                             this.RefreshPage();
 
                         }
@@ -103,7 +105,6 @@ export default class Auth extends Component {
 
             // }            
             if(this.state.username && this.state.password){
-                alert(data.message);
             }
             if (isValid) {
                 this.setState(initialState);

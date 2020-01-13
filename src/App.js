@@ -88,7 +88,7 @@ import Course from './lecturer/Course/Course';
 import CreateAttendencelocation from './lecturer/Attendancelocation/CreateAttendencelocation/CreateAttendencelocation';
 import EditCourse from './lecturer/Course/EditCourse/EditCourse';
 import CreateCourse from './lecturer/Course/CreateCourse/CreateCourse';
-// import LecturerTimetreatment from './lecturer/Timetreatment/Timetreatment';
+import LecturerTimetreatment from './lecturer/Timetreatment/Timetreatments';
 import Profilelecturer from './lecturer/Profile/Profile';
 // import LecturerShowhistorycourse from './lecturer/Showhistorycourse/Showhistorycourse';
 import Teachs from './lecturer/Teachs/Teachs';
@@ -178,7 +178,7 @@ export default class App extends Component{
             <Route exact path="/lecturer/CreateAttendencelocation" component={CreateAttendencelocation} />
             <Route exact path="/lecturer/EditCourse/:teachingID" component={EditCourse} />
             <Route exact path="/lecturer/CreateCourse" component={CreateCourse} />
-            <Route exact path="/lecturer/Timetreatment" component={Timetreatment} />
+            <Route exact path="/lecturer/Timetreatment" component={LecturerTimetreatment} />
             <Route exact path="/lecturer/Profilelecturer" component={Profilelecturer} /> 
             <Route exact path="/lecturer/Showhistorycourse" component={Showhistorycourse} /> 
             <Route exact path="/lecturer/Teachs/:courseID" component={Teachs} /> 

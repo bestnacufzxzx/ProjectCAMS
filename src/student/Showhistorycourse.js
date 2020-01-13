@@ -17,7 +17,7 @@ export default class Showhistorycourse extends Component {
         console.log(this.state.historyuser_ID)
     }
 
-    renderCheckstatus(rehistory){
+    renderCheckstatus = (rehistory) =>{
         let d1 = new Date();
         let d2 = new Date(rehistory.datetime);
         // let d3 = new Date(rehistory.startdate+' '+rehistory.endtime);
