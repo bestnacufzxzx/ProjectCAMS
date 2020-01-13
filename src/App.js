@@ -16,14 +16,18 @@ import { BrowserRouter, Route} from "react-router-dom";
 // import Header from './auth/Layout/Header';
 // import Footer from './auth/Layout/Footer';
 // import Content from './auth/Layout/Content';
-import Auth from './auth/auth';
 
 
 // page admin
 import AdminMenuBar from './admin/Layout/MenuBar';
 import AdminHeader from './admin/Layout/Header';
 import AdminFooter from './admin/Layout/Footer';
-import AdminContent from './admin/Layout/Content';
+// import AdminContent from './admin/Layout/Content';
+
+// import AuthMenuBar from './auth/Layout/MenuBar';
+// import AuthHeader from './auth/Layout/Header';
+// import AuthFooter from './auth/Layout/Footer';
+import Auth from './auth/auth';
 
 
 
@@ -31,7 +35,7 @@ import AdminContent from './admin/Layout/Content';
 import LecturerMenuBar from './lecturer/Layout/MenuBar';
 import LecturerHeader from './lecturer/Layout/Header';
 import LecturerFooter from './lecturer/Layout/Footer';
-import LecturerContent from './lecturer/Layout/Content';
+// import LecturerContent from './lecturer/Layout/Content';
 
 // page coursecoordinator
 // import MenuBar from './coursecoordinator/Layout/MenuBar';
@@ -43,7 +47,7 @@ import LecturerContent from './lecturer/Layout/Content';
 import StudentMenuBar from './student/Layout/MenuBar';
 import StudentHeader from './student/Layout/Header';
 import StudentFooter from './student/Layout/Footer';
-import StudentContent from './student/Layout/Content';
+// import StudentContent from './student/Layout/Content';
 
 //page parent
 // import MenuBar from './parent/Layout/MenuBar';
@@ -58,7 +62,7 @@ import StudentContent from './student/Layout/Content';
 // page admin
 import ShowCourse from './admin/course/ShowCourse';
 import Updatacourse from './admin/course/Updatacourse';
-import ImportCourse from './admin/course/ImportCourse';
+// import ImportCourse from './admin/course/ImportCourse';
 import Showlocation from './admin/Setlocationmap/Showlocation';
 import Editlocation from './admin/Setlocationmap/Editlocatonmap/Editlocation';
 import Createlocation from './admin/Setlocationmap/Createlocation/Createlocation';
@@ -84,9 +88,9 @@ import Course from './lecturer/Course/Course';
 import CreateAttendencelocation from './lecturer/Attendancelocation/CreateAttendencelocation/CreateAttendencelocation';
 import EditCourse from './lecturer/Course/EditCourse/EditCourse';
 import CreateCourse from './lecturer/Course/CreateCourse/CreateCourse';
-import LecturerTimetreatment from './lecturer/Timetreatment/Timetreatment';
+// import LecturerTimetreatment from './lecturer/Timetreatment/Timetreatment';
 import Profilelecturer from './lecturer/Profile/Profile';
-import LecturerShowhistorycourse from './lecturer/Showhistorycourse/Showhistorycourse';
+// import LecturerShowhistorycourse from './lecturer/Showhistorycourse/Showhistorycourse';
 import Teachs from './lecturer/Teachs/Teachs';
 import Historysbystudent from './lecturer/Historysbystudent/Historysbystudent';
 import EditTeachCourse from './lecturer/Teachs/EditTeachCourse/EditTeachCourse';
@@ -112,11 +116,11 @@ import Timetreatment from './student/Timetreatment';
 import Cameras from './student/Cameras';
 import Registercourses from './student/Registercourses';
 import Checkname from './student/Checkname';
-import Test from './student/Test/Test';
+// import Test from './student/Test/Test';
 
 // page parent
-import ShowStudenthistory from './parent/ShowStudenthistory';
-import Studyhistory from './parent/Studyhistory';
+// import ShowStudenthistory from './parent/ShowStudenthistory';
+// import Studyhistory from './parent/Studyhistory';
 
 
 // const store = configStore();
@@ -130,36 +134,68 @@ export default class App extends Component{
   render(){
       let role = this.state.role;
       console.log(role);
+      
       if(role == 1){
         return (
+          <body class="hold-transition skin-blue sidebar-mini" >
+            <BrowserRouter >
+              <AdminHeader></AdminHeader>
+              <AdminMenuBar></AdminMenuBar>
+              <Route exact path="/" component={ShowCourse} />
+              <Route exact path="/admin/ShowCourse" component={ShowCourse} />
+              <Route exact path="/admin/course/Updatacourse" component={Updatacourse} />
+              <Route exact path="/admin/Showlocation" component={Showlocation} />
+              <Route exact path="/admin/Editlocation/:buildingID" component={Editlocation} />
+              <Route exact path="/admin/Createlocation" component={Createlocation} />
+              <Route exact path="/admin/Showimportteacher" component={Showimportteacher} />
+              <Route exact path="/admin/Createimportteacher" component={Createimportteacher} />
+              <Route exact path="/admin/Showimportstudent" component={Showimportstudent} />
+              <Route exact path="/admin/Createimportstudent" component={Createimportstudent} />
+              <Route exact path="/admin/EditImportteacher/:lecturerID" component={EditImportteacher} />
+              <Route exact path="/admin/EditImportstudent/:studentID" component={EditImportstudent} />
+              <Route exact path="/admin/ShowAccountStudent" component={ShowAccountStudent} />
+              <Route exact path="/admin/CreateAccountStudent" component={CreateAccountStudent} />
+              <Route exact path="/admin/ShowAccountTeacher" component={ShowAccountTeacher} />
+              <Route exact path="/admin/CreateAccountTeacher" component={CreateAccountTeacher} />
+              <Route exact path="/admin/EditAccountTeacher/:user_id" component={EditAccountTeacher} />
+              <Route exact path="/admin/EditAccountStudent/:user_id" component={EditAccountStudent} />
+              <Route exact path="/admin/Showteaching/:courseID" component={Showteaching} />
+              <Route exact path="/admin/Createteaching/:courseID/" component={Createteaching} /> 
+              <AdminFooter></AdminFooter>
+            </BrowserRouter>
+          </body>
+        );
+      }else if(role == 4 || role == 5 || role == 6){
+        return (
+          <body class="hold-transition skin-blue sidebar-mini" >
           <BrowserRouter>
-            <AdminHeader></AdminHeader>
-            <AdminMenuBar></AdminMenuBar>
-            <Route exact path="/" component={ShowCourse} />
-            <Route exact path="/admin/ShowCourse" component={ShowCourse} />
-            <Route exact path="/admin/course/Updatacourse" component={Updatacourse} />
-            <Route exact path="/admin/Showlocation" component={Showlocation} />
-            <Route exact path="/admin/Editlocation/:buildingID" component={Editlocation} />
-            <Route exact path="/admin/Createlocation" component={Createlocation} />
-            <Route exact path="/admin/Showimportteacher" component={Showimportteacher} />
-            <Route exact path="/admin/Createimportteacher" component={Createimportteacher} />
-            <Route exact path="/admin/Showimportstudent" component={Showimportstudent} />
-            <Route exact path="/admin/Createimportstudent" component={Createimportstudent} />
-            <Route exact path="/admin/EditImportteacher/:lecturerID" component={EditImportteacher} />
-            <Route exact path="/admin/EditImportstudent/:studentID" component={EditImportstudent} />
-            <Route exact path="/admin/ShowAccountStudent" component={ShowAccountStudent} />
-            <Route exact path="/admin/CreateAccountStudent" component={CreateAccountStudent} />
-            <Route exact path="/admin/ShowAccountTeacher" component={ShowAccountTeacher} />
-            <Route exact path="/admin/CreateAccountTeacher" component={CreateAccountTeacher} />
-            <Route exact path="/admin/EditAccountTeacher/:user_id" component={EditAccountTeacher} />
-            <Route exact path="/admin/EditAccountStudent/:user_id" component={EditAccountStudent} />
-            <Route exact path="/admin/Showteaching/:courseID" component={Showteaching} />
-            <Route exact path="/admin/Createteaching/:courseID/" component={Createteaching} /> 
-            <AdminFooter></AdminFooter>
+            <LecturerHeader></LecturerHeader>
+            <LecturerMenuBar></LecturerMenuBar>
+            <Route exact path="/" component={Attendancelocation} />
+            <Route exact path="/lecturer/Attendancelocation" component={Attendancelocation} />
+            <Route exact path="/lecturer/Course" component={Course} />
+            <Route exact path="/lecturer/CreateAttendencelocation" component={CreateAttendencelocation} />
+            <Route exact path="/lecturer/EditCourse/:teachingID" component={EditCourse} />
+            <Route exact path="/lecturer/CreateCourse" component={CreateCourse} />
+            <Route exact path="/lecturer/Timetreatment" component={Timetreatment} />
+            <Route exact path="/lecturer/Profilelecturer" component={Profilelecturer} /> 
+            <Route exact path="/lecturer/Showhistorycourse" component={Showhistorycourse} /> 
+            <Route exact path="/lecturer/Teachs/:courseID" component={Teachs} /> 
+            <Route exact path="/lecturer/Historysbystudent/:HistorysbystudentcourseID" component={Historysbystudent} /> 
+            <Route exact path="/lecturer/EditTeachCourse/:classID" component={EditTeachCourse} /> 
+            <Route exact path="/lecturer/CreateTeachCourse/:courseID" component={CreateTeachCourse} /> 
+            <Route exact path="/lecturer/Showstudentincourse" component={Showstudentincourse} /> 
+            <Route exact path="/lecturer/Createstudentincourse/:courseID" component={Createstudentincourse} /> 
+            <Route exact path="/lecturer/Createstudent/:courseID" component={Createstudent} /> 
+            <Route exact path="/lecturer/Viewhistorystudent/:studentID/:courseID" component={Viewhistorystudent} /> 
+            <Route exact path="/lecturer/Profile" component={LecturerProfile} /> 
+            <LecturerFooter></LecturerFooter>
           </BrowserRouter>
+          </body>
         );
       }else if(role == 7){
         return (
+          <body class="hold-transition skin-blue sidebar-mini" >
           <BrowserRouter>
             <StudentHeader></StudentHeader>
             <StudentMenuBar></StudentMenuBar>
@@ -174,12 +210,19 @@ export default class App extends Component{
             <Route exact path="/student/Checkname/:courseID" component={Checkname} /> 
             <StudentFooter></StudentFooter>
           </BrowserRouter>
+          </body>
         );
       }else{
         return (
-          <BrowserRouter>
-            <Route exact path="/" component={Auth} />
-          </BrowserRouter>
+          // <body class="content hold-transition login-page">
+                <BrowserRouter>
+                    {/* <AuthMenuBar></AuthMenuBar>
+                    <AuthMenuBar></AuthMenuBar> */}
+                    <Route exact path="/" component={Auth} />
+                    {/* <AuthFooter></AuthFooter> */}
+                </BrowserRouter>
+          // </body>
+         
         );
       }
   // return (
