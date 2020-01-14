@@ -4,6 +4,7 @@ import Breadcrumb from '../../components/Breadcrumb';
 // import Button from '../../components/Button';
 import axios from 'axios';
 // import service_uri from '../../components/variable/service_uri';
+import baseurl from '../../auth/Baseurl';
 
 export default class Showteaching extends Component {
 
@@ -17,7 +18,7 @@ export default class Showteaching extends Component {
         script.async = true;
         document.body.appendChild(script);
 
-        axios.get('http://localhost/cams_server/api/Admin_teaching/get_teaching')
+        axios.get(baseurl+'api/Admin_teaching/get_teaching')
         .then(response => {
           this.setState({ teachings: response.data });
         })

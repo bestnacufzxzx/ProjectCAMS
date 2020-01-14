@@ -3,6 +3,7 @@ import Breadcrumb from '../../components/Breadcrumb';
 import { Link } from "react-router-dom";
 import axios from 'axios';
 import service_uri from '../../components/variable/service_uri';
+import baseurl from '../../auth/Baseurl';
 
 
 export default class Showimportstudent extends Component {
@@ -49,7 +50,7 @@ export default class Showimportstudent extends Component {
         script.async = true;
         document.body.appendChild(script);
 
-        axios.get('http://localhost/cams_server/api/admin_showuser/showusername_student')
+        axios.get(baseurl+'api/admin_showuser/showusername_student')
         .then(response => {
           this.setState({ students: response.data });
         })

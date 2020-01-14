@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Breadcrumb from '../../../components/Breadcrumb';
 import CSVReader from "react-csv-reader";
 import axios from 'axios';
+import baseurl from '../../../auth/Baseurl';
 
 
 // const handleForce = data => {
@@ -57,7 +58,7 @@ export default class Createimportteacher extends Component {
 
     importHandle = () => {
         console.log(this.state.data)
-        axios.post('http://localhost/cams_server/api/lecturers/import_lecturer',
+        axios.post(baseurl+'api/lecturers/import_lecturer',
         {'lecturer': this.state.data})
         .then(response => {
           console.log(response);

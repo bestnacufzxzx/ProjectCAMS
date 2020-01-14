@@ -3,6 +3,7 @@ import Breadcrumb from '../../components/Breadcrumb';
 import CSVReader from "react-csv-reader";
 import axios from 'axios';
 // import service_uri from '../../components/variable/service_uri';
+import baseurl from '../../auth/Baseurl';
 
 
 export default class ImportCourse extends Component {
@@ -55,7 +56,7 @@ export default class ImportCourse extends Component {
     importHandle = () => {
         // let data = [] = this.state.data;
         // console.log("TEST"+data)
-        axios.post('http://localhost/cams_server/api/admin_showcourse/admin_importcourse/'+this.state.data)
+        axios.post(baseurl+'api/admin_showcourse/admin_importcourse/'+this.state.data)
         .then(response => {
           console.log(response);
         })

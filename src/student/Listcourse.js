@@ -3,7 +3,9 @@ import Breadcrumb from '../components/Breadcrumb';
 import { Link } from "react-router-dom";
 // import TextInput from '../components/TextInput';
 import axios from 'axios';
-const API_URL = 'http://localhost/cams_server/api/checknamestudent/getCourseByUserId?user_ID='
+import baseurl from '../auth/Baseurl';
+
+const API_URL = baseurl+'api/checknamestudent/getCourseByUserId?user_ID='
 export default class Listcourse extends Component {
 
     state = {

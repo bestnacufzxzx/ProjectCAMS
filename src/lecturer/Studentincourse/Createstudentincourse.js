@@ -4,12 +4,14 @@ import { Link } from "react-router-dom";
 // import Modaleditcourse from './EditCourse/Modaleditcourse';
 import axios from 'axios';
 import service_uri from '../../components/variable/service_uri';
+import baseurl from '../../auth/Baseurl';
+
 
 
 export default class Createstudentincourse extends Component {
 
     state = {
-        courses : [],
+        // courses : [],
     }
 
     deletestudentincourseID(studentsregeterID){
@@ -44,7 +46,7 @@ export default class Createstudentincourse extends Component {
         const  courseID  = this.props.match.params.courseID;
         this.setState({courseID});
         console.log("lecturerID"+lecturerID+"courseID"+this.state.courseID);
-        axios.get('http://localhost/cams_server/api/lecturers/get_studentByCourses?lecturerID='+lecturerID+"&courseID="+courseID)
+        axios.get(baseurl+'api/lecturers/get_studentByCourses?lecturerID='+lecturerID+"&courseID="+courseID)
         .then(res => {
         this.setState({ courses: res.data });
         })

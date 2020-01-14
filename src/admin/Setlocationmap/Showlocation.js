@@ -3,6 +3,7 @@ import Breadcrumb from '../../components/Breadcrumb';
 import { Link } from "react-router-dom";
 import axios from 'axios';
 import service_uri from '../../components/variable/service_uri';
+import baseurl from '../../auth/Baseurl';
 
 export default class Showlocation extends Component {
 
@@ -47,7 +48,7 @@ export default class Showlocation extends Component {
         document.body.appendChild(script);
 
 
-        axios.get('http://localhost/cams_server/api/location/get_all')
+        axios.get(baseurl+'api/location/get_all')
         .then(response => {
           this.setState({ locations: response.data });
         })

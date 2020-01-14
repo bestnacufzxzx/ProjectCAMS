@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Breadcrumb from '../../components/Breadcrumb'
 import axios from 'axios';
 // import { Link } from "react-router-dom";
+import baseurl from '../../auth/Baseurl';
 
 export default class Viewhistorystudent extends Component {
   
@@ -61,7 +62,7 @@ export default class Viewhistorystudent extends Component {
     export_file = () => {
         const  studentID = this.props.match.params.studentID;
         const  courseID = this.props.match.params.courseID;
-        window.open('http://localhost/cams_server/Reportfile/export/'+courseID+'/'+studentID, '_blank');
+        window.open(baseurl+'Reportfile/export/'+courseID+'/'+studentID, '_blank');
     }
     
     componentDidMount(){
@@ -70,7 +71,7 @@ export default class Viewhistorystudent extends Component {
         // console.log(user_id+"asdasd"+courseID)
 
         
-        axios.post('http://localhost/cams_server/api/Checknamestudent/postHistoryChecknameByCourse', { courseID: courseID,user_ID:studentID} )
+        axios.post(baseurl+'api/Checknamestudent/postHistoryChecknameByCourse', { courseID: courseID,user_ID:studentID} )
         .then(res => {
         this.setState({ historys: res.data });
         })
@@ -78,7 +79,7 @@ export default class Viewhistorystudent extends Component {
         console.log("====>",error.status);
         });
 
-        axios.post('http://localhost/cams_server/api/Checknamestudent/percent_check_name', { courseID: courseID,user_ID:studentID} )
+        axios.post(baseurl+'api/Checknamestudent/percent_check_name', { courseID: courseID,user_ID:studentID} )
         .then(res => {
         let percent = (res.data.percent) 
         this.setState({percent})

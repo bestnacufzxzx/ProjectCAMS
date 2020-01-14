@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import Breadcrumb from '../../components/Breadcrumb';
 import { Link } from "react-router-dom";
 import axios from 'axios';
+import baseurl from '../../auth/Baseurl';
 
 export default class Profile extends Component {
     
@@ -28,7 +29,7 @@ export default class Profile extends Component {
         // this.setState({user_id});
         // const  lecturerID  = this.props.match.params.lecturerID;
         console.log(lecturerID );
-        axios.get('http://localhost/cams_server/api/admin_showuser/getBeforelecturerID?lecturerID='+lecturerID)
+        axios.get(baseurl+'api/admin_showuser/getBeforelecturerID?lecturerID='+lecturerID)
             .then(response => {
             const result = response.data.response;
             result.forEach(element => {
@@ -54,7 +55,7 @@ export default class Profile extends Component {
     handleSubmit = (event) => {
         let lecturerID = localStorage.getItem("lecturerID");
         event.preventDefault();
-        axios.post('http://localhost/cams_server/api/admin_showuser/post_updatelecturer/', {
+        axios.post(baseurl+'api/admin_showuser/post_updatelecturer/', {
             lecturerID: lecturerID,
             prefix: this.state.prefix,
             firstName: this.state.firstName,

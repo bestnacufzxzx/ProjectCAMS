@@ -2,6 +2,7 @@
 import React, { Component } from 'react'
 import axios from 'axios';
 import Day from '../../../components/Day';
+import baseurl from '../../auth/Baseurl';
 
 export default class ModaleditTeachCourse extends Component {
 
@@ -28,7 +29,7 @@ export default class ModaleditTeachCourse extends Component {
     
     handleSubmit = (event) => {
         event.preventDefault();
-        axios.post('http://localhost/cams_server/api/lecturers/', {
+        axios.post(baseurl+'api/lecturers/', {
             courseCode: this.state.courseCode,
             startdate: this.state.startdate,
             starttime : this.state.starttime,

@@ -2,6 +2,7 @@
 import React, { Component } from 'react'
 import axios from 'axios';
 import service_uri from '../../../components/variable/service_uri';
+import baseurl from '../../../auth/Baseurl';
 
 export default class Modaleditcourse extends Component {
 
@@ -69,7 +70,7 @@ componentWillMount () {
 
 handleSubmit = (event) => {
     event.preventDefault();
-    axios.post('http://localhost/cams_server/api/lecturers/post_updatecourses/', {
+    axios.post(baseurl+'api/lecturers/post_updatecourses/', {
         teachingID: this.state.teachingID,
         courseID: this.state.courseID,
         lecturerID: this.state.activities_name,

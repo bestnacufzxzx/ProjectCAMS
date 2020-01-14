@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Breadcrumb from '../../../components/Breadcrumb';
 import { Link } from "react-router-dom";
 import axios from 'axios';
+import baseurl from '../../../auth/Baseurl';
 
 export default class EditAccountTeacher extends Component {
 
@@ -20,7 +21,7 @@ export default class EditAccountTeacher extends Component {
     componentWillMount () {
         const  user_id  = this.props.match.params.user_id;
         // console.log(user_id );
-        axios.get('http://localhost/cams_server/api/admin_accountUser/getBeforeaccountUser?user_id='+user_id)
+        axios.get(baseurl+'api/admin_accountUser/getBeforeaccountUser?user_id='+user_id)
             .then(response => {
             const result = response.data.response;
             result.forEach(element => {
@@ -41,7 +42,7 @@ export default class EditAccountTeacher extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        axios.post('http://localhost/cams_server/api/admin_accountUser/post_updateaccountUser/', {
+        axios.post(baseurl+'api/admin_accountUser/post_updateaccountUser/', {
             user_id: this.state.user_id,
             username: this.state.username,
             password: this.state.password,

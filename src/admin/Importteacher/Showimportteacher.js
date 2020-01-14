@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import Breadcrumb from '../../components/Breadcrumb';
 import { Link } from "react-router-dom";
-// import TextInput from '../../components/TextInput';
-// import Button from '../../components/Button';
+import baseurl from '../../auth/Baseurl';
+
 import axios from 'axios';
 import service_uri from '../../components/variable/service_uri';
 
@@ -48,7 +48,7 @@ export default class Showimportteacher extends Component {
         script.async = true;
         document.body.appendChild(script);
 
-        axios.get('http://localhost/cams_server/api/admin_showuser/showusername_teacher')
+        axios.get(baseurl+'api/admin_showuser/showusername_teacher')
         .then(response => {
           this.setState({ lecturers: response.data });
         })

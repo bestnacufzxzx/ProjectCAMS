@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import service_uri from '../components/variable/service_uri';
+// import service_uri from '../components/variable/service_uri';
 import axios from 'axios';
 import baseurl from '../auth/Baseurl';
 const initialState = {
@@ -94,16 +94,6 @@ export default class Auth extends Component {
 
             }
 
-            
-            // if(data.status){
-            //     // localStorage.setItem('token', data.token);
-            //     // localStorage.setItem('user_id', data.id);
-            //     // localStorage.setItem('name', data.name);
-            //     // localStorage.setItem('role', data.role);
-            //     // localStorage.setItem('username', this.state.username);
-            //     this.RefreshPage();
-
-            // }            
             if(this.state.username && this.state.password){
             }
             if (isValid) {

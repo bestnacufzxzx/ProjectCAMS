@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Breadcrumb from '../../components/Breadcrumb'
 import axios from 'axios';
 import { Link } from "react-router-dom";
+import baseurl from '../../auth/Baseurl';
 
 export default class Historysbystudent extends Component {
   
@@ -25,7 +26,7 @@ export default class Historysbystudent extends Component {
         const  HistorysbystudentcourseID = this.props.match.params.HistorysbystudentcourseID;
         let courseID = HistorysbystudentcourseID;
         
-        axios.get('http://localhost/cams_server/api/lecturers/gethistorytimetreatment?courseID='+courseID)
+        axios.get(baseurl+'api/lecturers/gethistorytimetreatment?courseID='+courseID)
         .then(res => {
         this.setState({ historys: res.data });
         })

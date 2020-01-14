@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Breadcrumb from '../components/Breadcrumb';
 // import { Link } from "react-router-dom";
 import axios from 'axios';
+import baseurl from '../auth/Baseurl';
 
 
 export default class Showhistorycourse extends Component {
@@ -40,7 +41,7 @@ export default class Showhistorycourse extends Component {
         // const { historyuser_ID } = this.props.match.params.historyuser_ID;
         console.log(historycourseID,historyuser_ID)
         // let user_ID = localStorage.getItem("username");
-        axios.post('http://localhost/cams_server/api/Checknamestudent/postHistoryChecknameByCourse', { courseID: historycourseID,user_ID:historyuser_ID} )
+        axios.post(baseurl+'api/Checknamestudent/postHistoryChecknameByCourse', { courseID: historycourseID,user_ID:historyuser_ID} )
         .then(res => {
         this.setState({ historys: res.data });
         })
@@ -48,7 +49,7 @@ export default class Showhistorycourse extends Component {
         console.log("====>",error.status);
         });
 
-        axios.post('http://localhost/cams_server/api/Checknamestudent/percent_check_name', { courseID: historycourseID,user_ID:historyuser_ID} )
+        axios.post(baseurl+'api/Checknamestudent/percent_check_name', { courseID: historycourseID,user_ID:historyuser_ID} )
         .then(res => {
         let percent = (res.data.percent) 
         this.setState({percent})

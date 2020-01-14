@@ -4,6 +4,7 @@ import axios from 'axios';
 import Breadcrumb from '../../components/Breadcrumb';
 // import ModalCreateTeachCourse from './CreateTeachCourse/ModalCreateTeachCourse';
 import service_uri from '../../components/variable/service_uri';
+import baseurl from '../../auth/Baseurl';
 
 
 export default class Teachs extends Component {
@@ -74,7 +75,7 @@ export default class Teachs extends Component {
 
         // let lecturerID = localStorage.getItem("lecturerID");
         // console.log(courseID);
-        axios.get('http://localhost/cams_server/api/lecturers/getlecturersbyCourse?courseID='+this.state.courseID)
+        axios.get(baseurl+'api/lecturers/getlecturersbyCourse?courseID='+this.state.courseID)
         .then(res => {
         this.setState({ teachs: res.data });
         })

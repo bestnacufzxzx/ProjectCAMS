@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 // import Button from '../../components/Button';
 import axios from 'axios';
 import service_uri from '../../components/variable/service_uri';
+import baseurl from '../../auth/Baseurl';
 
 export default class Showteaching extends Component {
 
@@ -59,7 +60,7 @@ export default class Showteaching extends Component {
         const  courseID  = this.props.match.params.courseID;
         this.setState({courseID});
         console.log(courseID)
-        axios.get('http://localhost/cams_server/api/Admin_teaching/get_teaching?courseID='+courseID)
+        axios.get(baseurl+'api/Admin_teaching/get_teaching?courseID='+courseID)
         .then(res => {
         this.setState({ teachings: res.data });
         })

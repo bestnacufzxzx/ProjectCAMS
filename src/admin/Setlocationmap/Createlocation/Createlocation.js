@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import Breadcrumb from '../../../components/Breadcrumb';
 import Map from '../Map/Map';
 import axios from 'axios';
-// import { Link } from "react-router-dom";
+import baseurl from '../../../auth/Baseurl';
+
 
 export default class Createlocation extends Component {
 
@@ -37,7 +38,7 @@ export default class Createlocation extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        axios.post('http://localhost/cams_server/api/location/create/', {
+        axios.post(baseurl+'api/location/create/', {
             roomname: this.state.roomname,
             location : this.state.test,
             buildingName: this.state.buildingName

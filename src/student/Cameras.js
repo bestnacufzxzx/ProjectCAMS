@@ -4,6 +4,7 @@ import Camera, { FACING_MODES } from '../lib';
 import axios from 'axios';
 import classifyPoint from 'robust-point-in-polygon';
 // import { Link } from "react-router-dom";
+import baseurl from '../auth/Baseurl';
 
 export default class Cameras extends Component {
     
@@ -25,7 +26,7 @@ export default class Cameras extends Component {
         }
 
         getClass = (classID) => {
-            axios.get('http://localhost/cams_server/api/Room/get_class_room?classID='+classID )
+            axios.get(baseurl+'api/Room/get_class_room?classID='+classID )
             .then(res => {
                 this.setState({ classData: res.data.response });
             });
@@ -63,7 +64,7 @@ export default class Cameras extends Component {
             if(IsInside <= 0){
                 let user_ID = localStorage.getItem("username");
                 console.log(user_ID);
-                axios.post('http://localhost/cams_server/api/Checknamestudent/postCheckname', { classID: this.state.classID, picture:picture, studentID:user_ID, latitude:latitude, longitude:longitude }  )
+                axios.post(baseurl+'api/Checknamestudent/postCheckname', { classID: this.state.classID, picture:picture, studentID:user_ID, latitude:latitude, longitude:longitude }  )
                 .then(res => {
                     alert("สำเร็จ");
                     this.setState({ statusgets: res.data });

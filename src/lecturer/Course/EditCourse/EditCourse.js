@@ -3,6 +3,7 @@ import axios from 'axios';
 import service_uri from '../../../components/variable/service_uri';
 import { Link } from "react-router-dom";
 import Breadcrumb from '../../../components/Breadcrumb';
+import baseurl from '../../../auth/Baseurl';
 
 export default class EditCourse extends Component {
    
@@ -33,7 +34,7 @@ componentDidMount(){
 componentWillMount () {
     const  teachingID  = this.props.match.params.teachingID;
     console.log(teachingID );
-    axios.get('http://localhost/cams_server/api/lecturers/getBeforeCourse?teachingID='+teachingID)
+    axios.get(baseurl+'api/lecturers/getBeforeCourse?teachingID='+teachingID)
         .then(response => {
         const result = response.data.response;
         result.forEach(element => {
@@ -66,7 +67,7 @@ getAllCourse = () => {
 handleSubmit = (event) =>{
     event.preventDefault();
     let lecturerID = localStorage.getItem("lecturerID");
-    axios.post('http://localhost/cams_server/api/lecturers/post_updatecourses/', {
+    axios.post(baseurl+'api/lecturers/post_updatecourses/', {
         teachingID: this.state.teachingID,
         courseID: this.state.courseID,
         lecturerID: lecturerID,

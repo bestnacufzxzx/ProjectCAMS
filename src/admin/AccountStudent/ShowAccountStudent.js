@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import axios from 'axios';
 import service_uri from '../../components/variable/service_uri';
 import TextInput from '../../components/TextInput';
+import baseurl from '../../auth/Baseurl';
 
 export default class ShowAccountStudent extends Component {
     state = {
@@ -52,7 +53,7 @@ export default class ShowAccountStudent extends Component {
         script.async = true;
         document.body.appendChild(script);
 
-        axios.get('http://localhost/cams_server/api/admin_accountUser/showaccountUser_student')
+        axios.get(baseurl+'api/admin_accountUser/showaccountUser_student')
         .then(response => {
           this.setState({ accountusers: response.data });
         })

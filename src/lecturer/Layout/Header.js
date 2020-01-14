@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import axios from 'axios';
 import Logout from '../../auth/Logout';
+import baseurl from '../../auth/Baseurl';
+
 export default class Header extends Component {
     state = {
         lecturerID:[],
@@ -20,7 +22,7 @@ export default class Header extends Component {
         // localStorage.setItem("user_id", '4');
         let lecturerID = localStorage.getItem("lecturerID");
         console.log(lecturerID);
-        axios.get('http://localhost/cams_server/api/admin_showuser/getBeforelecturerID?lecturerID='+lecturerID)
+        axios.get(baseurl+'api/admin_showuser/getBeforelecturerID?lecturerID='+lecturerID)
             .then(response => {
             const result = response.data.response;
             result.forEach(element => {

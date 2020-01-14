@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Breadcrumb from '../components/Breadcrumb';
 import { Link } from "react-router-dom";
 import axios from 'axios';
+import baseurl from '../auth/Baseurl';
 
 
 export default class Timetreatment extends Component {
@@ -25,7 +26,7 @@ export default class Timetreatment extends Component {
 
     componentDidMount(){
         let user_ID = localStorage.getItem("username");
-        axios.get('http://localhost/cams_server/api/checknamestudent/getHistoryByCourse?user_ID='+user_ID)
+        axios.get(baseurl+'api/checknamestudent/getHistoryByCourse?user_ID='+user_ID)
         .then(res => {
         this.setState({ courses: res.data });
         })

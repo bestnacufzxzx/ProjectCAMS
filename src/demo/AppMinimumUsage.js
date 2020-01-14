@@ -3,6 +3,7 @@ import Camera, { FACING_MODES } from '../lib';
 import './reset.css';
 import axios from 'axios';
 // import TextInput from '../components/TextInput';
+import baseurl from '../../auth/Baseurl';
 
 
 export default class AppMinimumUsage extends Component {
@@ -17,12 +18,11 @@ export default class AppMinimumUsage extends Component {
 
     onTakePhoto = dataUri => {
         let courseID = localStorage.getItem("courseID");
-        axios.post('http://localhost/cams_server/api/checknamex/getCheckname?courseID', { courseID })
+        axios.post(baseurl+'api/checknamex/getCheckname?courseID', { courseID })
         .then(res => {
           this.setState({ picture: res.data });
         })
         .catch(error => {
-          // console.log("====>",error.status);
           console.log(dataUri);
         });
       }

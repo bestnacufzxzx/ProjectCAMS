@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 // import Modaleditcourse from './EditCourse/Modaleditcourse';
 import axios from 'axios';
 // import service_uri from '../../components/variable/service_uri';
+import baseurl from '../../auth/Baseurl';
 
 
 export default class Setstudentincourse extends Component {
@@ -24,7 +25,7 @@ export default class Setstudentincourse extends Component {
 
         let lecturerID = localStorage.getItem("lecturerID");
         console.log("lecturerID"+lecturerID);
-        axios.get('http://localhost/cams_server/api/lecturers/getCourseByteaching?lecturerID='+lecturerID)
+        axios.get(baseurl+'api/lecturers/getCourseByteaching?lecturerID='+lecturerID)
         .then(res => {
         this.setState({ courses: res.data });
         })

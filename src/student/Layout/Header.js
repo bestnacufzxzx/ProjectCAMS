@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import Logout from '../../auth/Logout';
 
 export default class Header extends Component {

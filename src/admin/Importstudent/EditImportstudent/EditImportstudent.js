@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Breadcrumb from '../../../components/Breadcrumb';
 import { Link } from "react-router-dom";
 import axios from 'axios';
+import baseurl from '../../../auth/Baseurl';
 
 export default class EditImportstudent extends Component {
 
@@ -20,7 +21,7 @@ export default class EditImportstudent extends Component {
     componentWillMount () {
         const  studentID  = this.props.match.params.studentID;
         console.log(studentID );
-        axios.get('http://localhost/cams_server/api/admin_showuser/getBeforestudentID?studentID='+studentID)
+        axios.get(baseurl+'api/admin_showuser/getBeforestudentID?studentID='+studentID)
             .then(response => {
             const result = response.data.response;
             result.forEach(element => {
@@ -44,7 +45,7 @@ export default class EditImportstudent extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        axios.post('http://localhost/cams_server/api/admin_showuser/post_updatestudent/', {
+        axios.post(baseurl+'api/admin_showuser/post_updatestudent/', {
             studentID: this.state.studentID,
             prefix: this.state.prefix,
             firstName: this.state.firstName,

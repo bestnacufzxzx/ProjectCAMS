@@ -3,6 +3,7 @@ import Breadcrumb from '../../components/Breadcrumb';
 import axios from 'axios';
 import { Link } from "react-router-dom";
 // import Historysbystudent from '../Historysbystudent/Historysbystudent';
+import baseurl from '../../auth/Baseurl';
 
 export default class Timetreatments extends Component {
 
@@ -32,7 +33,7 @@ export default class Timetreatments extends Component {
 
         let lecturerID = localStorage.getItem("lecturerID");
         console.log(lecturerID);
-        axios.get('http://localhost/cams_server/api/lecturers/getCourseByteaching?lecturerID='+lecturerID)
+        axios.get(baseurl+'api/lecturers/getCourseByteaching?lecturerID='+lecturerID)
         .then(res => {
         this.setState({ historys: res.data });
         })

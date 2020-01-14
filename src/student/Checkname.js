@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Breadcrumb from '../components/Breadcrumb';
 import axios from 'axios';
 import { Link } from "react-router-dom";
+import baseurl from '../auth/Baseurl';
 
 export default class Checkname extends Component {
     state = {
@@ -43,7 +44,7 @@ export default class Checkname extends Component {
         const { courseID } = this.props.match.params;
         console.log(courseID);
 
-        axios.get('http://localhost/cams_server/api/Checknamestudent/getbycourse?courseID='+courseID)
+        axios.get(baseurl+'api/Checknamestudent/getbycourse?courseID='+courseID)
         .then(res => {
         this.setState({ courses: res.data });
         })
