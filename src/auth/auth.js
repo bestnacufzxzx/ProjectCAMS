@@ -95,6 +95,8 @@ export default class Auth extends Component {
                 }
 
             }
+            alert(data.message);
+
 
             if(this.state.username && this.state.password){
             }

@@ -29,7 +29,7 @@ export default class Showimportteacher extends Component {
     } 
 
     RefreshPage=()=> { 
-        window.location.href = (baseurl+'admin/ShowImportteacher'); 
+        window.location.href = 'http://localhost:3000/admin/ShowImportteacher'; 
     }
 
     renderedit(lecturers){
