@@ -34,7 +34,7 @@ export default class ImportCourse extends Component {
             temp.courseName = v[1];
             // temp.course_Credits = v[2];
 
-            if (!temp.courseCode === "" || !temp.courseCode === null ){
+            if (temp.courseCode){
                 file.push(temp);
             }
             
@@ -54,25 +54,14 @@ export default class ImportCourse extends Component {
     }
 
     importHandle = () => {
-        // let data = [] = this.state.data;
-        // console.log("TEST"+data)
-        axios.post(baseurl+'api/admin_showcourse/admin_importcourse/'+this.state.data)
+        axios.post(baseurl+'api/admin_showcourse/admin_importcourse/',
+        {'course': this.state.data})
         .then(response => {
           console.log(response);
         })
         .catch(error => {
           console.log("====>",error);
         });
-
-        // axios.get(service_uri+'admin_showcourse/admin_importcourse',this.state.data)
-    //     .then(res => {
-    //         // this.setState({ Allourses: res.data });
-    //       console.log(res);
-
-    //     })
-    //     .catch(error => {
-    //         console.log("====>",error.status);
-    //     });
     }
 
     clearShowFileImport = () => {

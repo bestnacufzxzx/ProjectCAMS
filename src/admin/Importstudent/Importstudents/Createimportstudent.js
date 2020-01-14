@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import Breadcrumb from '../../../components/Breadcrumb';
 import CSVReader from "react-csv-reader";
-
+import axios from 'axios';
+import baseurl from '../../../auth/Baseurl';
 
 export default class Createimportstudent extends Component {
 
@@ -20,7 +21,9 @@ export default class Createimportstudent extends Component {
     readfileHandle = data => {
         let structure = {
             idstudent: '',
-            name: '',
+            fname: '',
+            lname: '',
+            email: '',
             tel: '',
             username: ''
         }
@@ -28,10 +31,14 @@ export default class Createimportstudent extends Component {
         data.map((v) => {  //(v,i)
             let temp  = {...structure};
             temp.idstudent = v[0];
-            temp.name = v[1];
-            temp.tel = v[2];
-            temp.username = v[3];
-            file.push(temp);
+            temp.fname = v[1];
+            temp.lname = v[2];
+            temp.email = v[2];
+            temp.tel = v[3];
+            temp.username = v[4];
+            if (temp.fname){
+                file.push(temp);
+            }
         });
         this.setState({
             file: file
@@ -46,7 +53,17 @@ export default class Createimportstudent extends Component {
     }
 
     importHandle = () => {
-        console.log(this.state.data);
+        console.log(this.state.data)
+        axios.post(baseurl+'api/students/improt_student',
+        {'student': this.state.data})
+        .then(response => {
+          console.log(response);
+        })
+        .catch(error => {
+          console.log("====>",error);
+        });
+        console.log(this.state.data)
+
     }
 
     clearShowFileImport = () => {
@@ -99,7 +116,8 @@ export default class Createimportstudent extends Component {
                                             <tr role="row">
                                                 <th className="col-sm-1" tabIndex="0" aria-controls="example2" rowSpan="1" colSpan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">ลำดับ</th>
                                                 <th className="col-sm-2" tabIndex="0" aria-controls="example2" rowSpan="1" colSpan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">รหัสนักศึกษา</th>
-                                                <th className="col-sm-2" tabIndex="0" aria-controls="example2" rowSpan="1" colSpan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">ชื่อ-นามสกุล*</th>
+                                                <th className="col-sm-2" tabIndex="0" aria-controls="example2" rowSpan="1" colSpan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">ชื่อ</th>
+                                                <th className="col-sm-2" tabIndex="0" aria-controls="example2" rowSpan="1" colSpan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">นามสกุล</th>
                                                 <th className="col-sm-2" tabIndex="0" aria-controls="example2" rowSpan="1" colSpan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">เบอร์โทร</th>
                                                 <th className="col-sm-2" tabIndex="0" aria-controls="example2" rowSpan="1" colSpan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">ชื่อผู้ใช้งาน</th>
                                                 {/* <th className="col-sm-2" tabIndex="0" aria-controls="example2" rowSpan="1" colSpan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">รหัสผ่าน</th> */}
@@ -110,12 +128,11 @@ export default class Createimportstudent extends Component {
                                                 <tr role="row" className="odd">
                                                     <td className="sorting_1">{i+1}</td>
                                                     <td>{v.idstudent}</td>
-                                                    <td>{v.name}</td>
+                                                    <td>{v.fname}</td>
+                                                    <td>{v.lname}</td>
+                                                    <td class="hiddent">{v.email}</td>
                                                     <td>{v.tel}</td>
                                                     <td>{v.username}</td>
-                                                    {/* <td>1</td> */}
-                                                    {/* <td>1.7</td>
-                                                    <td>A</td> */}
                                                 </tr>
                                             )): (
                                                 <tr class="odd"><td valign="top" colspan="6" class="dataTables_empty">No data available in table</td></tr>
@@ -124,8 +141,7 @@ export default class Createimportstudent extends Component {
                                     </table>
                                 </div>
                                 <div className="box-footer">
-                                    <button type="submit" className="btn btn-default">ยกเลิก</button>
-                                    <button type="submit" className="btn btn-success pull-right">นำเข้า</button>
+                                    <button type="submit" className="btn btn-success pull-right" onClick={this.importHandle}>นำเข้า</button>
                                 </div>
                             </div>
                         </div>
