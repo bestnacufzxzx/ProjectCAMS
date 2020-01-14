@@ -54,7 +54,7 @@ export default class ImportCourse extends Component {
     }
 
     importHandle = () => {
-        axios.post(baseurl+'api/admin_showcourse/admin_importcourse/',
+        axios.post(baseurl+'api/Import_course/inportcourse/',
         {'course': this.state.data})
         .then(response => {
           console.log(response);

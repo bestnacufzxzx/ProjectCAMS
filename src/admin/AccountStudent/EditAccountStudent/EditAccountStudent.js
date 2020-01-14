@@ -58,7 +58,7 @@ export default class EditAccountStudent  extends Component {
 
     
     RefreshPage = () => { 
-        window.location.href = 'http://localhost:3000/admin/ShowAccountTeacher'; 
+        window.location.href = 'http://localhost:3000/admin/ShowAccountStudent'; 
     }
     componentDidMount(){
         const script = document.createElement("script");
