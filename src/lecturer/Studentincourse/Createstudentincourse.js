@@ -11,7 +11,7 @@ import baseurl from '../../auth/Baseurl';
 export default class Createstudentincourse extends Component {
 
     state = {
-        // courses : [],
+        courses : [],
     }
 
     deletestudentincourseID(studentsregeterID){

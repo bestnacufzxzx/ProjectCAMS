@@ -42,13 +42,20 @@ export default class Header extends Component {
     
     }
 
+    
+  state = {
+    role: localStorage.getItem('role'),
+  };
     render(){
+        let role = this.state.role;
+        console.log(role);
+        if(role == 3 ){
         return(
             <div className>
                 <header className="main-header">
                     <a href="/" className="logo">
                     <span className="logo-mini"><b>A</b>LT</span>
-                    <span className="logo-lg"><b>อาจารย์ผู้ประสานรายวิชา</b></span>
+                    <span className="logo-lg"><b>อาจารย์ผู้สอน</b></span>
                     </a>
                     {/* Header Navbar: style can be found in header.less */}
                     <nav className="navbar navbar-static-top">
@@ -71,6 +78,36 @@ export default class Header extends Component {
                 </header>
             </div>
         )
+        }else{
+            return(
+                <div className>
+                    <header className="main-header">
+                        <a href="/" className="logo">
+                        <span className="logo-mini"><b>A</b>LT</span>
+                        <span className="logo-lg"><b>อาจารย์ผู้ประสานรายวิชา</b></span>
+                        </a>
+                        {/* Header Navbar: style can be found in header.less */}
+                        <nav className="navbar navbar-static-top">
+                        {/* Sidebar toggle button*/}
+                        <a href="fake_url" className="sidebar-toggle" data-toggle="push-menu" role="button">
+                            <span className="sr-only">Toggle navigation</span>
+                        </a>
+                        {/* Navbar Right Menu */}
+                        <div className="navbar-custom-menu">
+                            <ul className="nav navbar-nav">
+                            {/* User Account: style can be found in dropdown.less */}
+                            <Logout></Logout>
+                            {/* Control Sidebar Toggle Button */}
+                            {/* <li>
+                                <a href="fake_url" data-toggle="control-sidebar"><i className="fa fa-gears" /></a>
+                            </li> */}
+                            </ul>
+                        </div>
+                        </nav>
+                    </header>
+                </div>
+            )
+        }
     
     }
 }
