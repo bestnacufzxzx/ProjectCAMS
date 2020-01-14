@@ -61,10 +61,12 @@ export default class Createimportteacher extends Component {
         axios.post(baseurl+'api/lecturers/import_lecturer',
         {'lecturer': this.state.data})
         .then(response => {
-          console.log(response);
+            alert("บันทึกสำเร็จ");
+            console.log(response);
         })
         .catch(error => {
-          console.log("====>",error);
+        //   console.log("====>",error);
+            alert("ข้อมูลซ้ำ");
         });
         console.log(this.state.data)
 

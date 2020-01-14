@@ -18,8 +18,8 @@ export default class Showimportteacher extends Component {
         )
     }
 
-    handleRemove = (lecturerID) => {
-        const url = service_uri +'admin_showuser/get_delete_lecturerid?lecturerID='+lecturerID;
+    handleRemove = (user_id) => {
+        const url = service_uri +'admin_showuser/get_delete_lecturerid?user_id='+user_id;
         axios.get(url)
             .then(res => {
                 console.log(res);
@@ -115,7 +115,7 @@ export default class Showimportteacher extends Component {
                                                             <td>{lecturers.phoneNumber}</td>
                                                             <td> 
                                                                 {this.renderedit(lecturers)}
-                                                                {this.renderdelete(lecturers.lecturerID)}
+                                                                {this.renderdelete(lecturers.user_id)}
                                                                 {/* <Link to={'/admin/course/Updatacourse/'+course.courseID} ><button type="button" className="btn btn-warning" onClick={this.updateCourse} ><i className="fa fa-edit"></i></button></Link> <button type="button" className="btn btn-danger"><i className="fa fa-trash"></i></button> */}
                                                             </td>
                                                         </tr>

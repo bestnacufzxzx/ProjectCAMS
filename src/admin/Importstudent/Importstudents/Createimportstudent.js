@@ -58,6 +58,8 @@ export default class Createimportstudent extends Component {
         {'student': this.state.data})
         .then(response => {
           console.log(response);
+          alert("บันทึกสำเร็จ")
+            this.RefreshPage();
         })
         .catch(error => {
           console.log("====>",error);

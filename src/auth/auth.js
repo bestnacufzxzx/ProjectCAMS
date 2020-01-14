@@ -86,9 +86,11 @@ export default class Auth extends Component {
                     .catch(error => {
                     });
                 }else if(data.role == 7){
+                    alert(data.message);
                     this.RefreshPage();
 
                 }else{
+                    alert(data.message);
                     this.RefreshPage();
                 }
 

@@ -75,33 +75,6 @@ export default class ShowAccountTeacher extends Component {
                     ]
                 } />
                 <div className="content body">
-                    {/* <div class="row">
-                        <div class="col-md-12">
-                            <div class="box theader-search-sky">
-                                <div class="box-header">                   
-                                    <div className="row">
-                                        <form action="" method="POST" id="">
-                                            <div className="col-md-2 form-group"></div>
-                                            <div className="col-md-3 form-group">
-         
-                                            </div>
-                                            <div className="col-md-3 form-group">
-                                                <input type="text" className="form-control" name="searchText" value="" placeholder="ค้นหา"/>
-                                            </div>
-                                            <div className="col-md-2 form-group">
-                                                <button type="submit" className="btn btn-block btn-info pull-right"><i class="fa fa-search" aria-hidden="true"></i> ค้นหา</button> 
-                                            </div>
-                                        </form>
-                                        <div className="col-md-2">
-                                            
-                                                <button type="button" className="btn btn-block btn-info pull-right" data-toggle="modal" data-target="#modal-default"><i class="fa fa-plus" aria-hidden="true"></i> สร้าง</button>
-                                            
-                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> */}
                     <div className="row">
                         <div className="col-md-12">
                             <div className="box box-primary">
