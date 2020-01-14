@@ -19,7 +19,7 @@ export default class ShowAccountTeacher extends Component {
     }
 
     handleRemove = (user_id) => {
-        const url = service_uri +'admin_showuser/get_delete_user_id?user_id='+user_id;
+        const url = service_uri +'admin_showuser/get_delete_lecturerid?user_id='+user_id;
         axios.get(url)
             .then(res => {
                 console.log(res);

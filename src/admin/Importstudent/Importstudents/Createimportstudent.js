@@ -58,16 +58,19 @@ export default class Createimportstudent extends Component {
         {'student': this.state.data})
         .then(response => {
           console.log(response);
-          alert("บันทึกสำเร็จ")
+            alert("บันทึกสำเร็จ")
             this.RefreshPage();
         })
         .catch(error => {
+            alert("ข้อมูลซ้ำ")
           console.log("====>",error);
         });
         console.log(this.state.data)
 
     }
-
+    RefreshPage=()=> { 
+        window.location.href = 'http://localhost:3000/admin/Showimportstudent'; 
+    }
     clearShowFileImport = () => {
         const data = [];
         this.setState({data: data});
@@ -132,7 +135,7 @@ export default class Createimportstudent extends Component {
                                                     <td>{v.idstudent}</td>
                                                     <td>{v.fname}</td>
                                                     <td>{v.lname}</td>
-                                                    <td class="hiddent">{v.email}</td>
+                                                    {/* <td class="hiddent">{v.email}</td> */}
                                                     <td>{v.tel}</td>
                                                     <td>{v.username}</td>
                                                 </tr>

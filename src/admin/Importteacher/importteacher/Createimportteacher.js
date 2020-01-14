@@ -61,15 +61,19 @@ export default class Createimportteacher extends Component {
         axios.post(baseurl+'api/lecturers/import_lecturer',
         {'lecturer': this.state.data})
         .then(response => {
-            alert("บันทึกสำเร็จ");
-            console.log(response);
+            alert("บันทึกสำเร็จ")
+            this.RefreshPage();
         })
         .catch(error => {
-        //   console.log("====>",error);
-            alert("ข้อมูลซ้ำ");
+            alert("ข้อมูลซ้ำ")
+          console.log("====>",error);
         });
         console.log(this.state.data)
 
+    }
+
+    RefreshPage=()=> { 
+        window.location.href = 'http://localhost:3000/admin/ShowImportteacher'; 
     }
 
     clearShowFileImport = () => {
