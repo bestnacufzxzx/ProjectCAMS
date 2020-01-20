@@ -250,7 +250,7 @@ export default class CreateTeachCourse extends Component {
                                                 <div class="form-group">
                                                     <label for="courseName" type="text" class="col-form-label">วันเริ่มต้นการสอน</label> : 
                                                    <DatePicker 
-                                                        dateFormat="dd/MM/yyyy"
+                                                        dateFormat=" dd/MM/yyyy"
                                                         selected={this.state.startDate}
                                                         onChange={date => this.handleChangeStartDate(date)}
                                                         selectsStart
@@ -262,7 +262,7 @@ export default class CreateTeachCourse extends Component {
                                                 <div class="form-group">
                                                     <label for="courseName" type="text" class="col-form-label">วันสิ้นสุดการสอน</label> : 
                                                     <DatePicker 
-                                                        dateFormat="dd/MM/yyyy"
+                                                        dateFormat=" dd/MM/yyyy"
                                                         selected={this.state.endDate}
                                                         onChange={date => this.handleChangeEndDate(date)}
                                                         selectsStart
@@ -284,8 +284,8 @@ export default class CreateTeachCourse extends Component {
                                                         showTimeSelect
                                                         showTimeSelectOnly
                                                         timeIntervals={1}
-                                                        timeCaption="Time"
-                                                        dateFormat="H:mm "
+                                                        timeCaption=" Time"
+                                                        dateFormat=" H:mm "
                                                         minTime={this.state.startDate}
                                                         maxTime={this.state.endDate}
 
@@ -300,8 +300,8 @@ export default class CreateTeachCourse extends Component {
                                                         showTimeSelect
                                                         showTimeSelectOnly
                                                         timeIntervals={1}
-                                                        timeCaption="Time"
-                                                        dateFormat="H:mm "
+                                                        timeCaption=" Time"
+                                                        dateFormat=" H:mm "
                                                         minTime={this.state.startDate}
                                                         maxTime={this.state.endDate}
                                                    />
@@ -320,8 +320,8 @@ export default class CreateTeachCourse extends Component {
                                                         showTimeSelect
                                                         showTimeSelectOnly
                                                         timeIntervals={1}
-                                                        timeCaption="Time"
-                                                        dateFormat="H:mm aa"
+                                                        timeCaption=" Time"
+                                                        dateFormat=" H:mm"
                                                         minTime={this.state.startDate}
                                                         maxTime={this.state.endcheck}
                                                         locale='th'
@@ -338,8 +338,8 @@ export default class CreateTeachCourse extends Component {
                                                         showTimeSelect
                                                         showTimeSelectOnly
                                                         timeIntervals={1}
-                                                        timeCaption="Time"
-                                                        dateFormat="H:mm aa"
+                                                        timeCaption=" Time"
+                                                        dateFormat=" H:mm"
                                                         minTime={this.state.startcheck}
                                                         maxTime={this.state.endDate}
                                                         locale='th'
