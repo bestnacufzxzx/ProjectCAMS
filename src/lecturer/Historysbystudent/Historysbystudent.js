@@ -8,7 +8,8 @@ export default class Historysbystudent extends Component {
   
     state = {
         historys : [],
-        course:''
+        course:'',
+        courseCode:''
     }
     
     renderhistoryid(student){
@@ -24,7 +25,10 @@ export default class Historysbystudent extends Component {
     
     componentDidMount(){
         const  HistorysbystudentcourseID = this.props.match.params.HistorysbystudentcourseID;
+        const  courseCode = this.props.match.params.courseCode;
+        const  courseName = this.props.match.params.courseName;
         let courseID = HistorysbystudentcourseID;
+        this.setState({ courses : courseCode +" "+courseName})
         
         axios.get(baseurl+'api/lecturers/gethistorytimetreatment?courseID='+courseID)
         .then(res => {
@@ -33,7 +37,45 @@ export default class Historysbystudent extends Component {
         .catch(error => {
         console.log("====>",error.status);
         });
-    
+
+
+        // let lecturerID = localStorage.getItem("lecturerID");
+        // console.log(lecturerID);
+        // axios.get(baseurl+'api/lecturers/getCourseByteaching?lecturerID='+lecturerID)
+        // .then(res => {
+        // let courseCode = (res.data.courseCode) 
+        // let courseName = (res.data.courseName) 
+        // this.setState({courseCode})
+        // this.setState({courseName})
+        // console.log(this.state.courseCode)
+
+        // })
+
+        // .catch(error => {
+        // console.log("====>",error.status);
+        // });
+        // let lecturerID = localStorage.getItem("lecturerID");
+        // console.log(lecturerID);
+        // axios.get(baseurl+'api/lecturers/getCourseByteaching?lecturerID='+lecturerID)
+        // .then(res => {
+        // let courseCode = (res.data.courseCode) 
+        // let courseName = (res.data.courseName) 
+        // this.setState({courseCode})
+        // this.setState({courseName})
+        // })
+        // .catch(error => {
+        // console.log("====>",error.status);
+        // });
+
+        // let lecturerID = localStorage.getItem("lecturerID");
+        // axios.get(baseurl+'api/lecturers/getCourseByteaching?lecturerID='+lecturerID)
+        // .then(res => {
+        //     let courseCode = (res.data.result.result) 
+        //     this.setState({courseCode})
+        // })
+        // .catch(error => {
+        // console.log("====>",error.status);
+        // });
                 // const script = document.createElement("script");
                 // script.src = '../js/Showimportteacher/content.js';
                 // script.async = true;
@@ -41,18 +83,33 @@ export default class Historysbystudent extends Component {
         }
 
     render() {
-        // console.log(this.state.Course)
+        console.log(this.state.courses)
+
+        // console.log(this.state.courseCode)
         return (
    
              <div className="content-wrapper">
-                <Breadcrumb header="ประวัตินักศึกษา" subheader="" arrow={
+                <Breadcrumb header="ประวัตินักศึกษา"  subheader="" arrow={
                     [
                         // {"icon":"", "title":"รายวิชาที่สอน", "link":"#", "active":"active"}
                     ]
                 } />
                 <div className="content body">
-                
-                   
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="box theader-search-sky">
+                                <div class="box-header">
+                                    <div className="row">
+                                        <div className="col-md-10">
+                                                <label> 
+                                                    <h4>รายวิชา {this.state.courses}</h4>
+                                                </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div className="row">
                         <div className="col-md-12">
                             <div className="box box-primary">

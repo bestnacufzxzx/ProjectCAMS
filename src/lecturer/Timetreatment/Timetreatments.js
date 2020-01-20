@@ -14,10 +14,10 @@ export default class Timetreatments extends Component {
     }
     
 
-    renderhistoryid(HistorysbystudentcourseID){
+    renderhistoryid(HistorysbystudentcourseID , courseCode , courseName){
         // let lecturerID = localStorage.getItem("lecturerID");
         return(
-            <Link to={'Historysbystudent/'+HistorysbystudentcourseID}>
+            <Link to={'Historysbystudent/'+HistorysbystudentcourseID + "/" + courseCode + "/" + courseName}>
                 <button type="button" className="btn btn-success"> <i class="fa fa-eye" aria-hidden="true"> </i> </button>
             </Link> 
         )
@@ -80,7 +80,7 @@ export default class Timetreatments extends Component {
                                                         <td>{history.courseName}</td>
                                                         {/* <td>{history.lastName}</td> */}
                                                         <td className="text-center">
-                                                        {this.renderhistoryid(history.courseID)}
+                                                        {this.renderhistoryid(history.courseID , history.courseCode, history.courseName)}
                                                     </td>
                                                     </tr>
                                                 ))}
