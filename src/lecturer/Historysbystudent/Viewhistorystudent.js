@@ -142,12 +142,12 @@ export default class Viewhistorystudent extends Component {
                                 <div className="box-body">
                                     <table id="example1" class="table table-bordered table-striped" role="grid" >
                                         <thead>
-                                            <tr   >
+                                            <tr>
                                                 <th className="col-sm-1" tabIndex="0" aria-controls="example2" rowSpan="1" colSpan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">คาบ</th>
-                                                <th className="col-sm-4" tabIndex="0" aria-controls="example2" rowSpan="1" colSpan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">อาคารเรียน</th>
+                                                <th className="col-sm-2" tabIndex="0" aria-controls="example2" rowSpan="1" colSpan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">รูปภาพ</th>
+                                                <th className="col-sm-2" tabIndex="0" aria-controls="example2" rowSpan="1" colSpan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">อาคารเรียน</th>
                                                 <th className="col-sm-2" tabIndex="0" aria-controls="example2" rowSpan="1" colSpan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">ห้องเรียน</th>
                                                 <th className="col-sm-2" tabIndex="0" aria-controls="example2" rowSpan="1" colSpan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">วัน-เวลา</th> 
-                                                <th className="col-sm-2" tabIndex="0" aria-controls="example2" rowSpan="1" colSpan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">รูปภาพ</th>
                                                 <th className="col-sm-2" tabIndex="0" aria-controls="example2" rowSpan="1" colSpan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">สถานะเข้าเรียน</th>
                                             
                                             </tr>
@@ -156,10 +156,10 @@ export default class Viewhistorystudent extends Component {
                                             { this.state.historys.map((history, i) => (
                                                     <tr role="row">
                                                         <td>{i+1}</td>
+                                                        <td>{this.chackpicture(history.picture)}</td>
                                                         <td>{history.buildingName}</td>
                                                         <td>{history.roomname}</td>
                                                         <td>{history.datetime}</td>
-                                                        <td>{this.chackpicture(history.picture)}</td>
                                                         <td>{this.chackstatus(history.status)}</td>
                                                     </tr>
                                                 ))}
