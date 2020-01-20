@@ -55,6 +55,7 @@ export default class CreateTeachCourse extends Component {
         let day = (Da + "/" + Mon + "/" + Year);
         // let m = d2.getMilliseconds();
         console.log("startDate "+ time + "  "+ day);
+        // console.log("startDate "+ d1);
     }
 
     handleChangeEndDate = date => {
@@ -143,7 +144,7 @@ export default class CreateTeachCourse extends Component {
     changestartdate(date){
         let d1 = new Date(date);
         let Da = d1.getDate();
-        let Mon = d1.getMonth();
+        let Mon = (1)+d1.getMonth();
         let Year = d1.getFullYear();
         let startdate = (Year + "-" + Mon + "-" + Da);
         return(
@@ -200,7 +201,7 @@ export default class CreateTeachCourse extends Component {
                 .then(res => {
             
                 alert("บันทึกสำเร็จ")
-                this.RefreshPage();
+                // this.RefreshPage();
                 })
                 .catch(error => {
                 console.log("====>",error.status);
@@ -318,10 +319,10 @@ export default class CreateTeachCourse extends Component {
                                                         onChange={date => this.handleChangeStartcheckDate(date)}
                                                         showTimeSelect
                                                         showTimeSelectOnly
-                                                        timeIntervals={15}
+                                                        timeIntervals={1}
                                                         timeCaption="Time"
                                                         dateFormat="H:mm aa"
-                                                        minTime={this.state.startcheck}
+                                                        minTime={this.state.startDate}
                                                         maxTime={this.state.endcheck}
                                                         locale='th'
 
@@ -336,11 +337,11 @@ export default class CreateTeachCourse extends Component {
                                                         onChange={date => this.handleChangeEndcheckDate(date)}
                                                         showTimeSelect
                                                         showTimeSelectOnly
-                                                        timeIntervals={15}
+                                                        timeIntervals={1}
                                                         timeCaption="Time"
                                                         dateFormat="H:mm aa"
                                                         minTime={this.state.startcheck}
-                                                        maxTime={this.state.endcheck}
+                                                        maxTime={this.state.endDate}
                                                         locale='th'
 
                                                    />
