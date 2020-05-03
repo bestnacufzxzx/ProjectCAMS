@@ -8,7 +8,8 @@ export default class Viewhistorystudent extends Component {
   
     state = {
         historys : [],
-        course:''
+        course:'',
+        image_path: '',
     }
     // numeol(i){
         // let classID = i+1
@@ -40,8 +41,6 @@ export default class Viewhistorystudent extends Component {
     }
 
     chackstatus = (status) => {
-        
-
         if(status === "1"){
             return(
                 "เข้าเรียน"
@@ -59,8 +58,6 @@ export default class Viewhistorystudent extends Component {
                 "-"
             )
         }
-
-
     }
 
     export_file = () => {
@@ -73,11 +70,10 @@ export default class Viewhistorystudent extends Component {
         const  studentID = this.props.match.params.studentID;
         const  courseID = this.props.match.params.courseID;
         // console.log(user_id+"asdasd"+courseID)
-
         
         axios.post(baseurl+'api/Checknamestudent/postHistoryChecknameByCourse', { courseID: courseID,user_ID:studentID} )
         .then(res => {
-        this.setState({ historys: res.data });
+        this.setState({ historys: res.data.result, image_path: res.data.path });
         })
         .catch(error => {
         console.log("====>",error.status);
@@ -120,13 +116,13 @@ export default class Viewhistorystudent extends Component {
                             <div class="box theader-search-sky">
                                 <div class="box-header">
                                     <div className="row">
-                                        <div className="col-md-10">
+                                        <div className="col-md-9">
                                                 <label> 
                                                     <h4>เปอร์เซ็นการเข้าเรียน :<span class="badge bg-green">{this.state.percent} %</span></h4>
                                                     จำนวนคาบที่ 
                                                 </label>
                                         </div>
-                                        <div className="col-md-2">
+                                        <div className="col-md-3">
                                             {/* <Link to={'/admin/Createteaching/'+this.state.courseID}> */}
                                                 <button type="button" className="btn btn-block btn-info" onClick={this.export_file}><i className="fa fa-table" aria-hidden="true"></i> ออกรายงานประวัติการเข้าเรียน</button>
                                             {/* </Link> */}
@@ -139,7 +135,7 @@ export default class Viewhistorystudent extends Component {
                     <div className="row">
                         <div className="col-md-12">
                             <div className="box box-primary">
-                                <div className="box-body">
+                                <div className="box-body table-responsive">
                                     <table id="example1" class="table table-bordered table-striped" role="grid" >
                                         <thead>
                                             <tr>
@@ -156,7 +152,7 @@ export default class Viewhistorystudent extends Component {
                                             { this.state.historys.map((history, i) => (
                                                     <tr role="row">
                                                         <td>{i+1}</td>
-                                                        <td>{this.chackpicture(history.picture)}</td>
+                                                        <td><img src={this.state.image_path+history.picture} width="100px"></img></td>
                                                         <td>{history.buildingName}</td>
                                                         <td>{history.roomname}</td>
                                                         <td>{history.datetime}</td>

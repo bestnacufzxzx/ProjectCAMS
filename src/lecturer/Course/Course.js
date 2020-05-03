@@ -14,10 +14,11 @@ export default class Course extends Component {
         courses : [],
         // sum : null
     }
-    rendercourseID(course){
+    rendercourseID(course,courseCode,courseName){
+        let namecourse = courseCode+" "+courseName;
         let courseID = (course.courseID);
         return(
-            <Link to={'/lecturer/Teachs/'+courseID}>
+            <Link to={'/lecturer/Teachs/'+courseID+"/"+namecourse}>
                 <button type="button" className="btn btn-success"> <i class="fa fa-eye" aria-hidden="true"> </i> </button>&nbsp;
             </Link> 
         )
@@ -50,8 +51,11 @@ export default class Course extends Component {
     componentDidMount(){
 
         let lecturerID = localStorage.getItem("lecturerID");
-        console.log("lecturerID"+lecturerID);
-        axios.get(baseurl+'api/lecturers/getCourseByteaching?lecturerID='+lecturerID)
+        let roleID = localStorage.getItem("role")
+        console.log("lecturerID"+lecturerID+"roleID"+roleID);
+        // axios.get(baseurl+'api/lecturers/getCourseByteaching?lecturerID='+lecturerID+"&roleID="+roleID)
+        axios.get(baseurl+'api/lecturers/getCourseByteachingNoRole?lecturerID='+lecturerID)
+
         .then(res => {
         this.setState({ courses: res.data });
         })
@@ -69,7 +73,7 @@ export default class Course extends Component {
                     ]
                 } />
                 <div className="content body">
-                    <div class="row">
+                    {/* <div class="row">
                         <div class="col-md-12">
                             <div class="box theader-search-sky">
                                 <div class="box-header">                   
@@ -80,30 +84,25 @@ export default class Course extends Component {
          
                                             </div>
                                             <div className="col-md-3 form-group">
-                                                {/* <input type="text" className="form-control" name="searchText" value="" placeholder="ค้นหา"/> */}
                                             </div>
                                             <div className="col-md-2 form-group">
-                                                {/* <button type="submit" className="btn btn-block btn-info pull-right"><i class="fa fa-search" aria-hidden="true"></i> ค้นหา</button>  */}
                                             </div>
                                         </form>
                                         <div className="col-md-2">
-                                            {/* <Link to="/lecturer/CreateCourse">
-                                                <button type="button" className="btn btn-block btn-info pull-right"><i class="fa fa-plus" aria-hidden="true"></i> สร้าง</button>
-                                            </Link> */}
                                             <Modalecreatecourse />
-                                         </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                     <div className="row">
                         <div className="col-md-12">
                             <div className="box box-primary">
                                 <div className="box-body">
                                     <br />
                                     <div className="row">
-                                        <div className="col-sm-12">
+                                        <div className="col-sm-12 table-responsive">
                                             <table id="example2" className="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
                                                 <thead>
                                                     <tr>
@@ -122,7 +121,7 @@ export default class Course extends Component {
                                                             <td>{course.courseName}</td>
                                                             {/* <td>{course.lastName}</td> */}
                                                             <td className="text-center">
-                                                                {this.rendercourseID(course)}
+                                                                {this.rendercourseID(course,course.courseCode,course.courseName)}
                                                                 {/* {this.rendereditcourse(course)} */}
                                                                 {this.renderdelete(course)}
                                                             </td>

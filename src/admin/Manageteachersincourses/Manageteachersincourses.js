@@ -3,11 +3,8 @@ import Breadcrumb from '../../components/Breadcrumb';
 import { Link } from "react-router-dom";
 import axios from 'axios';
 import service_uri from '../../components/variable/service_uri';
-const initialState = {
-    lecturerIDError: "",
-    roleIDError: "",
-}
-export default class Createteaching extends Component {
+
+export default class Manageteachersincourses extends Component {
 
           
 state = {
@@ -21,9 +18,7 @@ state = {
     lecturerID:'',
     firstName:'',
     lastName:'',
-    roleID:'',
-    initialState : initialState
-
+    roleID:''
 }
 
 handleChange = (event) => {
@@ -44,25 +39,6 @@ componentDidMount(){
     this.getAlllecturer();
 }
 
-validate = () =>{
-    let  lecturerIDError = "";
-    let  roleIDError = "";
-
-    if (!this.state.lecturerID) {
-        lecturerIDError = "กรุณากรอกชื่อผู้ใช้งาน";
-    }
-
-    if (!this.state.roleID){
-        roleIDError = "กรุณากรอกรหัสผ่าน"
-    }
-
-    if(lecturerIDError || roleIDError){
-        this.setState({ lecturerIDError, roleIDError });
-        return false;
-    }
-    return true;
-
-}
 
 getAlllecturer = () => {
     axios.get(service_uri+'Admin_teaching/get_all_lecturer')
@@ -75,25 +51,20 @@ getAlllecturer = () => {
 }
 handleSubmit = (event) =>{
     event.preventDefault();
-    const isValid = this.validate();
-    
-    if(this.state.lecturerID != "" && this.state.roleID != ""){
-        axios.post(service_uri+'admin_teaching/update_status_teaching', {
+    axios.post(service_uri+'admin_teaching/update_status_teaching', {
 
-            lecturerID : this.state.lecturerID,
-            courseID: this.state.courseID,
-            roleID: this.state.roleID,
+        lecturerID : this.state.lecturerID,
+        courseID: this.state.courseID,
+        roleID: this.state.roleID,
+        })
+        .then(res => {
     
-        }).then(res => {
-            alert("บันทึกสำเร็จ")
-            // this.RefreshPage();
-        }).catch(error => {
-            alert("ไม่สามารถสร้างประเภทอาจารย์กับรายวิชาซ้ำได้")
-            console.log("====>",error.status);
+        alert("บันทึกสำเร็จ")
+        this.RefreshPage();
+        })
+        .catch(error => {
+        console.log("====>",error.status);
         });
-    }else if (isValid) {
-        this.setState(initialState);
-    }
 }
 
     render() {
@@ -118,25 +89,23 @@ handleSubmit = (event) =>{
                                         <div class="col-md-6">
                                             <div class="form-group input-group-sm">
                                                 <label for="lecturers" type="text" class="col-form-label">ชื่ออาจารย์</label>
-                                                <select name="lecturerID" class="form-control" onChange={this.handleChange} value={this.state.lecturerID}>
-                                                    <option value="">เลือกอาจารย์</option>
+                                                <select name="lecturerID" class="form-control" onChange={this.handleChange}>
+                                                    <option>เลือกอาจารย์</option>
                                                 { this.state.All_lecturers.map((all_lecturer,i) => (
                                                     <option value={all_lecturer.lecturerID}>{all_lecturer.firstName+' '+all_lecturer.lastName}</option>
                                                 )) }
                                                 </select>
-                                                <div style={{color: "red"}}>{this.state.lecturerIDError}</div>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group input-group-sm">
                                                 <label for="teaching" type="text" class="col-form-label">ประเภทอาจารย์  </label>
-                                                <select name="roleID" class="form-control" onChange={this.handleChange} value={this.state.roleID}>
-                                                    <option class="active" value="">ประเภทอาจารย์</option>
+                                                <select name="roleID" class="form-control" onChange={this.handleChange}>
+                                                    <option class="active">ประเภทอาจารย์</option>
                                                     <option value="3">อาจารย์ผู้สอน</option>
                                                     <option value="4">อาจารย์ผู้ประสานรายวิชา</option>
                                                     <option value="5">อาจารย์ผู้ประสานรายวิชาและอาจารย์ผู้สอน</option>
                                                 </select>
-                                                <div style={{color: "red"}}>{this.state.roleIDError}</div>
                                             </div>
                                         </div>
                                     </div>

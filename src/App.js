@@ -80,7 +80,7 @@ import EditAccountTeacher from './admin/AccountTeacher/EditAccountTeacher/EditAc
 import EditAccountStudent from './admin/AccountStudent/EditAccountStudent/EditAccountStudent';
 import Showteaching from './admin/course/Showteaching';
 import Createteaching from './admin/course/Createteaching';
-
+import Manageteachersincourses from './admin/Manageteachersincourses/Manageteachersincourses';
 
 // page lecturer
 import Attendancelocation from './lecturer/Attendancelocation/Attendancelocation';
@@ -162,6 +162,8 @@ export default class App extends Component{
               <Route exact path="/admin/EditAccountStudent/:user_id" component={EditAccountStudent} />
               <Route exact path="/admin/Showteaching/:courseID" component={Showteaching} />
               <Route exact path="/admin/Createteaching/:courseID/" component={Createteaching} /> 
+              <Route exact path="/admin/Manageteachersincourses" component={Manageteachersincourses} /> 
+
               <AdminFooter></AdminFooter>
             </BrowserRouter>
           </body>
@@ -181,13 +183,13 @@ export default class App extends Component{
             <Route exact path="/lecturer/Timetreatment" component={LecturerTimetreatment} />
             <Route exact path="/lecturer/Profilelecturer" component={Profilelecturer} /> 
             <Route exact path="/lecturer/Showhistorycourse" component={Showhistorycourse} /> 
-            <Route exact path="/lecturer/Teachs/:courseID" component={Teachs} /> 
-            <Route exact path="/lecturer/Historysbystudent/:HistorysbystudentcourseID" component={Historysbystudent} /> 
+            <Route exact path="/lecturer/Teachs/:courseID/:namecourse" component={Teachs} /> 
+            <Route exact path="/lecturer/Historysbystudent/:HistorysbystudentcourseID/:courseCode/:courseName" component={Historysbystudent} /> 
             <Route exact path="/lecturer/EditTeachCourse/:classID" component={EditTeachCourse} /> 
-            <Route exact path="/lecturer/CreateTeachCourse/:courseID" component={CreateTeachCourse} /> 
+            <Route exact path="/lecturer/CreateTeachCourse/:courseID/:namecourse" component={CreateTeachCourse} /> 
             <Route exact path="/lecturer/Showstudentincourse" component={Showstudentincourse} /> 
-            <Route exact path="/lecturer/Createstudentincourse/:courseID" component={Createstudentincourse} /> 
-            <Route exact path="/lecturer/Createstudent/:courseID" component={Createstudent} /> 
+            <Route exact path="/lecturer/Createstudentincourse/:courseID/:namecourse" component={Createstudentincourse} /> 
+            <Route exact path="/lecturer/Createstudent/:courseID/:namecourse" component={Createstudent} /> 
             <Route exact path="/lecturer/Viewhistorystudent/:studentID/:courseID" component={Viewhistorystudent} /> 
             <Route exact path="/lecturer/Profile" component={LecturerProfile} /> 
             <LecturerFooter></LecturerFooter>

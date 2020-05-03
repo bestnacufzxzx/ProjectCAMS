@@ -48,28 +48,25 @@ getAllCourse = () => {
 handleSubmit = (event) =>{
     event.preventDefault();
     let lecturerID = localStorage.getItem("lecturerID");
+    let role = localStorage.getItem("role")
+    console.log("rolerolerole",role)
     axios.post(service_uri+'lecturers/createcouresbylecturer', {
 
         // lecturerID : null,
         lecturerID : lecturerID,
         courseID: this.state.courseID,
+        roleID: role,
         // roleID: this.state.lecturerID,
         
         // end_date : this.state.end_date
         })
         .then(res => {
-        // let data = res.data
-        // this.setState({ Allstudent: res.data });
-    
         alert("บันทึกสำเร็จ")
-        // var r = confirm("บันทึกสำเร็จ");
-        // if (r == true) {
-            
-        // } 
         this.RefreshPage();
         })
-        .catch(error => {
-        console.log("====>",error.status);
+        .catch(res => {
+            console.log("====>",res.error);
+            alert("ไม่สามารถเพิ่มได้เนื่องจากมีรายวิชานี้อยู่แล้ว")
         });
 }
 

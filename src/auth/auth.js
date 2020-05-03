@@ -46,65 +46,73 @@ export default class Auth extends Component {
 
     handleSubmit = () => {
         const isValid = this.validate();
-        axios.post(baseurl+'api/Auth/login', {
-            username: this.state.username,
-            password: this.state.password
-        })
-        .then(res => {
-            let data = res.data
-            console.log(data)
+        if( this.state.username != "" && this.state.password != "" ){
+            axios.post(baseurl+'api/Auth/login', {
+                username: this.state.username,
+                password: this.state.password
+            })
+            .then(res => {
+                let data = res.data
+                console.log(data)
+                if(data.status){
+                    localStorage.setItem('token', data.token);
+                    localStorage.setItem('user_id', data.id);
+                    localStorage.setItem('name', data.name);
+                    localStorage.setItem('role', data.role);
+                    localStorage.setItem('username', this.state.username);
 
-            if(data.status){
-                localStorage.setItem('token', data.token);
-                localStorage.setItem('user_id', data.id);
-                localStorage.setItem('name', data.name);
-                localStorage.setItem('role', data.role);
-                localStorage.setItem('username', this.state.username);
+                    if(data.role != ""){
+                        let user_id = data.id
+                        console.log(user_id )
+                        axios.get(baseurl+'api/loginusername/get_username_student_login?user_id='+user_id)
+                        .then(response => {
+                        const result = response.data.response;
+                        result.forEach(element => {
+                            if(element.user_id === user_id){
+                                this.setState({ 
+                                    // user_id : element.user_id,
+                                    lecturerID : element.lecturerID,
+                                  
+                                })
+                                console.log(this.lecturerID )
+                                localStorage.setItem('lecturerID', this.state.lecturerID);
+                            }
+                        });
+                    
+                        })
+                        // .catch(error => {
+                        // });    
+                    }
+                    
+                    // if(data.role == 3 || data.role == 4 ||  data.role == 5 ||  data.role == 6){
+                    //     let user_id = data.id
+    
 
-                if(data.role == 3 || data.role == 4 ||  data.role == 5 ||  data.role == 6){
-                    let user_id = data.id
+                    // }
+                    // else if(data.role == 7)
+                    // {
+                    //     // alert(data.message);
+                    //     // this.RefreshPage();
+    
+                    // } 
+                    // else
+                    // {
+                    //     // alert(data.message);
+                    //     // this.RefreshPage();
+                    // }
 
-                    axios.get(baseurl+'api/loginusername/get_username_student_login?user_id='+user_id)
-                    .then(response => {
-                    const result = response.data.response;
-                    result.forEach(element => {
-                        if(element.user_id === user_id){
-                            this.setState({ 
-                                user_id : element.user_id,
-                                lecturerID : element.lecturerID,
-                              
-                            })
-                            console.log(this.state.lecturerID )
-                            localStorage.setItem('lecturerID', this.state.lecturerID);
-                            alert(data.message);
-                            this.RefreshPage();
 
-                        }
-                    });
-            
-                    })
-                    .catch(error => {
-                    });
-                }else if(data.role == 7){
-                    alert(data.message);
-                    this.RefreshPage();
-
-                }else{
-                    alert(data.message);
-                    this.RefreshPage();
+                    // this.RefreshPage();  // รีแฟรชเมื่อเข้าสู่ระบบสำเร็จ
                 }
-
-            }
-            alert(data.message);
-
-
-            if(this.state.username && this.state.password){
-            }
-            if (isValid) {
-                this.setState(initialState);
-            }
-
-        }, 3000)
+                alert(data.message);
+                if(this.state.username && this.state.password){
+                }
+                
+    
+            },4000)
+        }else if (isValid) {
+            this.setState(initialState);
+        }
     }
 
     render() {

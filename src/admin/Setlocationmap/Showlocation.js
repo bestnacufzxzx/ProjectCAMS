@@ -22,10 +22,13 @@ export default class Showlocation extends Component {
         const url = service_uri +'location/delete?buildingID='+buildingID;
         axios.get(url)
             .then(res => {
-                console.log(res);
-            })
             alert("ลบสำเร็จ")
             this.RefreshPage();
+            })
+            .catch(res => {
+                console.log("====>",res.error);
+                alert("ไม่สามารถลบได้เนื่องจากมีการใช้งานตำแหน่งจากอาจารย์หรืออาจารย์ผู้ประสารร้ายวิชา")
+            });
     } 
 
     RefreshPage=()=> { 

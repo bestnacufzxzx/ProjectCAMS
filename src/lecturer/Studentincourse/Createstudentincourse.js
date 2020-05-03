@@ -25,10 +25,13 @@ export default class Createstudentincourse extends Component {
         const url = service_uri +'admin_showcourse/get_delete_studentsregeter?studentsregeterID='+studentsregeterID;
         axios.get(url)
             .then(res => {
-                console.log(res);
+                alert("ลบสำเร็จ")
+                this.RefreshPage();
             })
-            alert("ลบสำเร็จ")
-            this.RefreshPage();
+            .catch(res => {
+                console.log("====>",res.status);
+                alert("ไม่สามารถลบได้เนื่องจากรายชื่อนี้ได้ลงทะเบียนเข้าเรียนแล้ว")
+            });
     } 
 
     createcourseID(courseID){
@@ -44,6 +47,8 @@ export default class Createstudentincourse extends Component {
     componentDidMount(){
         let lecturerID = localStorage.getItem("lecturerID");
         const  courseID  = this.props.match.params.courseID;
+        const  namecourse = this.props.match.params.namecourse;
+        this.setState({namecourse})
         this.setState({courseID});
         console.log("lecturerID"+lecturerID+"courseID"+this.state.courseID);
         axios.get(baseurl+'api/lecturers/get_studentByCourses?lecturerID='+lecturerID+"&courseID="+courseID)
@@ -55,7 +60,7 @@ export default class Createstudentincourse extends Component {
         });
     }
     RefreshPage = () => { 
-        window.location.href = 'http://localhost:3000/lecturer/Createstudentincourse/'+this.state.courseID; 
+        window.location.href = 'http://localhost:3000/lecturer/Createstudentincourse/'+this.state.courseID+"/"+this.state.namecourse; 
     }
 
     render() {
@@ -63,7 +68,7 @@ export default class Createstudentincourse extends Component {
              <div className="content-wrapper">
                 <Breadcrumb header="สร้างนักศึกษาในรายวิชา "subheader="" arrow={
                     [
-                        // {"icon":"", "title":"สร้างนักศึกษาในรายวิชา", "link":"#", "active":"active"}
+                        {"icon":"", "title":"สร้างนักศึกษาในรายวิชา", "link":"#", "active":"active"}
                     ]
                 } />
                 <div className="content body">
@@ -73,11 +78,15 @@ export default class Createstudentincourse extends Component {
                                 <div class="box-header">                   
                                     <div className="row">
                                         <form action="" method="POST" id="">
-                                            <div className="col-md-2 form-group"></div>
-                                            <div className="col-md-3 form-group">
+                                            <div className="col-md-4 form-group">
+                                                <label>
+                                                    <h4>รายวิชา : {this.state.namecourse}</h4>
+                                                </label>
+                                            </div>
+                                            <div className="col-md-2 form-group">
          
                                             </div>
-                                            <div className="col-md-3 form-group">
+                                            <div className="col-md-2 form-group">
                                                 {/* <input type="text" className="form-control" name="searchText" value="" placeholder="ค้นหา"/> */}
                                             </div>
                                             <div className="col-md-2 form-group">
@@ -85,7 +94,7 @@ export default class Createstudentincourse extends Component {
                                             </div>
                                         </form>
                                         <div className="col-md-2">
-                                            <Link to={'/lecturer/Createstudent/'+this.state.courseID}>
+                                            <Link to={'/lecturer/Createstudent/'+this.state.courseID+"/"+this.state.namecourse}>
                                                 <button type="button" className="btn btn-block btn-info pull-right"><i class="fa fa-plus" aria-hidden="true"></i> สร้าง</button>
                                             </Link>
                                          </div>

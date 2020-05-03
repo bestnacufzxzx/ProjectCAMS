@@ -20,6 +20,8 @@ export default class MenuBar extends Component {
                         <ul className="treeview-menu">
                           <li><Link to="/admin/ShowCourse" ><i class="fa fa-circle-o"></i>จัดการรายวิชา</Link></li>
                           <li><Link to="/admin/Showlocation"><i class="fa fa-circle-o"></i>จัดการตำแหน่งลงทะเบียนเรียน</Link></li>
+                          <li><Link to="/admin/Manageteachersincourses"><i class="fa fa-circle-o"></i>จัดการอาจารย์ผู้สอนในรายวิชา</Link></li>
+
                         </ul>
                       </li>  
 

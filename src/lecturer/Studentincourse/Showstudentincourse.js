@@ -13,9 +13,10 @@ export default class Setstudentincourse extends Component {
         courses : [],
     }
 
-    createcourseID(courseID){
+    createcourseID(courseID,courseCode,courseName){
+        let namecourse = courseCode+" "+courseName;
         return(
-            <Link to={'/lecturer/Createstudentincourse/'+courseID}>
+            <Link to={'/lecturer/Createstudentincourse/'+courseID+"/"+namecourse}>
                 <button type="button" className="btn btn-info"> <i class="fa fa-plus" aria-hidden="true"> สร้างนักศึกษาในรายวิชา </i> </button>&nbsp;
             </Link> 
         )
@@ -24,8 +25,10 @@ export default class Setstudentincourse extends Component {
     componentDidMount(){
 
         let lecturerID = localStorage.getItem("lecturerID");
+        let roleID = localStorage.getItem("role");
         console.log("lecturerID"+lecturerID);
-        axios.get(baseurl+'api/lecturers/getCourseByteaching?lecturerID='+lecturerID)
+        // axios.get(baseurl+'api/lecturers/getCourseByteaching?lecturerID='+lecturerID+"&roleID="+roleID)
+        axios.get(baseurl+'api/lecturers/getCourseByteachingNoRole?lecturerID='+lecturerID)
         .then(res => {
         this.setState({ courses: res.data });
         })
@@ -38,9 +41,9 @@ export default class Setstudentincourse extends Component {
     render() {
         return (
              <div className="content-wrapper">
-                <Breadcrumb header="กำหนดการเรียนการสอน" subheader="" arrow={
+                <Breadcrumb header="กำหนดนักศึกษาในรายวิชา" subheader="" arrow={
                     [
-                        {"icon":"", "title":"กำหนดการเรียนการสอน", "link":"#", "active":"active"}
+                        // {"icon":"", "title":"กำหนดนักศึกษาในรายวิชา", "link":"#", "active":"active"}
                     ]
                 } />
                 <div className="content body">
@@ -50,7 +53,7 @@ export default class Setstudentincourse extends Component {
                                 <div className="box-body">
                                     <br />
                                     <div className="row">
-                                        <div className="col-sm-12">
+                                        <div className="col-sm-12 table-responsive">
                                         <table id="example2" className="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
                                                 <thead>
                                                     <tr>
@@ -65,7 +68,7 @@ export default class Setstudentincourse extends Component {
                                                             <td>{i+1}</td>
                                                             <td>{course.courseCode} {course.courseName}</td>
                                                             <td className="text-center">
-                                                                {this.createcourseID(course.courseID)}
+                                                                {this.createcourseID(course.courseID, course.courseCode, course.courseName)}
                                                                 {/*  {this.renderdelete(course.teachingID)} */}
                                                             </td>
                                                         </tr>

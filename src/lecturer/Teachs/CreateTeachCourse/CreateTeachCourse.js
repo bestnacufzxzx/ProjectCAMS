@@ -108,6 +108,9 @@ export default class CreateTeachCourse extends Component {
     }
 
     getAllRoom = () => {
+        const  namecourse = this.props.match.params.namecourse;
+        this.setState({namecourse})
+
         axios.get(service_uri+'lecturers/getroom')
         .then(res => {
             this.setState({ allrooms: res.data });
@@ -181,9 +184,7 @@ export default class CreateTeachCourse extends Component {
 
         if (!this.state.roomID){
             alert("กรุณาเลือกห้องเรียน")
-        }
-
-        // }else{
+        }else{
             console.log(this.state.roomID)
             event.preventDefault();
             // let lecturerID = localStorage.getItem("lecturerID");
@@ -199,18 +200,19 @@ export default class CreateTeachCourse extends Component {
                 endcheck: this.changeendcheck(endcheck),
                 })
                 .then(res => {
-            
-                alert("บันทึกสำเร็จ")
-                // this.RefreshPage();
+                    console.log("====>",res.message);
+                    alert("บันทึกสำเร็จ")
+                    this.RefreshPage();
                 })
                 .catch(error => {
-                console.log("====>",error.status);
-                alert("เวลาซ้ำ")
+                    console.log("====>",error.status);
+                    alert("เวลาห้องเรียนมีอยู่แล้ว")
                 });
+        }
         
     }
     RefreshPage=()=> { 
-        window.location.href = 'http://localhost:3000/lecturer/Teachs/'+this.state.courseID; 
+        window.location.href = 'http://localhost:3000/lecturer/Teachs/'+this.state.courseID+"/"+this.state.namecourse; 
     }
 
        render() {
@@ -227,7 +229,32 @@ export default class CreateTeachCourse extends Component {
                     ]
                 } />
                 <div className="content body">
-                    
+                <div class="row">
+                        <div class="col-md-12">
+                            <div class="box theader-search-sky">
+                                <div class="box-header">                   
+                                    <div className="row">
+                                        <form action="" method="POST" id="">
+                                            <div className="col-md-4 form-group">
+                                                <label>
+                                                    <h4>รายวิชา : {this.state.namecourse}</h4>
+                                                </label>
+                                            </div>
+                                            <div className="col-md-2 form-group">
+         
+                                            </div>
+                                            <div className="col-md-2 form-group">
+                                                {/* <input type="text" className="form-control" name="searchText" value="" placeholder="ค้นหา"/> */}
+                                            </div>
+                                            <div className="col-md-2 form-group">
+                                                {/* <button type="submit" className="btn btn-block btn-info pull-right"><i class="fa fa-search" aria-hidden="true"></i> ค้นหา</button>  */}
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div className="row">
                         <div className="col-md-12">
                             <div className="box box-primary">
@@ -353,7 +380,7 @@ export default class CreateTeachCourse extends Component {
                                             <button type="submit" className="pull-right btn btn-success" onClick={ this.handleChange }>
                                                 <i className="fa fa-arrow-circle-right"></i> บันทึก
                                             </button>
-                                            <Link to={'/lecturer/Teachs/'+this.state.courseID}><button type="button" className="pull-right btn btn-danger"><i className="fa fa-arrow-circle-left"></i>  กลับ </button> </Link>
+                                            <Link to={'/lecturer/Teachs/'+this.state.courseID+"/"+this.state.namecourse}><button type="button" className="pull-right btn btn-danger"><i className="fa fa-arrow-circle-left"></i>  กลับ </button> </Link>
                                         </div>
                                     </form>
                                 </div>

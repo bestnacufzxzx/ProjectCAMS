@@ -25,7 +25,7 @@ handleChange = (event) => {
 }
 
 RefreshPage = () => { 
-    window.location.href = 'http://localhost:3000/lecturer/Createstudentincourse/'+this.state.courseID; 
+    window.location.href = 'http://localhost:3000/lecturer/Createstudentincourse/'+this.state.courseID+"/"+this.state.namecourse; 
 }
 
 componentDidMount(){
@@ -36,6 +36,9 @@ componentDidMount(){
 }
 
 getAllCourse = () => {
+    const  namecourse = this.props.match.params.namecourse;
+    this.setState({namecourse})
+
     axios.get(service_uri+'lecturers/get_all_sutdentByCourses')
     .then(res => {
         this.setState({ sutdentByCourses: res.data });
@@ -85,6 +88,11 @@ handleSubmit = (event) =>{
                                                 <div className="row">
                                                     <div className="col-md-12">
                                                         <div class="form-group input-group-sm">
+                                                            รายวิชา : {this.state.namecourse}
+                                                        </div>
+                                                    </div>
+                                                    <div className="col-md-12">
+                                                        <div class="form-group input-group-sm">
                                                             <label for="lecturers" type="text" class="col-form-label">รายชื่อนักศึกษา</label>
                                                             <select name="studentID" class="form-control" onChange={this.handleChange}>
                                                                 <option>เลือกนักศึกษา</option>
@@ -101,7 +109,7 @@ handleSubmit = (event) =>{
                                                 <button type="submit" className="pull-right btn btn-success" onClick={ this.handleChange }>
                                                     <i className="fa fa-arrow-circle-right"></i> บันทึก
                                                 </button>
-                                                <Link to={'/lecturer/Createstudentincourse/'+this.state.courseID}><button type="button" className="pull-right btn btn-danger"><i className="fa fa-arrow-circle-left"></i>  กลับ </button> </Link>
+                                                <Link to={'/lecturer/Createstudentincourse/'+this.state.courseID+"/"+this.state.namecourse}><button type="button" className="pull-right btn btn-danger"><i className="fa fa-arrow-circle-left"></i>  กลับ </button> </Link>
                                             </div>
                                         </form>
                                         

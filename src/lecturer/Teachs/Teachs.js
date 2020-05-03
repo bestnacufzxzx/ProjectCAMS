@@ -68,11 +68,12 @@ export default class Teachs extends Component {
             this.RefreshPage();
     } 
     RefreshPage=()=> { 
-        window.location.href = 'http://localhost:3000/lecturer/Teachs/'+this.state.courseID; 
+        window.location.href = 'http://localhost:3000/lecturer/Teachs/'+this.state.courseID+"/"+this.state.namecourse; 
     }
       
     componentDidMount(){
-
+        const  namecourse = this.props.match.params.namecourse;
+        this.setState({namecourse})
         // let lecturerID = localStorage.getItem("lecturerID");
         // console.log(courseID);
         axios.get(baseurl+'api/lecturers/getlecturersbyCourse?courseID='+this.state.courseID)
@@ -129,11 +130,15 @@ export default class Teachs extends Component {
                                 <div class="box-header">                   
                                     <div className="row">
                                         <form action="" method="POST" id="">
-                                            <div className="col-md-2 form-group"></div>
-                                            <div className="col-md-3 form-group">
+                                            <div className="col-md-8 form-group">
+                                                <label>
+                                                    <h4>รายวิชา : {this.state.namecourse}</h4>
+                                                </label>
+                                            </div>
+                                            <div className="col-md-2 form-group">
          
                                             </div>
-                                            <div className="col-md-3 form-group">
+                                            <div className="col-md-2 form-group">
                                                 {/* <input type="text" className="form-control" name="searchText" value="" placeholder="ค้นหา"/> */}
                                             </div>
                                             <div className="col-md-2 form-group">
@@ -142,7 +147,7 @@ export default class Teachs extends Component {
                                         </form>
                                         <div className="col-md-2">
                                             {/* <ModalCreateTeachCourse/> */}
-                                                <Link to={'/lecturer/CreateTeachCourse/'+this.state.courseID}>
+                                                <Link to={'/lecturer/CreateTeachCourse/'+this.state.courseID+"/"+this.state.namecourse}>
                                                     <button type="button" className="btn btn-block btn-info pull-right"> <i class="fa fa-plus" aria-hidden="true" ></i> สร้าง</button>
                                                 </Link>
                                          </div>
@@ -157,7 +162,7 @@ export default class Teachs extends Component {
                                 <div className="box-body">
                                     <br />
                                     <div className="row">
-                                        <div className="col-sm-12">
+                                        <div className="col-sm-12 table-responsive">
                                             <table id="example2" className="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
                                                 <thead>
                                                     <tr   >

@@ -32,8 +32,11 @@ export default class Timetreatments extends Component {
         // })
 
         let lecturerID = localStorage.getItem("lecturerID");
+        let roleID = localStorage.getItem("role");
         console.log(lecturerID);
-        axios.get(baseurl+'api/lecturers/getCourseByteaching?lecturerID='+lecturerID)
+        // axios.get(baseurl+'api/lecturers/getCourseByteaching?lecturerID='+lecturerID+"&roleID="+roleID)
+        axios.get(baseurl+'api/lecturers/getCourseByteachingNoRole?lecturerID='+lecturerID)
+        
         .then(res => {
         this.setState({ historys: res.data });
         })
@@ -61,7 +64,7 @@ export default class Timetreatments extends Component {
                     <div className="row">
                         <div className="col-md-12">
                             <div className="box box-primary">
-                                <div className="box-body">
+                                <div className="box-body table-responsive">
                                     <table id="example1" class="table table-bordered table-striped" role="grid" >
                                         <thead>
                                             <tr>
