@@ -10,20 +10,21 @@ export default class Viewhistorystudent extends Component {
         historys : [],
         course:'',
         image_path: '',
+        modal_picture:  ''
     }
 
     chackstatus = (status) => {      
         if(status === "1"){
             return(
-                <h4><span class="label label-success">เข้าเรียน</span></h4>
+                <h4><c2><span class="label label-success">เข้าเรียน</span></c2></h4>
             )
         }else if(status === "2"){
             return(
-                <h4><span class="label label-warning">เข้าเรียนสาย</span></h4>
+                <h4><c2><span class="label label-warning">เข้าเรียนสาย</span></c2></h4>
             )
         }else{
             return(
-                <h4><span class="label label-danger">ไม่เข้าเข้าเรียน</span></h4>
+                <h4><c2><span class="label label-danger">ไม่เข้าเข้าเรียน</span></c2></h4>
             )
         }
     }
@@ -38,12 +39,15 @@ export default class Viewhistorystudent extends Component {
 
     chackpic = (pic) =>{
         if(pic){
-            return (<img src={this.state.image_path+pic} width="100px"></img>);
+            return (<img src={this.state.image_path+pic} width="100px" data-toggle="modal" data-target="#exampleModal" onClick={((e) => this.onclick_modal(e, this.state.image_path+pic))}></img>);
         }else{
             return <h5>-</h5>
         }
     }
-
+    onclick_modal = (event, pic) => {
+        this.setState({'modal_picture': pic});
+        console.log(pic);
+    }
     export_file = () => {
         const  studentID = this.props.match.params.studentID;
         const  courseID = this.props.match.params.courseID;
@@ -215,6 +219,14 @@ export default class Viewhistorystudent extends Component {
                                     </table>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                    <div class="modal-dialog" role="document">
+                            <img src={this.state.modal_picture} width="100%"></img>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </div>

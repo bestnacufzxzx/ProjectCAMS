@@ -3,14 +3,17 @@ import Breadcrumb from '../components/Breadcrumb';
 // import { Link } from "react-router-dom";
 import axios from 'axios';
 import baseurl from '../auth/Baseurl';
-
-
+import { Lightbox } from "react-modal-image";
+const closeLightbox = () => {
+    this.state.open = true;
+  };
 export default class Showhistorycourse extends Component {
 
 
     state = {
         historys : [],
         image_path: '',
+        modal_picture:  ''
         // percents:0
     }
 
@@ -42,18 +45,18 @@ export default class Showhistorycourse extends Component {
             return ("-");
         }
     }
-
-    imageClick = (mig) => {
-        return mig;
-     }       
-
-     
+    
     chackpic = (pic) =>{
         if(pic){
-            return (<img src={this.state.image_path+pic} onClick={this.imageClick(<img src={this.state.image_path+pic} width="100px"></img>)} width="100px"></img>);
+            return (<img src={this.state.image_path+pic} width="100px" data-toggle="modal" data-target="#exampleModal" onClick={((e) => this.onclick_modal(e, this.state.image_path+pic))}></img>);
         }else{
             return ("-")
         }
+    }
+
+    onclick_modal = (event, pic) => {
+        this.setState({'modal_picture': pic});
+        console.log(pic);
     }
 
 
@@ -224,8 +227,19 @@ export default class Showhistorycourse extends Component {
                         </div>
                     </div>
                 </div>
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                    <div class="modal-dialog" role="document">
+                            <img src={this.state.modal_picture} width="100%"></img>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
             </div>
      
+        
+
+
         )
     }
 }
