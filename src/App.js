@@ -174,7 +174,7 @@ export default class App extends Component{
           <BrowserRouter>
             <LecturerHeader></LecturerHeader>
             <LecturerMenuBar></LecturerMenuBar>
-            <Route exact path="/" component={Attendancelocation} />
+            <Route exact path="/" component={Course} />
             <Route exact path="/lecturer/Attendancelocation" component={Attendancelocation} />
             <Route exact path="/lecturer/Course" component={Course} />
             <Route exact path="/lecturer/CreateAttendencelocation" component={CreateAttendencelocation} />
@@ -202,9 +202,9 @@ export default class App extends Component{
           <BrowserRouter>
             <StudentHeader></StudentHeader>
             <StudentMenuBar></StudentMenuBar>
-            <Route exact path="/" component={Registercourses} />
-            <Route exact path="/student" component={Registercourses} />
+            <Route exact path="/" component={Listcourse} />
             <Route exact path="/student/Listcourse" component={Listcourse} /> 
+            {/* <Route exact path="/student" component={Registercourses} /> */}
             <Route exact path="/student/Profile" component={StudentProfile} /> 
             <Route exact path="/student/Camera" component={Camera} /> 
             <Route exact path="/student/Showhistorycourse/:historycourseID/:historyuser_ID" component={Showhistorycourse} /> 

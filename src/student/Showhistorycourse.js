@@ -20,27 +20,44 @@ export default class Showhistorycourse extends Component {
     }
 
     chackstatus = (status) => {
-        
-
         if(status === "1"){
             return(
-                "เข้าเรียน"
+                <h4><span class="label label-success">เข้าเรียน</span></h4>
             )
         }else if(status === "2"){
             return(
-                "เข้าเรียนสาย"
-            )
-        }else if(status === "3"){
-            return(
-                "ไม่เข้าเรียน"
+                <h4><span class="label label-primary">เข้าเรียนสาย</span></h4>
             )
         }else{
             return(
-                "-"
+                <h4><span class="label label-danger">ไม่เข้าเข้าเรียน</span></h4>
             )
         }
+    }
+
+    chackstatusdate = (date) =>{
+        if(date){
+            return (date);
+        }else{
+            return ("-");
+        }
+    }
+
+    chackpic = (pic) =>{
+        if(pic){
+            return (<img src={this.state.image_path+pic} width="100px"></img>);
+        }else{
+            return ("-")
+        }
+    }
 
 
+    chackLateClass(LateClass){
+        if(LateClass == 0){
+            return <span class="badge bg-success">{LateClass} % </span>
+        }else{
+            return <span class="badge bg-green">{LateClass} % </span>
+        }
     }
 
     chackMissclass = (Missclass) =>{
@@ -98,6 +115,12 @@ export default class Showhistorycourse extends Component {
         document.body.appendChild(script);
     }
 
+    alldate = (data) =>{
+        let today = new Date(data);
+        let date=today.getDate() + "-"+ parseInt(today.getMonth()+1) +"-"+today.getFullYear();
+        return    date                     
+    }
+
     render() {
         console.log(this.state.historys)
         return (
@@ -117,14 +140,14 @@ export default class Showhistorycourse extends Component {
                                         <div className="col-md-4">
                                             <label> 
                                                 <h4>
-                                                    เปอร์เซ็นการเข้าเรียน :<span class="badge bg-green">{this.state.percent} %  </span> 
+                                                    เปอร์เซ็นการเข้าเรียน :<span class="badge bg-success">{this.state.percent} %  </span> 
                                                 </h4>
                                             </label>
                                         </div>
                                         <div className="col-md-4">
                                             <label> 
                                                 <h4>
-                                                    เปอร์เซ็นการเข้าเรียนสาย :<span class="badge bg-green">{this.state.LateClass} %  </span>
+                                                    เปอร์เซ็นการเข้าเรียนสาย : {this.chackLateClass(this.state.LateClass)}
                                                 </h4>
                                             </label>
                                         </div>
@@ -140,6 +163,11 @@ export default class Showhistorycourse extends Component {
                                         <div className="col-md-4">
                                             <label> 
                                                 จำนวนคาบทั้งหมด {this.state.total}
+                                            </label>
+                                        </div>
+                                        <div className="col-md-4">
+                                            <label> 
+                                                {"จำนวนที่สามารถขาดเรียนได้ "+this.state.remainMissClass+" คงเหลืออีก "+this.state.remain+" ครั้ง"}   
                                             </label>
                                         </div>
                                         <div className="col-md-4">
@@ -176,13 +204,11 @@ export default class Showhistorycourse extends Component {
                                                     { this.state.historys.map((history, i) => (
                                                             <tr role="row">
                                                                 <td>{i+1}</td>
-                                                                {/* <td>{history}</td> */}
-                                                                <td><img src={this.state.image_path+history.picture} width="100px"></img></td>  
+                                                                <td>{this.chackpic(history.picture)}</td>
                                                                 <td>{history.buildingName}</td>
                                                                 <td>{history.roomname}</td>
-                                                                <td>{history.datetime}</td>
+                                                                <td>{this.chackstatusdate(history.datetime)}</td>
                                                                 <td>{this.chackstatus(history.status)}</td>
-                                                                {/* <td> {this.renderCheckstatus(history)} </td> */}
                                                             </tr>
                                                         ))}
                                                 </tbody>

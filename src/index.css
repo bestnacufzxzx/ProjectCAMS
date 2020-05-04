@@ -12,3 +12,17 @@ code {
     monospace;
 }
 
+
+h5,h4,h3,h2,h1{
+    text-align: center;
+}
+.c1 {
+  text-align: center;
+  align-items: center;
+}
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+

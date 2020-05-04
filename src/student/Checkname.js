@@ -7,6 +7,32 @@ import baseurl from '../auth/Baseurl';
 export default class Checkname extends Component {
     state = {
         courses: [],
+        classID: null,
+        picture: null, 
+        studentID: null, 
+        latitude: null, 
+        longitude: null 
+    }
+
+    chackstatus(course){
+        let d1 = new Date();
+        let d2 = new Date(course.startdate+' '+course.starttime);
+        let classID = (course.classID);
+        localStorage.setItem("classID", classID);
+        let d3 = new Date(course.startdate+' '+course.endtime);
+        console.log("ปัจจุบัน",d1);
+        console.log("เริ่ม",d2);
+        console.log("สิ้นสุด",d3);
+        if( d1.getTime() >= d2.getTime() && d1.getTime() <= d3.getTime() ) {
+
+        }else{
+            // let user_ID = localStorage.getItem("username");
+            // console.log(user_ID);
+            // axios.post(baseurl+'api/Checknamestudent/postCheckname', { classID: this.state.classID, picture:this.state.picture, studentID:this.state.user_ID, latitude:this.state.latitude, longitude:this.state.longitude }  )
+            // .then(res => {
+            //     this.setState({ statusgets: res.data });
+            // })
+        }
     }
   
     renderUserButton(course){
@@ -24,7 +50,7 @@ export default class Checkname extends Component {
             console.log("เริ่ม",d2);
             console.log("สิ้นสุด",d3);
 
-            if ( d1.getTime() >= d2.getTime() && d1.getTime() <= d3.getTime() ) {
+            if( d1.getTime() >= d2.getTime() && d1.getTime() <= d3.getTime() ) {
                 return (
                     <Link to={'/student/Cameras/'+classID}>
                         <button type="button" className="btn btn-block btn-primary btn-sm" ><i class="fa fa-map-marker" aria-hidden="true"></i> บันทึกเวลาเรียน</button>
@@ -96,7 +122,7 @@ export default class Checkname extends Component {
                                                                 <td>{course.startdate}</td>
                                                                 <td>{course.starttime}</td>
                                                                 <td>{course.endtime}</td>
-                                                                <td>{this.renderUserButton(course)}</td>
+                                                                <td>{this.renderUserButton(course)} {this.chackstatus(course)}</td>
                                                             </tr>
                                                         ))}
                                                 </tbody>
