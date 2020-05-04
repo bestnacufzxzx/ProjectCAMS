@@ -26,7 +26,7 @@ export default class Showhistorycourse extends Component {
             )
         }else if(status === "2"){
             return(
-                <h4><span class="label label-primary">เข้าเรียนสาย</span></h4>
+                <h4><span class="label label-warning">เข้าเรียนสาย</span></h4>
             )
         }else{
             return(
@@ -43,9 +43,14 @@ export default class Showhistorycourse extends Component {
         }
     }
 
+    imageClick = (mig) => {
+        return mig;
+     }       
+
+     
     chackpic = (pic) =>{
         if(pic){
-            return (<img src={this.state.image_path+pic} width="100px"></img>);
+            return (<img src={this.state.image_path+pic} onClick={this.imageClick(<img src={this.state.image_path+pic} width="100px"></img>)} width="100px"></img>);
         }else{
             return ("-")
         }
@@ -54,17 +59,17 @@ export default class Showhistorycourse extends Component {
 
     chackLateClass(LateClass){
         if(LateClass == 0){
-            return <span class="badge bg-success">{LateClass} % </span>
+            return <span class="label label-success">{LateClass} % </span>
         }else{
-            return <span class="badge bg-green">{LateClass} % </span>
+            return <span class="label label-warning">{LateClass} % </span>
         }
     }
 
     chackMissclass = (Missclass) =>{
         if(Missclass <= 19 ){
-            return <span class="badge bg-success">{Missclass} % </span>
+            return <span class="label label-success">{Missclass} % </span>
         }else{
-            return <span class="badge bg-green">{Missclass} % </span>
+            return <span class="label label-danger">{Missclass} % </span>
         }
     }
 
@@ -140,7 +145,7 @@ export default class Showhistorycourse extends Component {
                                         <div className="col-md-4">
                                             <label> 
                                                 <h4>
-                                                    เปอร์เซ็นการเข้าเรียน :<span class="badge bg-success">{this.state.percent} %  </span> 
+                                                    เปอร์เซ็นการเข้าเรียน : <span class="label label-primary">{this.state.percent} %  </span> 
                                                 </h4>
                                             </label>
                                         </div>
@@ -154,7 +159,7 @@ export default class Showhistorycourse extends Component {
                                         <div className="col-md-4">
                                             <label> 
                                                 <h4>
-                                                    เปอร์เซ็นการขาดเรียน :{this.chackMissclass(this.state.MissClass)}  
+                                                    เปอร์เซ็นการขาดเรียน : {this.chackMissclass(this.state.MissClass)}  
                                                 </h4>
                                             </label>
                                         </div>
@@ -167,7 +172,6 @@ export default class Showhistorycourse extends Component {
                                         </div>
                                         <div className="col-md-4">
                                             <label> 
-                                                {"จำนวนที่สามารถขาดเรียนได้ "+this.state.remainMissClass+" คงเหลืออีก "+this.state.remain+" ครั้ง"}   
                                             </label>
                                         </div>
                                         <div className="col-md-4">
@@ -208,7 +212,7 @@ export default class Showhistorycourse extends Component {
                                                                 <td>{history.buildingName}</td>
                                                                 <td>{history.roomname}</td>
                                                                 <td>{this.chackstatusdate(history.datetime)}</td>
-                                                                <td>{this.chackstatus(history.status)}</td>
+                                                                <td><c1>{this.chackstatus(history.status)}</c1></td>
                                                             </tr>
                                                         ))}
                                                 </tbody>

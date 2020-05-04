@@ -19,7 +19,7 @@ export default class Viewhistorystudent extends Component {
             )
         }else if(status === "2"){
             return(
-                <h4><span class="label label-primary">เข้าเรียนสาย</span></h4>
+                <h4><span class="label label-warning">เข้าเรียนสาย</span></h4>
             )
         }else{
             return(
