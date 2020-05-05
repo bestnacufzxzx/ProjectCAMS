@@ -61,6 +61,8 @@ export default class Cameras extends Component {
             vs.shift();
             
             let IsInside = classifyPoint(vs, point);
+            console.log('vs',IsInside);
+
             if(IsInside <= 0){
                 let user_ID = localStorage.getItem("username");
                 console.log(user_ID);

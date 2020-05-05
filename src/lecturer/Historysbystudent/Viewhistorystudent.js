@@ -16,15 +16,15 @@ export default class Viewhistorystudent extends Component {
     chackstatus = (status) => {      
         if(status === "1"){
             return(
-                <h4><c2><span class="label label-success">เข้าเรียน</span></c2></h4>
+                <h4><span class="label label-success">เข้าเรียน</span></h4>
             )
         }else if(status === "2"){
             return(
-                <h4><c2><span class="label label-warning">เข้าเรียนสาย</span></c2></h4>
+                <h4><span class="label label-warning">เข้าเรียนสาย</span></h4>
             )
         }else{
             return(
-                <h4><c2><span class="label label-danger">ไม่เข้าเข้าเรียน</span></c2></h4>
+                <h4><span class="label label-danger">ไม่เข้าเข้าเรียน</span></h4>
             )
         }
     }
@@ -70,18 +70,38 @@ export default class Viewhistorystudent extends Component {
         }
     }
 
+    missstatus = (miss) =>{
+        if(miss <= 0){
+            return <h4> จำนวนที่สามารถขาดเรียนได้ {this.state.remainMissClass} คงเหลืออีก {miss} ครั้ง</h4>  ;
+        }else{
+            return <h4> จำนวนที่สามารถขาดเรียนได้ {this.state.remainMissClass} คงเหลืออีก {miss} ครั้ง</h4>;
+        }
+    }
+
+    missmessage = (miss) =>{
+        if(miss < 0){
+            return <h4><span class="label label-danger">หมดสิทธิ์สอบ</span></h4>
+        }
+    }
+
     
     componentDidMount(){
         const  studentID = this.props.match.params.studentID;
         const  courseID = this.props.match.params.courseID;
         // console.log(user_id+"asdasd"+courseID)
 
-        axios.post(baseurl+'api/Checknamestudent/postHistoryChecknameByCourse', { courseID: courseID,user_ID:studentID} )
+        axios.post(baseurl+'api/checknamestudent/getnamebystudentid', {user_ID:studentID} )
         .then(res => {
-        this.setState({ historys: res.data.result, image_path: res.data.path });
+            let fname = (res.data.fname);
+            let lname = (res.data.lname);
+            let prefix = (res.data.prefix);
+            this.setState({fname});
+            this.setState({lname});
+            this.setState({prefix});
+            // console.log(this.state.fname)
         })
         .catch(error => {
-        console.log("====>",error.status);
+            console.log("====>",error.status);
         });
         
         axios.post(baseurl+'api/Checknamestudent/postHistoryChecknameByCourse', { courseID: courseID,user_ID:studentID} )
@@ -124,11 +144,12 @@ export default class Viewhistorystudent extends Component {
         return (
    
              <div className="content-wrapper">
-                <Breadcrumb header="ประวัตินักศึกษา" subheader="" arrow={
+                <Breadcrumb header="ประวัตินักศึกษา" subheader={<h4>{this.state.prefix+" "+this.state.fname+" "+this.state.lname}</h4>}  arrow={
                     [
                         // {"icon":"", "title":"รายวิชาที่สอน", "link":"#", "active":"active"}
                     ]
                 } />
+                
                 <div className="content body">
                     <div class="row">
                         <div class="col-md-12">
@@ -160,20 +181,20 @@ export default class Viewhistorystudent extends Component {
                                     <div className="row">
                                         <div className="col-md-4">
                                             <label> 
-                                                จำนวนคาบทั้งหมด {this.state.total}
+                                                <h4>จำนวนคาบทั้งหมด {this.state.total} </h4>
                                             </label>
                                         </div>
                                         <div className="col-md-4">
                                             <label> 
+                                                {this.missstatus(this.state.remain)}
                                             </label>
                                         </div>
                                         <div className="col-md-4">
                                             <label> 
-                                                {"จำนวนที่สามารถขาดเรียนได้ "+this.state.remainMissClass+" คงเหลืออีก "+this.state.remain+" ครั้ง"}   
+                                                 {this.missmessage(this.state.remain)}
                                             </label>
                                         </div>
                                     </div>
-                                    
                                 </div>
                             </div>
                         </div>

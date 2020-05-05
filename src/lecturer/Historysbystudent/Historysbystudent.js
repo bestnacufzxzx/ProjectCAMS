@@ -32,62 +32,15 @@ export default class Historysbystudent extends Component {
         
         axios.get(baseurl+'api/lecturers/gethistorytimetreatment?courseID='+courseID)
         .then(res => {
-        this.setState({ historys: res.data });
+            this.setState({ historys: res.data });
         })
         .catch(error => {
-        console.log("====>",error.status);
+            console.log("====>",error.status);
         });
-
-
-        // let lecturerID = localStorage.getItem("lecturerID");
-        // console.log(lecturerID);
-        // axios.get(baseurl+'api/lecturers/getCourseByteaching?lecturerID='+lecturerID)
-        // .then(res => {
-        // let courseCode = (res.data.courseCode) 
-        // let courseName = (res.data.courseName) 
-        // this.setState({courseCode})
-        // this.setState({courseName})
-        // console.log(this.state.courseCode)
-
-        // })
-
-        // .catch(error => {
-        // console.log("====>",error.status);
-        // });
-        // let lecturerID = localStorage.getItem("lecturerID");
-        // console.log(lecturerID);
-        // axios.get(baseurl+'api/lecturers/getCourseByteaching?lecturerID='+lecturerID)
-        // .then(res => {
-        // let courseCode = (res.data.courseCode) 
-        // let courseName = (res.data.courseName) 
-        // this.setState({courseCode})
-        // this.setState({courseName})
-        // })
-        // .catch(error => {
-        // console.log("====>",error.status);
-        // });
-
-        // let lecturerID = localStorage.getItem("lecturerID");
-        // axios.get(baseurl+'api/lecturers/getCourseByteaching?lecturerID='+lecturerID)
-        // .then(res => {
-        //     let courseCode = (res.data.result.result) 
-        //     this.setState({courseCode})
-        // })
-        // .catch(error => {
-        // console.log("====>",error.status);
-        // });
-                // const script = document.createElement("script");
-                // script.src = '../js/Showimportteacher/content.js';
-                // script.async = true;
-                // document.body.appendChild(script);
-        }
+    }
 
     render() {
-        console.log(this.state.courses)
-
-        // console.log(this.state.courseCode)
         return (
-   
              <div className="content-wrapper">
                 <Breadcrumb header="ประวัตินักศึกษา"  subheader="" arrow={
                     [

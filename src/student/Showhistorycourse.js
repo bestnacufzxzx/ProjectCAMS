@@ -129,6 +129,20 @@ export default class Showhistorycourse extends Component {
         return    date                     
     }
 
+    missstatus = (miss) =>{
+        if(miss <= 0){
+            return <h4> จำนวนที่สามารถขาดเรียนได้ {this.state.remainMissClass} คงเหลืออีก {miss} ครั้ง</h4>  ;
+        }else{
+            return <h4> จำนวนที่สามารถขาดเรียนได้ {this.state.remainMissClass} คงเหลืออีก {miss} ครั้ง</h4>;
+        }
+    }
+
+    missmessage = (miss) =>{
+        if(miss < 0){
+            return <h4><span class="label label-danger">หมดสิทธิ์สอบ</span></h4>
+        }
+    }
+
     render() {
         console.log(this.state.historys)
         return (
@@ -175,11 +189,12 @@ export default class Showhistorycourse extends Component {
                                         </div>
                                         <div className="col-md-4">
                                             <label> 
+                                                {this.missstatus(this.state.remain)}
                                             </label>
                                         </div>
                                         <div className="col-md-4">
                                             <label> 
-                                                {"จำนวนที่สามารถขาดเรียนได้ "+this.state.remainMissClass+" คงเหลืออีก "+this.state.remain+" ครั้ง"}   
+                                                 {this.missmessage(this.state.remain)}
                                             </label>
                                         </div>
                                     </div>
