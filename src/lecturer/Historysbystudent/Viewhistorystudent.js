@@ -10,7 +10,8 @@ export default class Viewhistorystudent extends Component {
         historys : [],
         course:'',
         image_path: '',
-        modal_picture:  ''
+        modal_picture:  '',
+        his:''
     }
 
     chackstatus = (status) => {      
@@ -84,6 +85,15 @@ export default class Viewhistorystudent extends Component {
         }
     }
 
+    renderedit = (history) => {
+        return(
+              <button type="button" className="btn btn-success" data-toggle="modal" data-target="#exampleModal2" onClick={((e) => this.onclick_modal2(e,history))}> <i class="fa fa-edit" aria-hidden="true"> </i> </button>
+        )
+    };
+    onclick_modal2 = (event, his) => {
+        this.setState({'his': his});
+        console.log(his);
+    }
     
     componentDidMount(){
         const  studentID = this.props.match.params.studentID;
@@ -217,11 +227,12 @@ export default class Viewhistorystudent extends Component {
                                         <thead>
                                             <tr>
                                                 <th className="col-sm-1" tabIndex="0" aria-controls="example2" rowSpan="1" colSpan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">คาบ</th>
-                                                <th className="col-sm-2" tabIndex="0" aria-controls="example2" rowSpan="1" colSpan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">รูปภาพ</th>
-                                                <th className="col-sm-3" tabIndex="0" aria-controls="example2" rowSpan="1" colSpan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">อาคารเรียน</th>
+                                                <th className="col-sm-1" tabIndex="0" aria-controls="example2" rowSpan="1" colSpan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">รูปภาพ</th>
+                                                <th className="col-sm-2" tabIndex="0" aria-controls="example2" rowSpan="1" colSpan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">อาคารเรียน</th>
                                                 <th className="col-sm-2" tabIndex="0" aria-controls="example2" rowSpan="1" colSpan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">ห้องเรียน</th>
                                                 <th className="col-sm-2" tabIndex="0" aria-controls="example2" rowSpan="1" colSpan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">วัน-เวลา</th> 
                                                 <th className="col-sm-2" tabIndex="0" aria-controls="example2" rowSpan="1" colSpan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">สถานะเข้าเรียน</th>
+                                                <th className="col-sm-2" tabIndex="0" aria-controls="example2" rowSpan="1" colSpan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">การจัดการ</th>
                                             
                                             </tr>
                                         </thead>
@@ -234,6 +245,7 @@ export default class Viewhistorystudent extends Component {
                                                         <td>{history.roomname}</td>
                                                         <td>{this.chackstatusdate(history.datetime)}</td>
                                                         <td>{this.chackstatus(history.status)}</td>
+                                                        <td>{this.renderedit(history)}</td>
                                                     </tr>
                                                 ))}
                                         </tbody>
@@ -248,6 +260,32 @@ export default class Viewhistorystudent extends Component {
                             <img src={this.state.modal_picture} width="100%"></img>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="exampleModalLabel">แก้ไขสถานะนักศึกษา</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                            <div class="form-group">
+                                <label for="recipient-name" class="control-label">Recipient:</label>
+                                <input type="text" class="form-control" id="recipient-name"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="message-text" class="control-label">หมายเหตุ:</label>
+                                <textarea class="form-control" id="message-text"></textarea>
+                            </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Send message</button>
+                        </div>
                         </div>
                     </div>
                 </div>
