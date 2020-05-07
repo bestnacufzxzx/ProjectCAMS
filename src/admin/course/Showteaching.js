@@ -85,14 +85,10 @@ export default class Showteaching extends Component {
                 <div className="content body">
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="box theader-search-sky">
-                                <div class="box-header">
+                            {/* <div class="box theader-search-sky">
+                                <div class="box-header"> */}
                                     <div className="row">
                                         <div className="col-md-10">
-                                            {/* <div className="input-group">
-                                                <input type="text" className="form-control" />
-                                                <span className="input-group-addon"><i className="fa fa-search" aria-hidden="true"></i></span>
-                                            </div> */}
                                         </div>
                                         <div className="col-md-2">
                                             <Link to={'/admin/Createteaching/'+this.state.courseID}>
@@ -100,8 +96,9 @@ export default class Showteaching extends Component {
                                             </Link>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
+                                {/* </div>
+                            </div> */}
+                            <br/>
                         </div>
                     </div>
                     <div className="row">

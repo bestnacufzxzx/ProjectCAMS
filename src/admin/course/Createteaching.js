@@ -86,7 +86,7 @@ handleSubmit = (event) =>{
     
         }).then(res => {
             alert("บันทึกสำเร็จ")
-            // this.RefreshPage();
+            this.RefreshPage();
         }).catch(error => {
             alert("ไม่สามารถสร้างประเภทอาจารย์กับรายวิชาซ้ำได้")
             console.log("====>",error.status);
@@ -101,7 +101,7 @@ handleSubmit = (event) =>{
         return (
    
              <div className="content-wrapper">
-                  <Breadcrumb header="สร้างรายวิชาเรียน" subheader="" arrow={
+                  <Breadcrumb header="กำหนดสถานะผู้สอนในรายวิชาอาจารย์" subheader="" arrow={
                     [
                         // {"icon":"", "title":"กำหนดการเรียนการสอน", "link":"#", "active":"active"}
                     ]

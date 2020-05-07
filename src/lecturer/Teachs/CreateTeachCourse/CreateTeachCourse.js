@@ -261,19 +261,32 @@ export default class CreateTeachCourse extends Component {
                                 <div className="box-body">
                                     <br />
                                     <form onSubmit={this.handleSubmit}>
-                                        <div className="row">
-                                            <div className="col-sm-4">
+                                        <div className="row"> {/* 1 */}
+                                            {/* <div className="col-md-4">
                                                 <div class="form-group input-group-sm">
-                                                    <label for="roomname" type="text" class="col-form-label">ห้องเรียน</label>
+                                                    <label for="roomname" type="text" class="col-form-label">อาคาร</label>
                                                     <select name="roomID" class="form-control" onChange={this.handleChange}>
-                                                        <option >เลือกห้องเรียน</option>
+                                                        <option value="">เลือกอาคาร</option>
                                                         { this.state.allrooms.map((allroom,i) => (
                                                             <option value={allroom.roomID}>{allroom.roomname}</option>
                                                         )) }
                                                     </select>
                                                 </div>
+                                            </div> */}
+                                            <div className="col-md-4">
+                                                <div class="form-group input-group-sm">
+                                                    <label for="roomname" type="text" class="col-form-label">ห้องเรียน</label>
+                                                    <select name="roomID" class="form-control" onChange={this.handleChange}>
+                                                        <option value="">เลือกห้องเรียน</option>
+                                                        { this.state.allrooms.map((allroom,i) => (
+                                                            <option value={allroom.roomID}>{allroom.roomname}</option>
+                                                        )) }
+                                                    </select>   
+                                                </div>
                                             </div>
-                                            <div className="col-sm-4">
+                                        </div>
+                                        <div className="row"> {/* 2 */}
+                                            <div className="col-md-4"> 
                                                 <div class="form-group">
                                                     <label for="courseName" type="text" class="col-form-label">วันเริ่มต้นการสอน</label> : 
                                                    <DatePicker 
@@ -286,22 +299,8 @@ export default class CreateTeachCourse extends Component {
                                                         locale='th'
                                                    />
                                                 </div>
-                                                <div class="form-group">
-                                                    <label for="courseName" type="text" class="col-form-label">วันสิ้นสุดการสอน</label> : 
-                                                    <DatePicker 
-                                                        dateFormat=" dd/MM/yyyy"
-                                                        selected={this.state.endDate}
-                                                        onChange={date => this.handleChangeEndDate(date)}
-                                                        selectsStart
-                                                        startDate={this.state.startDate}
-                                                        endDate={this.state.endDate}
-                                                        minDate={this.state.startDate}
-                                                        locale='th'
-
-                                                   />
-                                                </div>
                                             </div>
-                                            <div className="col-sm-4">
+                                            <div className="col-md-4">
                                                 <div class="form-group">
                                                     <label for="courseName" type="text" class="col-form-label">เวลาเริ่มการสอน</label> : 
                                                     <DatePicker
@@ -318,27 +317,8 @@ export default class CreateTeachCourse extends Component {
 
                                                     />
                                                 </div>
-                                                <div class="form-group">
-                                                    <label for="courseName" type="text" class="col-form-label">เวลาสิ้นการสอน</label> : 
-                                                    <DatePicker 
-                                                        locale='th'
-                                                        selected={this.state.endDate}
-                                                        onChange={date => this.handleChangeEndDate(date)}
-                                                        showTimeSelect
-                                                        showTimeSelectOnly
-                                                        timeIntervals={1}
-                                                        timeCaption=" Time"
-                                                        dateFormat=" H:mm "
-                                                        minTime={this.state.startDate}
-                                                        maxTime={this.state.endDate}
-                                                   />
-                                                </div>
                                             </div>
-                                        </div>
-                                        <div className="row">
-                                            <div className="col-sm-4">
-                                            </div>
-                                            <div className="col-sm-4">
+                                            <div className="col-md-4">
                                                 <div class="form-group">
                                                     <label for="courseName" type="text" class="col-form-label">เวลาเริ่มการลงเวลาเข้าเรียน</label> : 
                                                     <DatePicker
@@ -352,11 +332,27 @@ export default class CreateTeachCourse extends Component {
                                                         minTime={this.state.startDate}
                                                         maxTime={this.state.endcheck}
                                                         locale='th'
-
                                                     />
                                                 </div>
                                             </div>
-                                            <div className="col-sm-4">
+                                        </div> 
+                                        <div className="row"> {/* 3 */}
+                                            <div className="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="courseName" type="text" class="col-form-label">วันสิ้นสุดการสอน</label> : 
+                                                    <DatePicker 
+                                                        dateFormat=" dd/MM/yyyy"
+                                                        selected={this.state.endDate}
+                                                        onChange={date => this.handleChangeEndDate(date)}
+                                                        selectsStart
+                                                        startDate={this.state.startDate}
+                                                        endDate={this.state.endDate}
+                                                        minDate={this.state.startDate}
+                                                        locale='th'
+                                                   />
+                                                </div>
+                                            </div>
+                                            <div className="col-md-4">
                                                 <div class="form-group">
                                                     <label for="courseName" type="text" class="col-form-label">เวลาสิ้นการลงเวลาเข้าเรียน</label> : 
                                                     <DatePicker 
@@ -371,6 +367,23 @@ export default class CreateTeachCourse extends Component {
                                                         maxTime={this.state.endDate}
                                                         locale='th'
 
+                                                    />
+                                                </div>
+                                            </div>
+                                            <div className="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="courseName" type="text" class="col-form-label">เวลาสิ้นการสอน</label> : 
+                                                    <DatePicker 
+                                                        locale='th'
+                                                        selected={this.state.endDate}
+                                                        onChange={date => this.handleChangeEndDate(date)}
+                                                        showTimeSelect
+                                                        showTimeSelectOnly
+                                                        timeIntervals={1}
+                                                        timeCaption=" Time"
+                                                        dateFormat=" H:mm "
+                                                        minTime={this.state.startDate}
+                                                        maxTime={this.state.endDate}
                                                    />
                                                 </div>
                                             </div>
