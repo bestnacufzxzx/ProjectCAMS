@@ -209,7 +209,7 @@ export default class App extends Component{
             <Route exact path="/student/Camera" component={Camera} /> 
             <Route exact path="/student/Showhistorycourse/:historycourseID/:historyuser_ID" component={Showhistorycourse} /> 
             <Route exact path="/student/Timetreatment" component={Timetreatment} /> 
-            <Route exact path="/student/Cameras/:classID" component={Cameras} /> 
+            <Route exact path="/student/Cameras/:classID/:courseID" component={Cameras} /> 
             <Route exact path="/student/Checkname/:courseID" component={Checkname} /> 
             <StudentFooter></StudentFooter>
           </BrowserRouter>

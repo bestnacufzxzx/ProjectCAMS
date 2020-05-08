@@ -19,6 +19,8 @@ export default class Cameras extends Component {
         componentWillMount =    () =>{
             this.setState({classID: this.props.match.params.classID})
             this.getClass(this.props.match.params.classID);
+            this.setState({courseID: this.props.match.params.courseID})
+
         }
 
         componentDidMount = () => {
@@ -68,8 +70,9 @@ export default class Cameras extends Component {
                 console.log(user_ID);
                 axios.post(baseurl+'api/Checknamestudent/postCheckname', { classID: this.state.classID, picture:picture, studentID:user_ID, latitude:latitude, longitude:longitude }  )
                 .then(res => {
-                    alert("สำเร็จ");
+                    alert("บันทึกสำเร็จ");
                     this.setState({ statusgets: res.data });
+                    this.RefreshPage();
                 })
                 .catch(error => {
                     console.log("====>",error.status);
@@ -80,6 +83,10 @@ export default class Cameras extends Component {
             }
             
         }
+        RefreshPage = () =>{ 
+            window.location.href = 'http://localhost:3000/student/Checkname/'+this.state.courseID; 
+        }
+    
 
     render() {
         // let props = this.props;

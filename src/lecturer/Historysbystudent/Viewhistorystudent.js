@@ -11,7 +11,8 @@ export default class Viewhistorystudent extends Component {
         course:'',
         image_path: '',
         modal_picture:  '',
-        his:''
+        his:'',
+        Change_status: ''
     }
 
     chackstatus = (status) => {      
@@ -91,8 +92,19 @@ export default class Viewhistorystudent extends Component {
         )
     };
     onclick_modal2 = (event, his) => {
-        this.setState({'his': his});
+        this.setState({his: his});
         console.log(his);
+    }
+
+    Changestatus = (event) => {
+        let nam = event.target.name;
+        let val = event.target.value;
+        this.setState({[nam]: val});
+    
+    }
+    handleSubmit = (event) =>{
+        event.preventDefault();
+
     }
     
     componentDidMount(){
@@ -245,7 +257,7 @@ export default class Viewhistorystudent extends Component {
                                                         <td>{history.roomname}</td>
                                                         <td>{this.chackstatusdate(history.datetime)}</td>
                                                         <td>{this.chackstatus(history.status)}</td>
-                                                        <td>{this.renderedit(history)}</td>
+                                                        <td>{this.renderedit(history.status)}</td>
                                                     </tr>
                                                 ))}
                                         </tbody>
@@ -270,22 +282,27 @@ export default class Viewhistorystudent extends Component {
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                             <h4 class="modal-title" id="exampleModalLabel">แก้ไขสถานะนักศึกษา</h4>
                         </div>
-                        <div class="modal-body">
-                            <form>
-                            <div class="form-group">
-                                <label for="recipient-name" class="control-label">Recipient:</label>
-                                <input type="text" class="form-control" id="recipient-name"/>
+                        <form onSubmit={this.handleSubmit}>
+                            <div class="modal-body">
+                                <div>
+                                    <div className="col-md-12">
+                                        <div class="form-group">
+                                            <select name="Change_status" class="form-control"  onChange={this.Changestatus} >
+                                                <option value="1">เข้าเรียน</option>
+                                                <option value="2">เข้าเรียนสาย</option>
+                                                <option value="3">ไม่เข้าเข้าเรียน</option>
+                                            </select>
+                                            {this.state.Change_status}
+                                            {this.state.hit}
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="message-text" class="control-label">หมายเหตุ:</label>
-                                <textarea class="form-control" id="message-text"></textarea>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-default" data-dismiss="modal">ยกเลิก</button>
+                                <button type="button" class="btn btn-primary">บันทึก</button>
                             </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Send message</button>
-                        </div>
+                        </form>
                         </div>
                     </div>
                 </div>

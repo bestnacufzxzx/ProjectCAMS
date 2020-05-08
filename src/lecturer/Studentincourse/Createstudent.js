@@ -49,30 +49,34 @@ getAllCourse = () => {
 }
 handleSubmit = (event) =>{
    
-
     console.log(this.state.studentID +" ---- "+ this.state.courseID)
     event.preventDefault();
-    axios.post(service_uri+'lecturers/insert_studentByCourses', {
 
-        studentID : this.state.studentID,
-        courseID: this.state.courseID,
-        })
-        .then(res => {
-        alert("บันทึกสำเร็จ")
-        this.RefreshPage();
-        })
-        .catch(error => {
-        console.log("====>",error.status);
-        alert("รายชื่อซ้ำไม่สามารถเพิ่มได้")
-
+    if(this.state.studentID != ""){
+        axios.post(service_uri+'lecturers/insert_studentByCourses', {
+            studentID : this.state.studentID,
+            courseID: this.state.courseID,
+            })
+            .then(res => {
+            alert("บันทึกสำเร็จ")
+            this.RefreshPage();
+            })
+            .catch(error => {
+            console.log("====>",error.status);
+            alert("รายชื่อซ้ำไม่สามารถเพิ่มได้")
+    
         });
+    }else{
+        alert("กรุณาเลือกรายชื่อนักศึกษา")
+    }
+
 }
 
 
        render() {
         return (
             <div className="content-wrapper">
-                <Breadcrumb header="สร้างนักศึกษาในรายวิชา "subheader="" arrow={
+                <Breadcrumb header="สร้างนักศึกษาในรายวิชา "subheader={<h4>{this.state.namecourse}</h4>} arrow={
                     [
                         // {"icon":"", "title":"สร้างนักศึกษาในรายวิชา", "link":"#", "active":"active"}
                     ]
@@ -88,14 +92,14 @@ handleSubmit = (event) =>{
                                                 <div className="row">
                                                     <div className="col-md-12">
                                                         <div class="form-group input-group-sm">
-                                                            รายวิชา : {this.state.namecourse}
+                                                            
                                                         </div>
                                                     </div>
                                                     <div className="col-md-12">
-                                                        <div class="form-group input-group-sm">
-                                                            <label for="lecturers" type="text" class="col-form-label">รายชื่อนักศึกษา</label>
-                                                            <select name="studentID" class="form-control" onChange={this.handleChange}>
-                                                                <option>เลือกนักศึกษา</option>
+                                                        <div class="form-group">
+                                                            <label for="lecturers" type="text" class="col-form-label">รายชื่อนักศึกษา (เลือกนักศึกษา)</label>
+                                                            <select name="studentID" class="form-control"  onChange={this.handleChange} multiple>
+                                                                {/* <option value="">เลือกนักศึกษา</option> */}
                                                             { this.state.sutdentByCourses.map((sutdentByCourse,i) => (
                                                                 <option value={sutdentByCourse.studentID}>{sutdentByCourse.firstName+' '+sutdentByCourse.lastName}</option>
                                                             )) }

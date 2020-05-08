@@ -18,6 +18,7 @@ export default class Listcourse extends Component {
     }
 
       renderButtonclass(data){
+          console.log(data)
         let courseID = (data.courseID)
             return(
                 <Link to={'/student/Checkname/'+courseID}>
