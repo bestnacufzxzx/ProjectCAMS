@@ -35,7 +35,7 @@ export default class Logout extends Component {
                   <ul className="dropdown-menu">
                       <li className="user-footer">
                           <div className="pull-left">
-                              <Link to="/lecturer/Profile" >
+                              <Link to="/admin/Profile" >
                                   <button type="button" className="btn btn-default btn-flat" data-toggle="modal" data-target="#modal-default">ข้อมูลส่วนตัว</button>
                               </Link>
                           </div>

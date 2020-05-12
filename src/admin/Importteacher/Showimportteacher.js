@@ -48,7 +48,7 @@ export default class Showimportteacher extends Component {
         script.async = true;
         document.body.appendChild(script);
 
-        axios.get(baseurl+'api/admin_showuser/showusername_teacher')
+        axios.get(baseurl+'api/admin_showuser/shownameteacher_teacher')
         .then(response => {
           this.setState({ lecturers: response.data });
         })

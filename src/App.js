@@ -81,6 +81,7 @@ import EditAccountStudent from './admin/AccountStudent/EditAccountStudent/EditAc
 import Showteaching from './admin/course/Showteaching';
 import Createteaching from './admin/course/Createteaching';
 import Manageteachersincourses from './admin/Manageteachersincourses/Manageteachersincourses';
+import AdminProfile from './admin/Profile/Profile';
 
 // page lecturer
 import Attendancelocation from './lecturer/Attendancelocation/Attendancelocation';
@@ -163,6 +164,7 @@ export default class App extends Component{
               <Route exact path="/admin/Showteaching/:courseID" component={Showteaching} />
               <Route exact path="/admin/Createteaching/:courseID/" component={Createteaching} /> 
               <Route exact path="/admin/Manageteachersincourses" component={Manageteachersincourses} /> 
+              <Route exact path="/admin/Profile" component={AdminProfile} /> 
 
               <AdminFooter></AdminFooter>
             </BrowserRouter>

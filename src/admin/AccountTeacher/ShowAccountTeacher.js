@@ -54,7 +54,7 @@ export default class ShowAccountTeacher extends Component {
         script.async = true;
         document.body.appendChild(script);
 
-        axios.get(baseurl+'api/admin_accountUser/showaccountUser')
+        axios.get(baseurl+'api/admin_accountUser/showaccountuserteacher')
         .then(response => {
           this.setState({ accountusers: response.data });
         })

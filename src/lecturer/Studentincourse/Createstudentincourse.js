@@ -46,12 +46,12 @@ export default class Createstudentincourse extends Component {
 
     componentDidMount(){
         let lecturerID = localStorage.getItem("lecturerID");
-        const  courseID  = this.props.match.params.courseID;
+        let  courseID  = this.props.match.params.courseID;
         const  namecourse = this.props.match.params.namecourse;
         this.setState({namecourse})
         this.setState({courseID});
-        console.log("lecturerID"+lecturerID+"courseID"+this.state.courseID);
-        axios.get(baseurl+'api/lecturers/get_studentByCourses?lecturerID='+lecturerID+"&courseID="+courseID)
+        console.log("lecturerID"+lecturerID+"courseID"+courseID);
+        axios.get(baseurl+'api/lecturers/get_studentByCourses?courseID='+courseID)
         .then(res => {
         this.setState({ courses: res.data });
         })

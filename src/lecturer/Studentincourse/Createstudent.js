@@ -29,17 +29,18 @@ RefreshPage = () => {
 }
 
 componentDidMount(){
-    const  courseID  = this.props.match.params.courseID;
-    this.setState({courseID});
-
-    this.getAllCourse();
+    let  courseID  = this.props.match.params.courseID;
+    this.setState({'courseID' : courseID});
+    // console.log(this.state.courseID)
+    // console.log(courseID)
+    this.getAllCourse(courseID);
 }
 
-getAllCourse = () => {
+getAllCourse = (courseID) => {
     const  namecourse = this.props.match.params.namecourse;
     this.setState({namecourse})
 
-    axios.get(service_uri+'lecturers/get_all_sutdentByCourses')
+    axios.get(service_uri+'lecturers/get_all_sutdentByCourses?courseID='+courseID)
     .then(res => {
         this.setState({ sutdentByCourses: res.data });
     })
@@ -86,19 +87,13 @@ handleSubmit = (event) =>{
                         <div className="col-md-4">
                             <div className="box box-primary">
                                 <div className="box-body">
-                                    <br />
                                         <form onSubmit={this.handleSubmit}>
                                             <div class="modal-body">
                                                 <div className="row">
                                                     <div className="col-md-12">
-                                                        <div class="form-group input-group-sm">
-                                                            
-                                                        </div>
-                                                    </div>
-                                                    <div className="col-md-12">
                                                         <div class="form-group">
                                                             <label for="lecturers" type="text" class="col-form-label">รายชื่อนักศึกษา (เลือกนักศึกษา)</label>
-                                                            <select name="studentID" class="form-control"  onChange={this.handleChange} multiple>
+                                                            <select name="studentID" class="form-control multiple"  onChange={this.handleChange} multiple>
                                                                 {/* <option value="">เลือกนักศึกษา</option> */}
                                                             { this.state.sutdentByCourses.map((sutdentByCourse,i) => (
                                                                 <option value={sutdentByCourse.studentID}>{sutdentByCourse.firstName+' '+sutdentByCourse.lastName}</option>
