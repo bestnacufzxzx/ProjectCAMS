@@ -12,6 +12,18 @@ export default class Createstudentincourse extends Component {
 
     state = {
         courses : [],
+        sutdentByCourses:[],
+        firstName : '',
+        lastName : '',
+        studentID: '',
+        courseID:'',
+    }
+
+    handleChange = (event) => {
+        let nam = event.target.name;
+        let val = event.target.value;
+        this.setState({[nam]: val});
+    
     }
 
     deletestudentincourseID(studentsregeterID){
@@ -44,12 +56,18 @@ export default class Createstudentincourse extends Component {
         )
     }
 
+    onclick_modal = (event, courseID,namecourse) => {
+        // this.setState({his: his});
+        console.log(courseID,namecourse);
+    }
+
     componentDidMount(){
         let lecturerID = localStorage.getItem("lecturerID");
         let  courseID  = this.props.match.params.courseID;
         const  namecourse = this.props.match.params.namecourse;
         this.setState({namecourse})
-        this.setState({courseID});
+        this.setState({courseID})
+        console.log(courseID);
         console.log("lecturerID"+lecturerID+"courseID"+courseID);
         axios.get(baseurl+'api/lecturers/get_studentByCourses?courseID='+courseID)
         .then(res => {
@@ -58,7 +76,66 @@ export default class Createstudentincourse extends Component {
         .catch(error => {
         console.log("====>",error.status);
         });
+
+        this.getAllCourse(courseID);
     }
+    getAllCourse = (courseID) => {  
+        axios.get(service_uri+'lecturers/get_all_sutdentByCourses?courseID='+courseID)
+        .then(res => {
+            this.setState({ sutdentByCourses: res.data });
+        })
+        .catch(error => {
+            console.log("====>",error.status);
+        });
+    }
+
+    // groupdataarry = () => {
+    //     datastudent =>{
+    //         let students = {
+    //             students: this.state.studentID,
+    //             courses: this.state.courseID,
+    //         }
+    //         const file = [];
+    //         datastudent.map((v) => {  //(v,i)
+    //             let temp  = {...students};
+    //             temp.students = v[0];
+    //             temp.courses = v[1];
+    //             if (temp.fname){
+    //                 file.push(temp);
+    //             }
+    //         });
+    //         this.setState({
+    //             file: file
+    //         });
+    //     }
+    // }
+
+    handleSubmit = (event) =>{
+   
+        console.log(this.state.studentID +" ---- "+ this.state.courseID)
+        event.preventDefault();
+
+        console.log(this.state.studentID)
+    
+        if(this.state.studentID != ""){
+            axios.post(service_uri+'lecturers/insert_studentByCourses', {
+                studentID : this.state.studentID,
+                courseID: this.state.courseID,
+                })
+                .then(res => {
+                alert("บันทึกสำเร็จ")
+                // this.RefreshPage();
+                })
+                .catch(error => {
+                console.log("====>",error.status);
+                alert("รายชื่อซ้ำไม่สามารถเพิ่มได้")
+        
+            });
+        }else{
+            alert("กรุณาเลือกรายชื่อนักศึกษา")
+        }
+    }
+    
     RefreshPage = () => { 
         window.location.href = 'http://localhost:3000/lecturer/Createstudentincourse/'+this.state.courseID+"/"+this.state.namecourse; 
     }
@@ -94,9 +171,11 @@ export default class Createstudentincourse extends Component {
                                             </div>
                                         </form>
                                         <div className="col-md-2">
-                                            <Link to={'/lecturer/Createstudent/'+this.state.courseID+"/"+this.state.namecourse}>
+                                                <button type="button"className="btn btn-block btn-info pull-right" data-toggle="modal" data-target="#exampleModal" onClick={((e) => this.onclick_modal(e,this.state.courseID,this.state.namecourse))}><i class="fa fa-plus" aria-hidden="true"></i> สร้าง</button>
+
+                                            {/* <Link to={'/lecturer/Createstudent/'+this.state.courseID+"/"+this.state.namecourse}>
                                                 <button type="button" className="btn btn-block btn-info pull-right"><i class="fa fa-plus" aria-hidden="true"></i> สร้าง</button>
-                                            </Link>
+                                            </Link> */}
                                          </div>
                                     </div>
                                 </div>
@@ -134,6 +213,39 @@ export default class Createstudentincourse extends Component {
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="exampleModalLabel">แก้ไขสถานะนักศึกษา</h4>
+                        </div>
+                        <form onSubmit={this.handleSubmit}>
+                            <div class="modal-body">
+                                <div>
+                                    <div class="form-group">
+                                        <label for="lecturers" type="text" class="col-form-label">รายชื่อนักศึกษา (เลือกนักศึกษา)</label>
+                                        <select name="studentID" class="form-control multiple"  onChange={this.handleChange} multiple>
+                                            {/* <option value="">เลือกนักศึกษา</option> */}
+                                        { this.state.sutdentByCourses.map((sutdentByCourse,i) => (
+                                            <option value={sutdentByCourse.studentID}>{sutdentByCourse.firstName+' '+sutdentByCourse.lastName +' '+sutdentByCourse.studentID}</option>
+                                        )) }
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">                                
+                                {/* <button type="submit" className="pull-right btn btn-success" onClick={ this.handleChange }>
+                                     บันทึก
+                                </button> */}
+                                <button type="submit" class="btn btn-success" onClick={ this.handleChange }>บันทึก</button>
+                                <button type="submit" class="btn btn-default" data-dismiss="modal">ยกเลิก</button>
+                                {/* <button type="submit" class="btn btn-default" data-dismiss="modal">ยกเลิก</button> */}
+                            </div>
+                        </form>
                         </div>
                     </div>
                 </div>
