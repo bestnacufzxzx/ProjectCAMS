@@ -11,7 +11,7 @@ export default class MenuBar extends Component {
     render(){
       let role = this.state.role;
       console.log(role);
-      if(role == 4 || role == 5 || role == 6 ){
+      if(role == 5 || role == 6 || role == 7 ){
         return(
         <div>
           <aside className="main-sidebar">
@@ -33,7 +33,7 @@ export default class MenuBar extends Component {
           </aside>
         </div>
         )
-      }else if(role == 3){
+      }else if(role == 4){
         return(
           <div>
             <aside className="main-sidebar">

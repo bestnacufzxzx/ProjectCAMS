@@ -49,7 +49,7 @@ export default class Header extends Component {
     render(){
         let role = this.state.role;
         console.log(role);
-        if(role == 3 ){
+        if(role == 4 ){
         return(
             <div className>
                 <header className="main-header">

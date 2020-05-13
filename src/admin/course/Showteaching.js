@@ -13,15 +13,15 @@ export default class Showteaching extends Component {
     }
     
     chackrole(roleID){
-        if(roleID == 3){
+        if(roleID == 4){
             return(
                 "อาจารย์ผู้สอน"
             ) 
-        }else if(roleID == 4){
+        }else if(roleID == 5){
             return(
                 "อาจารย์ผู้ประสานรายวิชา"
             )
-        }else if(roleID == 5){
+        }else if(roleID == 6){
             return(
                 "อาจารย์ผู้ประสานรายวิชาและอาจารย์ผู้สอน"
             )

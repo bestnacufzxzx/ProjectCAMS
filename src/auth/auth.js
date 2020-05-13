@@ -66,18 +66,21 @@ export default class Auth extends Component {
                         console.log(user_id )
                         axios.get(baseurl+'api/loginusername/get_username_student_login?user_id='+user_id)
                         .then(response => {
-                        const result = response.data.response;
-                        result.forEach(element => {
-                            if(element.user_id === user_id){
-                                this.setState({ 
-                                    // user_id : element.user_id,
-                                    lecturerID : element.lecturerID,
-                                  
-                                })
-                                console.log(this.lecturerID )
-                                localStorage.setItem('lecturerID', this.state.lecturerID);
-                            }
-                        });
+                            const result = response.data.response;
+                            result.forEach(element => {
+                                if(element.user_id === user_id){
+                                    this.setState({ 
+                                        // user_id : element.user_id,
+                                        lecturerID : element.lecturerID,
+                                    
+                                    })
+                                    console.log(this.lecturerID )
+                                    localStorage.setItem('lecturerID', this.state.lecturerID);
+                                }
+                            });
+
+
+                            this.RefreshPage();  // รีแฟรชเมื่อเข้าสู่ระบบสำเร็จ
                     
                         })
                         // .catch(error => {
@@ -101,8 +104,6 @@ export default class Auth extends Component {
                     //     // this.RefreshPage();
                     // }
 
-
-                    // this.RefreshPage();  // รีแฟรชเมื่อเข้าสู่ระบบสำเร็จ
                 }
                 alert(data.message);
                 if(this.state.username && this.state.password){
@@ -117,7 +118,7 @@ export default class Auth extends Component {
 
     render() {
         return (
-            <div className="content hold-transition login-page">
+            <div className="content hold-transition login-page panel-fullscreen">
                 <div className="login-box">
                     <div className="login-logo">
                         <a href="../../index2.html"><b>เข้าสู่ระบบ</b></a>

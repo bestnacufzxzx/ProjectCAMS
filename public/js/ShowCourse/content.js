@@ -1,11 +1,27 @@
+    function loadDatatable(){
+        $('#example2').DataTable({
+            'paging'      : true,
+            'lengthChange': false,
+            'searching'   : true,
+            'ordering'    : true,
+            'info'        : true,
+            'autoWidth'   : false,
+            "pageLength": 8
+        })
+
+        $('#example3').DataTable({
+            'paging'      : true,
+            'lengthChange': false,
+            'searching'   : true,
+            'ordering'    : true,
+            'info'        : true,
+            'autoWidth'   : false,
+            "pageLength": 8,
+            "order": [[ 1, "desc" ]]  //   >
+            // "order": [[ 1, "asc" ]] //  <
+        })
+    }
     $(function () {
         $('#example1').DataTable()
-        $('#example2').DataTable({
-        'paging'      : true,
-        'lengthChange': false,
-        'searching'   : false,
-        'ordering'    : true,
-        'info'        : true,
-        'autoWidth'   : false
-        })
+        setTimeout(loadDatatable, 1000);
     })

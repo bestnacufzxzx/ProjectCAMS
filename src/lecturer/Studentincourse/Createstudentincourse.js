@@ -17,13 +17,13 @@ export default class Createstudentincourse extends Component {
         lastName : '',
         studentID: '',
         courseID:'',
+        selected: []
     }
 
     handleChange = (event) => {
         let nam = event.target.name;
         let val = event.target.value;
         this.setState({[nam]: val});
-    
     }
 
     deletestudentincourseID(studentsregeterID){
@@ -89,6 +89,18 @@ export default class Createstudentincourse extends Component {
         });
     }
 
+    handleChange_student = (e) =>{
+        let options = e.target.options;
+        let value = [];
+        for (var i = 0, l = options.length; i < l; i++) {
+            if (options[i].selected) {
+                value.push(options[i].value);
+            }
+        }
+        // console.log(value);
+        this.setState({selected: value});
+    }
+
     // groupdataarry = () => {
     //     datastudent =>{
     //         let students = {
@@ -117,14 +129,15 @@ export default class Createstudentincourse extends Component {
 
         console.log(this.state.studentID)
     
-        if(this.state.studentID != ""){
+        if(this.state.selected.length > 0){
             axios.post(service_uri+'lecturers/insert_studentByCourses', {
-                studentID : this.state.studentID,
+                // studentID : this.state.studentID,
                 courseID: this.state.courseID,
+                studentID: this.state.selected
                 })
                 .then(res => {
                 alert("บันทึกสำเร็จ")
-                // this.RefreshPage();
+                this.RefreshPage();
                 })
                 .catch(error => {
                 console.log("====>",error.status);
@@ -185,7 +198,7 @@ export default class Createstudentincourse extends Component {
                     <div className="row">
                         <div className="col-md-12">
                             <div className="box box-primary">
-                                <div className="box-body">
+                                <div className="box-body scrol">
                                     <br />
                                     <div className="row">
                                         <div className="col-sm-12">
@@ -228,7 +241,7 @@ export default class Createstudentincourse extends Component {
                                 <div>
                                     <div class="form-group">
                                         <label for="lecturers" type="text" class="col-form-label">รายชื่อนักศึกษา (เลือกนักศึกษา)</label>
-                                        <select name="studentID" class="form-control multiple"  onChange={this.handleChange} multiple>
+                                        <select name="studentID" class="form-control multiple"  onChange={this.handleChange_student} multiple>
                                             {/* <option value="">เลือกนักศึกษา</option> */}
                                         { this.state.sutdentByCourses.map((sutdentByCourse,i) => (
                                             <option value={sutdentByCourse.studentID}>{sutdentByCourse.firstName+' '+sutdentByCourse.lastName +' '+sutdentByCourse.studentID}</option>
@@ -241,8 +254,8 @@ export default class Createstudentincourse extends Component {
                                 {/* <button type="submit" className="pull-right btn btn-success" onClick={ this.handleChange }>
                                      บันทึก
                                 </button> */}
-                                <button type="submit" class="btn btn-success" onClick={ this.handleChange }>บันทึก</button>
-                                <button type="submit" class="btn btn-default" data-dismiss="modal">ยกเลิก</button>
+                                <button type="submit" class="btn btn-success">บันทึก</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">ยกเลิก</button>
                                 {/* <button type="submit" class="btn btn-default" data-dismiss="modal">ยกเลิก</button> */}
                             </div>
                         </form>

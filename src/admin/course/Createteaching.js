@@ -132,9 +132,9 @@ handleSubmit = (event) =>{
                                                 <label for="teaching" type="text" class="col-form-label">ประเภทอาจารย์  </label>
                                                 <select name="roleID" class="form-control" onChange={this.handleChange} value={this.state.roleID}>
                                                     <option class="active" value="">ประเภทอาจารย์</option>
-                                                    <option value="3">อาจารย์ผู้สอน</option>
-                                                    <option value="4">อาจารย์ผู้ประสานรายวิชา</option>
-                                                    <option value="5">อาจารย์ผู้ประสานรายวิชาและอาจารย์ผู้สอน</option>
+                                                    <option value="4">อาจารย์ผู้สอน</option>
+                                                    <option value="5">อาจารย์ผู้ประสานรายวิชา</option>
+                                                    <option value="6">อาจารย์ผู้ประสานรายวิชาและอาจารย์ผู้สอน</option>
                                                 </select>
                                                 <div style={{color: "red"}}>{this.state.roleIDError}</div>
                                             </div>
