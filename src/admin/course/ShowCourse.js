@@ -5,10 +5,21 @@ import axios from 'axios';
 import service_uri from '../../components/variable/service_uri';
 import baseurl from '../../auth/Baseurl';
 
+const initialState = {
+    courseCodeError: "",
+    courseNameError: "",
+}
 export default class ShowCourse extends Component {
     state = {
         courses: []
     }
+
+    onChangeHandle = (event) => {
+        let name = event.target.name;
+        let value = event.target.value;
+        this.setState({[name]: value});
+    } 
+
     renderviewteaching(course){
         let courseID = course.courseID;
         return(
@@ -24,6 +35,12 @@ export default class ShowCourse extends Component {
         )
     }
 
+    renderedit(course){
+        return(
+            <button type="button"className="btn btn-success" data-toggle="modal" data-target="#exampleModal" onClick={((e) => this.onclick_modal(e,course))}><i class="fa fa-edit" aria-hidden="true"> </i></button>
+        );
+    }
+
     handleRemove = (courseID) => {
 
         const url = service_uri +'admin_showcourse/get_delete_courseid?courseID='+courseID;
@@ -34,6 +51,67 @@ export default class ShowCourse extends Component {
             alert("ลบสำเร็จ")
             this.RefreshPage();
     } 
+
+    onclick_modal = (e,courseID) => {
+        axios.get(baseurl+'api/admin_showcourse/get_id_getcourses?courseID='+courseID)
+        .then(res => {
+            const result = res.data;
+            result.forEach(element => {
+                if(element.courseID === courseID){
+                        this.setState({ 
+                        courseID : element.courseID,
+                        courseCode : element.courseCode,
+                        courseName : element.courseName,
+                    })
+                }
+            });
+
+        })
+        .catch(error => {
+        });
+    }
+    validate = () =>{
+        let  courseCodeError = "";
+        let  courseNameError = "";
+
+        if (!this.state.courseCode) {
+            courseCodeError = "กรุณากรอกรหัสวิชา";
+        }
+        if (!this.state.courseName ) {
+            courseNameError = "กรุณากรอกชื่อรายวิชา";
+        }
+        if(courseCodeError || courseNameError){
+            this.setState({ courseCodeError });
+            this.setState({ courseNameError });
+            return false;
+        }
+        return true;
+
+    }
+
+    handleeditcourse = (event) => {
+        console.log(this.state.chackemail)
+        event.preventDefault();
+        const isValid = this.validate();
+        if( this.state.courseCode != "" && this.state.courseName){
+            axios.post(baseurl+'api/admin_showcourse/get_id_getcourses_update/', {
+                courseID: this.state.courseID,
+                courseCode : this.state.courseCode,
+                courseName : this.state.courseName,
+            })
+            .then(res => {
+                alert("บันทึกสำเร็จ")
+                // this.RefreshPage();
+            })
+            .catch(error => {
+                alert("รหัสวิชาซ้ำ")
+                console.log("====>",error.status);
+            });
+        }else if (isValid) {
+            this.setState(initialState);
+        }
+
+    }
 
     RefreshPage=()=> { 
         window.location.href = 'http://localhost:3000/admin/ShowCourse'; 
@@ -106,7 +184,8 @@ export default class ShowCourse extends Component {
                                                             {/* <td>1.7</td> */}
                                                             <td> 
                                                                 {this.renderviewteaching(course)}
-                                                                {this.renderdelete(course.courseID)}
+                                                                {this.renderdelete(course.courseID)}&nbsp;
+                                                                {this.renderedit(course.courseID)}
                                                                 {/* <Link to={'/admin/course/Updatacourse/'+course.courseID} ><button type="button" className="btn btn-warning" onClick={this.updateCourse} ><i className="fa fa-edit"></i></button></Link> <button type="button" className="btn btn-danger"><i className="fa fa-trash"></i></button> */}
                                                             </td>
                                                         </tr>
@@ -117,6 +196,45 @@ export default class ShowCourse extends Component {
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="exampleModalLabel">แก้ไขสถานะนักศึกษา</h4>
+                        </div>
+                        <form onSubmit={this.handleeditcourse}>
+                            <div class="modal-body">
+                                <div className="row">
+                                    <div className="col-md-12">
+                                        <div class="col-md-4">
+                                            <label>รหัสวิชา</label><span class="text-danger"> *</span>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control form-control-lg" placeholder="รหัสวิชา" name="courseCode" id="courseCode" value={this.state.courseCode} onChange={this.onChangeHandle} required="" className="form-control"/>
+                                                <div style={{color: "red"}}>{this.state.courseCodeError}</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <label>ชื่อรายวิชา</label><span class="text-danger"> *</span>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control form-control-lg" placeholder="ชื่อรายวิชา" name="courseName" id="courseName" value={this.state.courseName} onChange={this.onChangeHandle} required="" className="form-control"/>
+                                                <div style={{color: "red"}}>{this.state.courseNameError}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">                                
+                                {/* <button type="submit" className="pull-right btn btn-success" onClick={ this.handleChange }>
+                                     บันทึก
+                                </button> */}
+                                <button type="submit" class="btn btn-success">บันทึก</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">ยกเลิก</button>
+                            </div>
+                        </form>
                         </div>
                     </div>
                 </div>

@@ -168,13 +168,10 @@ export default class Createstudentincourse extends Component {
                                 <div class="box-header">                   
                                     <div className="row">
                                         <form action="" method="POST" id="">
-                                            <div className="col-md-4 form-group">
+                                            <div className="col-md-6 form-group">
                                                 <label>
                                                     <h4>รายวิชา : {this.state.namecourse}</h4>
                                                 </label>
-                                            </div>
-                                            <div className="col-md-2 form-group">
-         
                                             </div>
                                             <div className="col-md-2 form-group">
                                                 {/* <input type="text" className="form-control" name="searchText" value="" placeholder="ค้นหา"/> */}
