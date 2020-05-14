@@ -46,7 +46,7 @@ export default class Showlocation extends Component {
 
     componentDidMount(){
         const script = document.createElement("script");
-        script.src = '../js/Showlocation/content.js';
+        script.src = '../js/ShowCourse/content.js';
         script.async = true;
         document.body.appendChild(script);
 
@@ -69,7 +69,7 @@ export default class Showlocation extends Component {
              <div className="content-wrapper">
                 <Breadcrumb header="กำหนดตำแหน่งสถานที่เรียน" subheader="" arrow={
                     [
-                        {"icon":"fa fa-map-marker", "title":"แผนที่", "link":"#", "active":"active"}
+                        //  {"icon":"fa fa-map-marker", "title":"แผนที่", "link":"#", "active":"active"}
                     ]
                 } />
 

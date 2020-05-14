@@ -68,14 +68,14 @@ export default class Createlocation extends Component {
             <div className="content-wrapper">
                 <Breadcrumb header="สถานที่เรียน" subheader="" arrow={
                     [
-                        { "icon": "fa fa-map-marker", "title": "แผนที่สถานที่เรียน", "link": "#", "active": "active" }
+                        // { "icon": "fa fa-map-marker", "title": "แผนที่สถานที่เรียน", "link": "#", "active": "active" }
                     ]
                 } />
 
                 <div className="content body">
                     <div className="box theader-search-sky">
                         <div className="box-header">
-                        <h4>GPS : {this.state.gps}</h4> 
+                        {/* <h4>GPS : {this.state.gps}</h4>  */}
                             <form onSubmit={this.handleSubmit}>
                                 <div className="row">
                                     <div className="col-md-5"></div>

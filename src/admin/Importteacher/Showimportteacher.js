@@ -44,7 +44,7 @@ export default class Showimportteacher extends Component {
 
     componentDidMount(){
         const script = document.createElement("script");
-        script.src = '../js/Showimportteacher/content.js';
+        script.src = '../js/ShowCourse/content.js';
         script.async = true;
         document.body.appendChild(script);
 

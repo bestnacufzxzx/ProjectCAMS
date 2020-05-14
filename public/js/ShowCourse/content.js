@@ -6,7 +6,7 @@
             'ordering'    : true,
             'info'        : true,
             'autoWidth'   : false,
-            "pageLength": 8
+            "pageLength": 5
         })
 
         $('#example3').DataTable({
