@@ -68,7 +68,7 @@ export default class Createlocation extends Component {
             <div className="content-wrapper">
                 <Breadcrumb header="สถานที่เรียน" subheader="" arrow={
                     [
-                        // { "icon": "fa fa-map-marker", "title": "แผนที่สถานที่เรียน", "link": "#", "active": "active" }
+                        { "icon": "fa fa-map-marker", "title": "แผนที่สถานที่เรียน", "link": "#", "active": "active" }
                     ]
                 } />
 

@@ -74,7 +74,7 @@ export default class Course extends Component {
              <div className="content-wrapper">
                 <Breadcrumb header="กำหนดการเรียนการสอน" subheader="" arrow={
                     [
-                        {"icon":"", "title":"กำหนดการเรียนการสอน", "link":"#", "active":"active"}
+                        // {"icon":"", "title":"กำหนดการเรียนการสอน", "link":"#", "active":"active"}
                     ]
                 } />
                 <div className="content body">
@@ -108,7 +108,7 @@ export default class Course extends Component {
                                     <br />
                                     <div className="row">
                                         <div className="col-sm-12 table-responsive">
-                                            <table id="example3" className="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
+                                            <table id="example2" className="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
                                                 <thead>
                                                     <tr>
                                                         <th className="col-sm-1" tabIndex="0" aria-controls="example2" rowSpan="1" colSpan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">ลำดับ</th>

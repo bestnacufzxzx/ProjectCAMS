@@ -25,11 +25,10 @@ export default class Timetreatments extends Component {
     
     
     componentDidMount(){
-        // let course = localStorage.getItem("courseID");
-
-        // this.setState({
-        //     Course:course
-        // })
+        const script = document.createElement("script");
+        script.src = '../js/ShowCourse/content.js';
+        script.async = true;
+        document.body.appendChild(script);
 
         let lecturerID = localStorage.getItem("lecturerID");
         let roleID = localStorage.getItem("role");
@@ -65,7 +64,7 @@ export default class Timetreatments extends Component {
                         <div className="col-md-12">
                             <div className="box box-primary">
                                 <div className="box-body table-responsive">
-                                    <table id="example1" class="table table-bordered table-striped" role="grid" >
+                                    <table id="example2" class="table table-bordered table-striped" role="grid" >
                                         <thead>
                                             <tr>
                                                 <th className="col-sm-1" tabIndex="0" aria-controls="example2" rowSpan="1" colSpan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">ลำดับ</th>

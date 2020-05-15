@@ -18,6 +18,11 @@ export default class Showhistorycourse extends Component {
     }
 
     componentWillMount = () =>{
+        const script = document.createElement("script");
+        script.src = '../../../js/ShowCourse/content.js';
+        script.async = true;
+        document.body.appendChild(script);
+
         this.setState({historyuser_ID: this.props.match.params.historyuser_ID})
         console.log(this.state.historyuser_ID)
     }
@@ -189,7 +194,7 @@ export default class Showhistorycourse extends Component {
                                         </div>
                                         <div className="col-md-4">
                                             <label> 
-                                                {this.missstatus(this.state.remain)}
+                                                {/* {this.missstatus(this.state.remain)} */}
                                             </label>
                                         </div>
                                         <div className="col-md-4">
@@ -210,7 +215,7 @@ export default class Showhistorycourse extends Component {
                                     {/* <br />
                                     <div className="row">
                                         <div className="col-sm-12"> */}
-                                            <table id="example1" class="table table-bordered table-striped" role="grid" >
+                                            <table id="example5" class="table table-bordered table-striped" role="grid" >
                                                 <thead>
                                                     <tr   >
                                                         <th className="col-sm-1" tabIndex="0" aria-controls="example2" rowSpan="1" colSpan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">คาบ</th>

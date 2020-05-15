@@ -34,40 +34,70 @@ export default class Checkname extends Component {
         //     // })
         // }
     }
+
+    convertdate =(dt)=>{
+        let date = (`${
+            (dt.getMonth()+1).toString().padStart(2, '0')}-${
+            dt.getDate().toString().padStart(2, '0')}-${
+            dt.getFullYear().toString().padStart(4, '0')} ${
+            dt.getHours().toString().padStart(2, '0')}:${
+            dt.getMinutes().toString().padStart(2, '0')}:${
+            dt.getSeconds().toString().padStart(2, '0')}`
+        );
+        return (date) ;
+    }
+
+    converts = (dt) =>{
+        let test = (`${
+                    (dt.getMonth()+1).toString().padStart(2, '0')}-${
+                    dt.getDate().toString().padStart(2, '0')}-${
+                    dt.getFullYear().toString().padStart(4, '0')} ${
+                    dt.getHours().toString().padStart(2, '0')}:${
+                    dt.getMinutes().toString().padStart(2, '0')}:${
+                    dt.getSeconds().toString().padStart(2, '0')}`
+        );
+        return (test);
+    }
   
     renderUserButton(course){
         let course_ID = course.courseID
-        if(course == null){
-                return (
-                    <button type="button" className="btn btn-block btn-danger btn-sm" > ไม่มีเรียนในวันนี้ </button>
-                );
-        }else{
-            let d1 = new Date();
-            let d2 = new Date(course.startdate+' '+course.starttime);
             let classID = (course.classID);
             localStorage.setItem("classID", classID);
-            let d3 = new Date(course.startdate+' '+course.endtime);
-            console.log("ปัจจุบัน",d1);
-            console.log("เริ่ม",d2);
-            console.log("สิ้นสุด",d3);
 
-            if( d1.getTime() >= d2.getTime() && d1.getTime() <= d3.getTime() ) {
-                if(course.status !== null){
-                    return (<button type="button" className="btn btn-block btn-success btn-sm" ><i class="fa fa-map-marker" aria-hidden="true"></i> บันทึกแล้ว</button>);
-                }
+            let d1 = new Date();
+            let d2 = new Date(course.startdate+' '+course.starttime);
+            let d3 = new Date(course.startdate+' '+course.endtime);
+            // console.log("ปัจจุบัน",d1);
+            let dd1 = this.convertdate(d1);
+            let dd2 = this.convertdate(d2);
+            let dd3 = this.convertdate(d3);
+            console.log(this.convertdate(d1),"ปัจจุบัน")
+            // console.log("เริ่ม",d2);
+            console.log(this.converts(d2),"เริ่ม");
+            // console.log("สิ้นสุด",d3);
+            console.log(this.converts(d3),"สิ้นสุด");
+            console.log(course.status ,"status");
+
+            if(course.status  != null){
+                return (
+                    <button type="button" className="btn btn-block btn-success btn-sm" ><i class="fa fa-map-marker" aria-hidden="true"></i> บันทึกแล้ว</button>
+                );                  
+            }
+            if(dd1 >= dd2 && dd1 <= dd3){
                 return (
                     <Link to={'/student/Cameras/'+classID+"/"+course_ID}>
                         <button type="button" className="btn btn-block btn-primary btn-sm" ><i class="fa fa-map-marker" aria-hidden="true"></i> บันทึกเวลาเรียน</button>
                     </Link>
                 );
-            }else{
+            }else if(dd1 <= dd2 && dd1 <= dd3){
+                return (
+                    <button type="button" className="btn btn-block btn-secondary btn-sm" > ยังไม่ถึงคาบเรียน </button>
+                );
+            }else if(dd1 >= dd3){
                 return (
                     <button type="button" className="btn btn-block btn-danger btn-sm"> หมดเวลาบันทึกเข้าเรียน</button>
-                );
+                );              
             }
-        }
-
-       
       }
     
     componentDidMount(){
@@ -83,7 +113,7 @@ export default class Checkname extends Component {
         });
     
             const script = document.createElement("script");
-            script.src = '../js/Showimportteacher/content.js';
+            script.src = '../../js/ShowCourse/content.js';
             script.async = true;
             document.body.appendChild(script);
         }
@@ -105,7 +135,7 @@ export default class Checkname extends Component {
                                     {/* <br />
                                     <div className="row">
                                         <div className="col-sm-12"> */}
-                                            <table id="example1" class="table table-bordered table-striped" role="grid" >
+                                            <table id="example6" class="table table-bordered table-striped" role="grid" >
                                                 <thead>
                                                     <tr>
                                                         {/* <th className="col-sm-1" tabIndex="0" aria-controls="example2" rowSpan="1" colSpan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">รหัสวิชา</th> */}
@@ -126,7 +156,8 @@ export default class Checkname extends Component {
                                                                 <td>{course.startdate}</td>
                                                                 <td>{course.starttime}</td>
                                                                 <td>{course.endtime}</td>
-                                                                <td>{this.renderUserButton(course)} {this.chackstatus(course)}</td>
+                                                                {/* <td>{this.renderUserButton(course)} {this.chackstatus(course)}</td> */}
+                                                                <td>{this.renderUserButton(course)}</td>
                                                             </tr>
                                                         ))}
                                                 </tbody>

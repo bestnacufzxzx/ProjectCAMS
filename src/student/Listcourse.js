@@ -39,7 +39,7 @@ export default class Listcourse extends Component {
 
     componentDidMount = () =>{
         const script = document.createElement("script");
-        script.src = '../js/Showimportteacher/content.js';
+        script.src = '../js/ShowCourse/content.js';
         // script.async = true;
         document.body.appendChild(script);
         let user_ID = localStorage.getItem("username");
@@ -71,7 +71,7 @@ export default class Listcourse extends Component {
                             <div className="box box-primary">
                                 <div className="box-body table-responsive">
                                     <br />
-                                    <table id="example1" class="table table-bordered table-striped" > 
+                                    <table id="example2" class="table table-bordered table-striped" > 
                                         <thead>
                                             <tr>
                                                 <th className="col-sm-1" tabIndex="0" aria-controls="example2" rowSpan="1" colSpan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">รหัสวิชา</th>

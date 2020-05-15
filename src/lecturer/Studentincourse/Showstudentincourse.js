@@ -24,6 +24,12 @@ export default class Setstudentincourse extends Component {
 
     componentDidMount(){
 
+        const script = document.createElement("script");
+        script.src = '../js/ShowCourse/content.js';
+        script.async = true;
+        document.body.appendChild(script);
+
+        
         let lecturerID = localStorage.getItem("lecturerID");
         let roleID = localStorage.getItem("role");
         console.log("lecturerID"+lecturerID);

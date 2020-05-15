@@ -9,10 +9,10 @@ const Map = ReactMapboxGl({
 
 const zoom = [17];
 // const center = [99.897343, 8.644305];
-// const center = [100.6091532, 13.7485632];
+const center = [100.6091532, 13.7485632];
 // const center = [100.99254099999999, 15.870032000000002];
 // const center = [100.992540, 15.870032];
-const center = [100.607275, 13.750803399999999];
+// const center = [100.607275, 13.750803399999999];
 
 
 

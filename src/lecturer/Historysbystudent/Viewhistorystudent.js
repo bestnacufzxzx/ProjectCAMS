@@ -108,6 +108,13 @@ export default class Viewhistorystudent extends Component {
     }
     
     componentDidMount(){
+
+        const script = document.createElement("script");
+        script.src = '../../../../../js/ShowCourse/content.js';
+        script.async = true;
+        document.body.appendChild(script);
+
+
         const  studentID = this.props.match.params.studentID;
         const  courseID = this.props.match.params.courseID;
         // console.log(user_id+"asdasd"+courseID)
@@ -154,10 +161,6 @@ export default class Viewhistorystudent extends Component {
         console.log("====>",error.status);
         });
     
-        const script = document.createElement("script");
-        script.src = '../js/Showimportteacher/content.js';
-        script.async = true;
-        document.body.appendChild(script);
 
         }
         
@@ -208,7 +211,7 @@ export default class Viewhistorystudent extends Component {
                                         </div>
                                         <div className="col-md-4">
                                             <label> 
-                                                {this.missstatus(this.state.remain)}
+                                                {/* {this.missstatus(this.state.remain)} */}
                                             </label>
                                         </div>
                                         <div className="col-md-4">
@@ -235,7 +238,7 @@ export default class Viewhistorystudent extends Component {
                         <div className="col-md-12">
                             <div className="box box-primary">
                                 <div className="box-body table-responsive">
-                                    <table id="example1" class="table table-bordered table-striped" role="grid" >
+                                    <table id="example5" class="table table-bordered table-striped" role="grid" >
                                         <thead>
                                             <tr>
                                                 <th className="col-sm-1" tabIndex="0" aria-controls="example2" rowSpan="1" colSpan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">คาบ</th>
@@ -244,7 +247,7 @@ export default class Viewhistorystudent extends Component {
                                                 <th className="col-sm-2" tabIndex="0" aria-controls="example2" rowSpan="1" colSpan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">ห้องเรียน</th>
                                                 <th className="col-sm-2" tabIndex="0" aria-controls="example2" rowSpan="1" colSpan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">วัน-เวลา</th> 
                                                 <th className="col-sm-2" tabIndex="0" aria-controls="example2" rowSpan="1" colSpan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">สถานะเข้าเรียน</th>
-                                                <th className="col-sm-2" tabIndex="0" aria-controls="example2" rowSpan="1" colSpan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">การจัดการ</th>
+                                                {/* <th className="col-sm-2" tabIndex="0" aria-controls="example2" rowSpan="1" colSpan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">การจัดการ</th> */}
                                             
                                             </tr>
                                         </thead>
@@ -257,7 +260,7 @@ export default class Viewhistorystudent extends Component {
                                                         <td>{history.roomname}</td>
                                                         <td>{this.chackstatusdate(history.datetime)}</td>
                                                         <td>{this.chackstatus(history.status)}</td>
-                                                        <td>{this.renderedit(history.status)}</td>
+                                                        {/* <td>{this.renderedit(history.status)}</td> */}
                                                     </tr>
                                                 ))}
                                         </tbody>

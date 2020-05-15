@@ -354,6 +354,23 @@ export default class CreateTeachCourse extends Component {
                                             </div>
                                             <div className="col-md-4">
                                                 <div class="form-group">
+                                                    <label for="courseName" type="text" class="col-form-label">เวลาสิ้นการสอน</label> : 
+                                                    <DatePicker 
+                                                        locale='th'
+                                                        selected={this.state.endDate}
+                                                        onChange={date => this.handleChangeEndDate(date)}
+                                                        showTimeSelect
+                                                        showTimeSelectOnly
+                                                        timeIntervals={1}
+                                                        timeCaption=" Time"
+                                                        dateFormat=" H:mm "
+                                                        minTime={this.state.startDate}
+                                                        maxTime={this.state.endDate}
+                                                   />
+                                                </div>
+                                            </div>
+                                            <div className="col-md-4">
+                                                <div class="form-group">
                                                     <label for="courseName" type="text" class="col-form-label">เวลาสิ้นการลงเวลาเข้าเรียน</label> : 
                                                     <DatePicker 
                                                         selected={this.state.endcheck}
@@ -368,23 +385,6 @@ export default class CreateTeachCourse extends Component {
                                                         locale='th'
 
                                                     />
-                                                </div>
-                                            </div>
-                                            <div className="col-md-4">
-                                                <div class="form-group">
-                                                    <label for="courseName" type="text" class="col-form-label">เวลาสิ้นการสอน</label> : 
-                                                    <DatePicker 
-                                                        locale='th'
-                                                        selected={this.state.endDate}
-                                                        onChange={date => this.handleChangeEndDate(date)}
-                                                        showTimeSelect
-                                                        showTimeSelectOnly
-                                                        timeIntervals={1}
-                                                        timeCaption=" Time"
-                                                        dateFormat=" H:mm "
-                                                        minTime={this.state.startDate}
-                                                        maxTime={this.state.endDate}
-                                                   />
                                                 </div>
                                             </div>
                                         </div>

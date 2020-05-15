@@ -62,6 +62,11 @@ export default class Createstudentincourse extends Component {
     }
 
     componentDidMount(){
+        const script = document.createElement("script");
+        script.src = '../../../js/ShowCourse/content.js';
+        script.async = true;
+        document.body.appendChild(script);
+
         let lecturerID = localStorage.getItem("lecturerID");
         let  courseID  = this.props.match.params.courseID;
         const  namecourse = this.props.match.params.namecourse;
@@ -158,7 +163,7 @@ export default class Createstudentincourse extends Component {
              <div className="content-wrapper">
                 <Breadcrumb header="สร้างนักศึกษาในรายวิชา "subheader="" arrow={
                     [
-                        {"icon":"", "title":"สร้างนักศึกษาในรายวิชา", "link":"#", "active":"active"}
+                        // {"icon":"", "title":"สร้างนักศึกษาในรายวิชา", "link":"#", "active":"active"}
                     ]
                 } />
                 <div className="content body">
@@ -195,7 +200,7 @@ export default class Createstudentincourse extends Component {
                     <div className="row">
                         <div className="col-md-12">
                             <div className="box box-primary">
-                                <div className="box-body scrol">
+                                <div className="box-body">
                                     <br />
                                     <div className="row">
                                         <div className="col-sm-12">
