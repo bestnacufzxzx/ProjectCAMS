@@ -101,6 +101,7 @@ import Createstudentincourse from './lecturer/Studentincourse/Createstudentincou
 import Createstudent from './lecturer/Studentincourse/Createstudent';
 import Viewhistorystudent from './lecturer/Historysbystudent/Viewhistorystudent';
 import LecturerProfile from './lecturer/Profile/Profile';
+import Hitstoryoverview from './lecturer/Historysbystudent/Hitstoryoverview';
 
 // page coursecoordinator
 // import CreateRegistrationlink from './coursecoordinator/CreateRegistrationlink/CreateRegistrationlink';
@@ -138,7 +139,7 @@ export default class App extends Component{
       
       if(role == 1){
         return (
-          <body class="hold-transition skin-blue sidebar-mini" >
+          <body class="hold-transition skin-blue sidebar-mini background1" >
             <BrowserRouter >
               <AdminHeader></AdminHeader>
               <AdminMenuBar></AdminMenuBar>
@@ -186,7 +187,7 @@ export default class App extends Component{
             <Route exact path="/lecturer/Profilelecturer" component={Profilelecturer} /> 
             <Route exact path="/lecturer/Showhistorycourse" component={Showhistorycourse} /> 
             <Route exact path="/lecturer/Teachs/:courseID/:namecourse" component={Teachs} /> 
-            <Route exact path="/lecturer/Historysbystudent/:HistorysbystudentcourseID/:courseCode/:courseName" component={Historysbystudent} /> 
+            {/* <Route exact path="/lecturer/Historysbystudent/:HistorysbystudentcourseID/:courseCode/:courseName" component={Historysbystudent} />  */}
             <Route exact path="/lecturer/EditTeachCourse/:classID" component={EditTeachCourse} /> 
             <Route exact path="/lecturer/CreateTeachCourse/:courseID/:namecourse" component={CreateTeachCourse} /> 
             <Route exact path="/lecturer/Showstudentincourse" component={Showstudentincourse} /> 
@@ -194,6 +195,8 @@ export default class App extends Component{
             <Route exact path="/lecturer/Createstudent/:courseID/:namecourse" component={Createstudent} /> 
             <Route exact path="/lecturer/Viewhistorystudent/:studentID/:courseID" component={Viewhistorystudent} /> 
             <Route exact path="/lecturer/Profile" component={LecturerProfile} /> 
+            <Route exact path="/lecturer/Hitstoryoverview/:HistorysbystudentcourseID/:courseCode/:courseName" component={Hitstoryoverview} /> 
+
             <LecturerFooter></LecturerFooter>
           </BrowserRouter>
           </body>
@@ -211,8 +214,8 @@ export default class App extends Component{
             <Route exact path="/student/Camera" component={Camera} /> 
             <Route exact path="/student/Showhistorycourse/:historycourseID/:historyuser_ID" component={Showhistorycourse} /> 
             <Route exact path="/student/Timetreatment" component={Timetreatment} /> 
-            <Route exact path="/student/Cameras/:classID/:courseID" component={Cameras} /> 
-            <Route exact path="/student/Checkname/:courseID" component={Checkname} /> 
+            <Route exact path="/student/Cameras/:classID/:courseID/:studentID" component={Cameras} /> 
+            <Route exact path="/student/Checkname/:courseID/:studentID" component={Checkname} /> 
             <StudentFooter></StudentFooter>
           </BrowserRouter>
           </body>
