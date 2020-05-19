@@ -24,6 +24,9 @@ export default class Cameras extends Component {
         }
 
         componentDidMount = () => {
+            const { studentID } = this.props.match.params;
+            this.setState({studentID});
+
             this.getMyLocation();
         }
 
@@ -61,6 +64,8 @@ export default class Cameras extends Component {
                 }
             });
             vs.shift();
+
+            console.log("picture",picture)
             
             let IsInside = classifyPoint(vs, point);
             console.log('vs',IsInside);
@@ -72,7 +77,7 @@ export default class Cameras extends Component {
                 .then(res => {
                     alert("บันทึกสำเร็จ");
                     this.setState({ statusgets: res.data });
-                    this.RefreshPage();
+                    // this.RefreshPage();
                 })
                 .catch(error => {
                     console.log("====>",error.status);
@@ -84,7 +89,7 @@ export default class Cameras extends Component {
             
         }
         RefreshPage = () =>{ 
-            window.location.href = 'http://localhost:3000/student/Checkname/'+this.state.courseID; 
+            window.location.href = 'http://localhost:3000/student/Checkname/'+this.state.courseID+"/"+this.state.studentID; 
         }
     
 

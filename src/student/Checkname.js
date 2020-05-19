@@ -85,13 +85,13 @@ export default class Checkname extends Component {
             }
             if(dd1 >= dd2 && dd1 <= dd3){
                 return (
-                    <Link to={'/student/Cameras/'+classID+"/"+course_ID}>
-                        <button type="button" className="btn btn-block btn-primary btn-sm" ><i class="fa fa-map-marker" aria-hidden="true"></i> บันทึกเวลาเรียน</button>
+                    <Link to={'/student/Cameras/'+classID+"/"+course_ID+"/"+this.state.studentID}>
+                        <button type="button" className="btn btn-block btn-warning btn-sm" ><i class="fa fa-map-marker" aria-hidden="true"></i> บันทึกเวลาเรียน</button>
                     </Link>
                 );
             }else if(dd1 <= dd2 && dd1 <= dd3){
                 return (
-                    <button type="button" className="btn btn-block btn-secondary btn-sm" > ยังไม่ถึงคาบเรียน </button>
+                    <button type="button" className="btn btn-block btn-secondary btn-sm" > ยังไม่ถึงเวลาเรียน </button>
                 );
             }else if(dd1 >= dd3){
                 return (
@@ -102,9 +102,9 @@ export default class Checkname extends Component {
     
     componentDidMount(){
         const { courseID } = this.props.match.params;
-        console.log(courseID);
-
-        axios.get(baseurl+'api/Checknamestudent/getbycourse?courseID='+courseID)
+        const { studentID } = this.props.match.params;
+        this.setState({studentID});
+        axios.get(baseurl+'api/Checknamestudent/getbycourse?courseID='+courseID+"&studentID="+studentID)
         .then(res => {
         this.setState({ courses: res.data });
         })
