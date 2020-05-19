@@ -17,15 +17,24 @@ export default class Listcourse extends Component {
         this.setState({[event.target.name]: event.target.value});
     }
 
-      renderButtonclass(data){
-          console.log(data)
+      renderButtonclass(data,time){
+          console.log(data,time)
         let courseID = (data.courseID)
+        let studentID = (data.studentID)
+        // let courseID = (time.courseID)
+        if(time != null){
             return(
-                <Link to={'/student/Checkname/'+courseID}>
-                        <button type="button" className="btn btn-block btn-primary btn-sm" ><i class="fa fa-map-marker" aria-hidden="true"></i> บันทึกเวลาเรียน</button>
+                <Link to={'/student/Checkname/'+courseID+"/"+studentID}>
+                        <button type="button" className="btn btn-block btn-danger btn-sm" ><i class="fa fa-map-marker" aria-hidden="true"></i> บันทึกเวลาเรียน</button>
                 </Link>
+                // get data befor data to listcourse
+                // หลังจากบันทึกเสร็จเรียบร้อยแล้ว ปุ่มเป็น สีเขียว
             );
-
+        }else{
+            return(
+                <button type="button" className="btn btn-block btn-warning btn-sm" ><i class="fa fa-map-marker" aria-hidden="true"></i> ยังไม่ถึงเวลาเรียน</button>
+            );
+        }
       }
 
 
@@ -71,7 +80,7 @@ export default class Listcourse extends Component {
                             <div className="box box-primary">
                                 <div className="box-body table-responsive">
                                     <br />
-                                    <table id="example2" class="table table-bordered table-striped" > 
+                                    <table id="example7" class="table table-bordered table-striped" > 
                                         <thead>
                                             <tr>
                                                 <th className="col-sm-1" tabIndex="0" aria-controls="example2" rowSpan="1" colSpan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">รหัสวิชา</th>
@@ -85,10 +94,7 @@ export default class Listcourse extends Component {
                                                 <tr role="row">
                                                     <td>{checkname.data.courseCode}</td>
                                                     <td>{checkname.data.courseName}</td>
-                                                    <td> 
-                                                            {this.renderButtonclass(checkname.data)}
-
-                                                    </td>
+                                                    <td>{this.renderButtonclass(checkname.data,checkname.time)}</td>
                                                 </tr>
                                             ))}
                                         </tbody>
