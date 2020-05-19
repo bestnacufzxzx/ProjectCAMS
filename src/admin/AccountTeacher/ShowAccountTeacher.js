@@ -69,7 +69,7 @@ export default class ShowAccountTeacher extends Component {
         return (
    
              <div className="content-wrapper">
-                <Breadcrumb header="แสดงรายอาจารย์" subheader="" arrow={
+                <Breadcrumb header="แสดงรายชื่ออาจารย์" subheader="" arrow={
                     [
                         {"icon":"", "title":"อาจารย์", "link":"#", "active":"active"}
                     ]

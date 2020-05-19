@@ -67,7 +67,7 @@ export default class ShowAccountStudent extends Component {
         return (
    
              <div className="content-wrapper">
-                <Breadcrumb header="แสดงรายนักศึกษา" subheader="" arrow={
+                <Breadcrumb header="แสดงรายชื่อนักศึกษา" subheader="" arrow={
                     [
                         {"icon":"", "title":"นักศึกษา", "link":"#", "active":"active"}
                     ]
