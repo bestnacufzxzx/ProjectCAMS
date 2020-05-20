@@ -216,11 +216,11 @@ export default class Hitstoryoverview extends Component {
                                             <tr role="row">
                                                 <td>1</td>
                                                 <td>59142901</td>
-                                                <td>นายพัฒนะศักดิ์ พิเศษศิลป์ </td>
+                                                <td>นายอารีฟีน กุลดี </td>
                                                 <td>
-                                                    <span class="badge badge-success">25%</span> 
-                                                    <span class="badge badge-warning">20%</span> 
-                                                    <span class="badge badge-danger">10%</span> 
+                                                    <span class="badge badge-success">10%</span> 
+                                                    <span class="badge badge-warning">30%</span> 
+                                                    <span class="badge badge-danger">60%</span> 
                                                 </td>
                                                 <td><span> / </span></td>
                                                 <td className="bg-warning"><span> / </span></td>
@@ -245,7 +245,7 @@ export default class Hitstoryoverview extends Component {
                                                 <td><span> / </span></td>
                                                 <td className="bg-danger"><span> - </span></td>
                                             </tr>
-                                            <tr role="row">
+                                            {/* <tr role="row">
                                                 <td>1</td>
                                                 <td>59142901</td>
                                                 <td>นายพัฒนะศักดิ์ พิเศษศิลป์ </td>
@@ -276,7 +276,7 @@ export default class Hitstoryoverview extends Component {
                                                 <td><span> / </span></td>
                                                 <td><span> / </span></td>
                                                 <td className="bg-danger"><span> - </span></td>
-                                            </tr>
+                                            </tr> */}
                                         </tbody>
                                     </table>
                                 </div>
