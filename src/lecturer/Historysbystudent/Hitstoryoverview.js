@@ -7,60 +7,25 @@ import baseurl from '../../auth/Baseurl';
 export default class Hitstoryoverview extends Component {
                
     state = {
-        historys : [],
+        // historys : [],
+        schedule: [],
+        student: [],
+        rating: [],
+        check: [],
         course:'',
         courseCode:''
     }
-    
-    // renderhistoryid(student){
-    //     let studentID = student.studentID;
-    //     let courseID = student.courseID;
-    //     return(
-    //         <Link to={'/lecturer/Viewhistorystudent/'+studentID+"/"+courseID}>
-    //             <button type="button" className="btn btn-success"> <i class="fa fa-eye" aria-hidden="true"> </i> </button>
-    //         </Link> 
-    //     )
-    // }
 
-    history_porsen =(studentID)=>{
-        // return (<button data-toggle="modal" data-target="#exampleModal" onClick={((e) => this.getporsen(e,studentID))} class="btn btn-primary"></button>)
-        return (
-       
-            <button data-toggle="modal" data-target="#exampleModal" 
-            onClick={((e) => this.getporsen(e,studentID))} 
-            class="btn btn-primary" type="button" data-toggle="collapse" 
-            data-target="#collapseExample" aria-expanded="false" 
-            aria-controls="collapseExample"></button>
-
-        )
+    checktype =(status)=>{
+        if(status == 1){
+            return  (<td><span> / </span></td>)
+        }else if(status == 2){
+            return (<td  className="bg-warning"><span> / </span></td>);
+        }else if (status == null){
+            return (<td  className="bg-danger"><span> - </span></td>);
+        }
     }
-
-    getporsen =(event,studentID)=>{
-        console.log(studentID);
-        const  courseID = this.props.match.params.HistorysbystudentcourseID;
-        // axios.post(baseurl+'api/lecturers/percent_check_name', { courseID: courseID,user_ID:studentID} )
-
-        axios.get(baseurl+'api/lecturers/percent_check_name?courseID='+courseID+"&studentID="+studentID)
-        .then(res => {
-            let percent = (res.data.percent) 
-            let LateClass = (res.data.percentLateClass) 
-            let MissClass = (res.data.percentMissClass) 
-            let remainMissClass = (res.data.remainMissClass) 
-            let remain = (res.data.remain) 
-    
-            let total = (res.data.total) 
-            this.setState({percent})
-            this.setState({remainMissClass})
-            this.setState({remain})
-            this.setState({LateClass})
-            this.setState({MissClass})
-            this.setState({total})
-        })
-        .catch(error => {
-        console.log("====>",error.status);
-        });
-    }
-    
+   
     
     componentDidMount(){
         const script = document.createElement("script");
@@ -80,7 +45,8 @@ export default class Hitstoryoverview extends Component {
         // console.log(this.state.courses)
         axios.get(baseurl+'api/lecturers/gethistorytimetreatment?courseID='+courseID)
         .then(res => {
-            this.setState({ historys: res.data });
+            this.setState({ schedule: res.data.schedule, student: res.data.student, rating: res.data.rating, check: res.data.check});
+            console.log(res.data);
         })
         .catch(error => {
             console.log("====>",error.status);
@@ -141,110 +107,38 @@ export default class Hitstoryoverview extends Component {
                         <div className="col-md-12">
                             <div className="box box-primary table-responsive">
                                 <div className="box-body">
-                                    <table className="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
+                                    <table id="example3" className="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
                                         <thead>
                                             <tr>
                                                 <th tabIndex="0" aria-controls="example2" rowSpan="1" colSpan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">ลำดับ</th>
                                                 <th tabIndex="0" aria-controls="example2" rowSpan="1" colSpan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">รหัสประจำตัว</th>
                                                 <th width="15%" tabIndex="0" aria-controls="example2" rowSpan="1" colSpan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">ชื่อ-สกุล</th>
                                                 <th tabIndex="0" aria-controls="example2" rowSpan="1" colSpan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">สถิติ</th>
-                                                <th tabIndex="0" aria-controls="example2" rowSpan="1" colSpan="1" aria-label="CSS grade: activate to sort column ascending" title="คาบที่ 1 วันที่ 10-05-2562 เวลา 10:50 - 13:50 น">1</th>    
-                                                <th tabIndex="0" aria-controls="example2" rowSpan="1" colSpan="1" aria-label="CSS grade: activate to sort column ascending">2</th>    
-                                                <th tabIndex="0" aria-controls="example2" rowSpan="1" colSpan="1" aria-label="CSS grade: activate to sort column ascending">3</th>    
-                                                <th tabIndex="0" aria-controls="example2" rowSpan="1" colSpan="1" aria-label="CSS grade: activate to sort column ascending">4</th>    
-                                                <th tabIndex="0" aria-controls="example2" rowSpan="1" colSpan="1" aria-label="CSS grade: activate to sort column ascending">5</th>    
-                                                <th tabIndex="0" aria-controls="example2" rowSpan="1" colSpan="1" aria-label="CSS grade: activate to sort column ascending">6</th>    
-                                                <th tabIndex="0" aria-controls="example2" rowSpan="1" colSpan="1" aria-label="CSS grade: activate to sort column ascending">7</th>    
-                                                <th tabIndex="0" aria-controls="example2" rowSpan="1" colSpan="1" aria-label="CSS grade: activate to sort column ascending">8</th>    
-                                                <th tabIndex="0" aria-controls="example2" rowSpan="1" colSpan="1" aria-label="CSS grade: activate to sort column ascending">9</th>    
-                                                <th tabIndex="0" aria-controls="example2" rowSpan="1" colSpan="1" aria-label="CSS grade: activate to sort column ascending">10</th>    
-                                                <th tabIndex="0" aria-controls="example2" rowSpan="1" colSpan="1" aria-label="CSS grade: activate to sort column ascending">11</th>    
-                                                <th tabIndex="0" aria-controls="example2" rowSpan="1" colSpan="1" aria-label="CSS grade: activate to sort column ascending">12</th>    
-                                                <th tabIndex="0" aria-controls="example2" rowSpan="1" colSpan="1" aria-label="CSS grade: activate to sort column ascending">13</th>    
-                                                <th tabIndex="0" aria-controls="example2" rowSpan="1" colSpan="1" aria-label="CSS grade: activate to sort column ascending">14</th>    
-                                                <th tabIndex="0" aria-controls="example2" rowSpan="1" colSpan="1" aria-label="CSS grade: activate to sort column ascending">15</th>    
-                                                <th tabIndex="0" aria-controls="example2" rowSpan="1" colSpan="1" aria-label="CSS grade: activate to sort column ascending">16</th>    
-                                                <th tabIndex="0" aria-controls="example2" rowSpan="1" colSpan="1" aria-label="CSS grade: activate to sort column ascending">17</th>    
-                                                <th tabIndex="0" aria-controls="example2" rowSpan="1" colSpan="1" aria-label="CSS grade: activate to sort column ascending">18</th>    
-                                                <th tabIndex="0" aria-controls="example2" rowSpan="1" colSpan="1" aria-label="CSS grade: activate to sort column ascending">19</th>    
-                                                <th tabIndex="0" aria-controls="example2" rowSpan="1" colSpan="1" aria-label="CSS grade: activate to sort column ascending">20</th>    
-                                                <th tabIndex="0" aria-controls="example2" rowSpan="1" colSpan="1" aria-label="CSS grade: activate to sort column ascending">21</th>    
-                                                <th tabIndex="0" aria-controls="example2" rowSpan="1" colSpan="1" aria-label="CSS grade: activate to sort column ascending">22</th>    
+                                                { this.state.schedule.map((v, i) => (
+                                                    <th tabIndex="0" aria-controls="example2" rowSpan="1" colSpan="1" aria-label="CSS grade: activate to sort column ascending" title={"คาบที่"+(i+1)+" วันที่ "+(v.startdate)+" เวลา "+(v.starttime)+" - "+(v.endtime)+" น"}>ค {i+1}</th>
+                                                )) }    
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {/* { this.state.historys.map((history, i) => (
-                                                <tr role="row">
-                                                    <td>{i+1}</td>
-                                                    <td>{history.studentID}</td>
-                                                    <td>{history.firstName + " " + history.lastName}</td>
-                                                    <td>{this.history_porsen(history.studentID)}</td>
-                                                </tr>
-                                            ))} */}
-                                            <tr role="row">
-                                                <td>1</td>
-                                                <td>59142901</td>
-                                                <td>นายพัฒนะศักดิ์ พิเศษศิลป์ </td>
-                                                <td>
-                                                    <span class="badge badge-success">25%</span> 
-                                                    <span class="badge badge-warning">20%</span> 
-                                                    <span class="badge badge-danger">10%</span> 
-                                                </td>
-                                                <td><span> / </span></td>
-                                                <td className="bg-warning"><span> / </span></td>
-                                                <td><span> / </span></td>
-                                                <td  className="bg-danger"><span> - </span></td>
-                                                <td><span> / </span></td>
-                                                <td><span> / </span></td>
-                                                <td><span> / </span></td>
-                                                <td><span> / </span></td>
-                                                <td><span> / </span></td>
-                                                <td className="bg-danger"><span> - </span></td>
-                                                <td><span> / </span></td>
-                                                <td><span> / </span></td>
-                                                <td className="bg-danger"><span> - </span></td>
-                                                <td><span> / </span></td>
-                                                <td><span> / </span></td>
-                                                <td><span> / </span></td>
-                                                <td><span> / </span></td>
-                                                <td><span> / </span></td>
-                                                <td><span> / </span></td>
-                                                <td><span> / </span></td>
-                                                <td><span> / </span></td>
-                                                <td className="bg-danger"><span> - </span></td>
-                                            </tr>
-                                            <tr role="row">
-                                                <td>1</td>
-                                                <td>59142901</td>
-                                                <td>นายอารีฟีน กุลดี </td>
-                                                <td>
-                                                    <span class="badge badge-success">10%</span> 
-                                                    <span class="badge badge-warning">30%</span> 
-                                                    <span class="badge badge-danger">60%</span> 
-                                                </td>
-                                                <td><span> / </span></td>
-                                                <td className="bg-warning"><span> / </span></td>
-                                                <td><span> / </span></td>
-                                                <td  className="bg-danger"><span> - </span></td>
-                                                <td><span> / </span></td>
-                                                <td><span> / </span></td>
-                                                <td><span> / </span></td>
-                                                <td><span> / </span></td>
-                                                <td><span> / </span></td>
-                                                <td className="bg-danger"><span> - </span></td>
-                                                <td><span> / </span></td>
-                                                <td><span> / </span></td>
-                                                <td className="bg-danger"><span> - </span></td>
-                                                <td><span> / </span></td>
-                                                <td><span> / </span></td>
-                                                <td><span> / </span></td>
-                                                <td><span> / </span></td>
-                                                <td><span> / </span></td>
-                                                <td><span> / </span></td>
-                                                <td><span> / </span></td>
-                                                <td><span> / </span></td>
-                                                <td className="bg-danger"><span> - </span></td>
-                                            </tr>
+                                            { 
+                                                this.state.student.map((v, i)=>(
+                                                    <tr>
+                                                        <td>{i+1}</td>
+                                                        <td>{v.studentID}</td>
+                                                        <td>{v.prefix} {v.firstName} {v.lastName}</td>
+                                                        <td>
+                                                            <span class="badge badge-success">{this.state.rating[v.studentID].percentattendclass+'%'}</span> 
+                                                            <span class="badge badge-warning">{this.state.rating[v.studentID].percentLateClass+'%'}</span> 
+                                                            <span class="badge badge-danger">{this.state.rating[v.studentID].percentMissClass+'%'}</span> 
+                                                        </td>
+                                                        {
+                                                            this.state.check[v.studentID].map((sub, i)=>(
+                                                                <>{this.checktype(sub.status)}</>
+                                                            ))
+                                                        }
+                                                    </tr>
+                                                ))
+                                            }
                                             {/* <tr role="row">
                                                 <td>1</td>
                                                 <td>59142901</td>

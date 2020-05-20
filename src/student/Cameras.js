@@ -77,7 +77,7 @@ export default class Cameras extends Component {
                 .then(res => {
                     alert("บันทึกสำเร็จ");
                     this.setState({ statusgets: res.data });
-                    // this.RefreshPage();
+                    this.RefreshPage();
                 })
                 .catch(error => {
                     console.log("====>",error.status);
