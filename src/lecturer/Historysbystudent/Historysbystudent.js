@@ -33,8 +33,12 @@ export default class Historysbystudent extends Component {
         const  courseCode = this.props.match.params.courseCode;
         const  courseName = this.props.match.params.courseName;
         let courseID = HistorysbystudentcourseID;
-        this.setState({ courses : courseCode +" "+courseName})
+        this.setState({HistorysbystudentcourseID});
+        this.setState({courseCode});
+        this.setState({courseName});
         
+        this.setState({ courses : courseCode +" "+courseName})
+        // console.log(this.state.courses)
         axios.get(baseurl+'api/lecturers/gethistorytimetreatment?courseID='+courseID)
         .then(res => {
             this.setState({ historys: res.data });
@@ -62,12 +66,34 @@ export default class Historysbystudent extends Component {
                                                 <label> 
                                                     <h4>รายวิชา {this.state.courses}</h4>
                                                 </label>
+                                                <h4>รายวิชา {this.state.HistorysbystudentcourseID}</h4>
+                                                    <h4>รายวิชา {this.state.courseCode}</h4>
+                                                    <h4>รายวิชา {this.state.courseName}</h4>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <div className="row">
+                        <div className="col-md-3">
+                        </div>
+                        <div className="col-md-3">
+                        </div>
+                        <div className="col-md-2">
+                        </div>
+                        <div className="col-md-2">
+                            <Link to={'Historysbystudent/'+this.state.HistorysbystudentcourseID+"/"+this.state.courseCode+"/"+this.state.courseName}>
+                                <button type="button" className="btn btn-block btn-warning btn-sm">ดูประวัติการเข้าเรียนแบบรายบุคคน</button>
+                            </Link>
+                        </div>
+                        <div className="col-md-2">
+                            <Link to={'Hitstoryoverview/'+this.state.HistorysbystudentcourseID+"/"+this.state.courseCode+"/"+this.state.courseName}>
+                                <button type="button" className="btn btn-block btn-warning btn-sm">ดูประวัติการเข้าเรียนผลรวม</button>
+                            </Link>
+                        </div>
+                    </div>
+                    <br/>
                     <div className="row">
                         <div className="col-md-12">
                             <div className="box box-primary">

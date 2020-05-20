@@ -17,7 +17,8 @@ export default class Timetreatments extends Component {
     renderhistoryid(HistorysbystudentcourseID , courseCode , courseName){
         // let lecturerID = localStorage.getItem("lecturerID");
         return(
-            <Link to={'Historysbystudent/'+HistorysbystudentcourseID + "/" + courseCode + "/" + courseName}>
+            // <Link to={'Historysbystudent/'+HistorysbystudentcourseID + "/" + courseCode + "/" + courseName}>
+            <Link to={'Hitstoryoverview/'+HistorysbystudentcourseID + "/" + courseCode + "/" + courseName}>
                 <button type="button" className="btn btn-success"> <i class="fa fa-eye" aria-hidden="true"> </i> </button>
             </Link> 
         )
