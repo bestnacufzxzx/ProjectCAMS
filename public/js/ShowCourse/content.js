@@ -77,6 +77,16 @@
             "pageLength": 10,
             "order": [[ 4, "asc" ]]  //   >
         })
+        $('#example9').DataTable({
+            'paging'      : true,
+            'lengthChange': false,
+            'searching'   : true,
+            'ordering'    : true,
+            'info'        : true,
+            'autoWidth'   : false,
+            "pageLength": 5,
+            "order": [[ 1, "asc" ]]  //   >
+        })
     }
     $(function () {
         $('#example1').DataTable()

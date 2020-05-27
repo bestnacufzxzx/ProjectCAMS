@@ -102,7 +102,7 @@ export default class Hitstoryoverview extends Component {
                         <div className="col-md-12">
                             <div className="box box-primary table-responsive">
                                 <div className="box-body">
-                                    <table id="example3" className="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
+                                    <table id="example9" className="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
                                         <thead>
                                             <tr>
                                                 <th tabIndex="0" aria-controls="example2" rowSpan="1" colSpan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">ลำดับ</th>
