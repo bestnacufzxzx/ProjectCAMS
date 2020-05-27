@@ -25,6 +25,11 @@ export default class Hitstoryoverview extends Component {
             return (<td  className="bg-danger"><span> - </span></td>);
         }
     }
+    export_file = () => {
+        // const  courseID = this.props.match.params.courseID;
+        window.open(baseurl+'ReportfileTe/export/'+this.state.HistorysbystudentcourseID, '_blank');
+        // window.open(baseurl+'Reportfile/export/'+courseID+'/'+studentID, '_blank');
+    }
    
     
     componentDidMount(){
@@ -79,28 +84,18 @@ export default class Hitstoryoverview extends Component {
                     </div>
                     <div className="row">
                         <div className="col-md-3">
-                            <div class="collapse" id="collapseExample">
-                                <div class="well">
-                                    <span class="badge badge-success">{this.state.percent} % </span> 
-                                    <span class="badge badge-warning">{this.state.LateClass} %</span> 
-                                    <span class="badge badge-danger">{this.state.MissClass} %</span> 
-                                </div>
-                            </div>
                         </div>
                         <div className="col-md-3">
                         </div>
-                        <div className="col-md-2">
+                        <div className="col-md-3">
+                            {/* <div id="example_html">
+                                <label>th-th</label>
+                                <input id="datepicker" class="input-medium" type="text" data-provide="datepicker" data-date-language="th-th"/>
+                            </div> */}
                         </div>
-                        {/* <div className="col-md-2">
-                            <Link to={'Historysbystudent/'+this.state.HistorysbystudentcourseID+"/"+this.state.courseCode+"/"+this.state.courseName}>
-                                <button type="button" className="btn btn-block btn-warning btn-sm">ดูประวัติการเข้าเรียนแบบรายบุคคน</button>
-                            </Link>
+                        <div className="col-md-3">
+                            <button type="button" className="btn btn-block btn-info" onClick={this.export_file}><i className="fa fa-table" aria-hidden="true"></i> ออกรายงานประวัติการเข้าเรียน</button>
                         </div>
-                        <div className="col-md-2">
-                            <Link to={'Hitstoryoverview/'+this.state.HistorysbystudentcourseID+"/"+this.state.courseCode+"/"+this.state.courseName}>
-                                <button type="button" className="btn btn-block btn-warning btn-sm">ดูประวัติการเข้าเรียนผลรวม</button>
-                            </Link>
-                        </div> */}
                     </div>
                     <br/>
                     <div className="row">

@@ -14,14 +14,17 @@ export default class Teachs extends Component {
         sum : null
     }
 
-    // editteachcourse(teach){
-    //     let classID = teach.classID;
-    //     return(
-    //         <Link to={'/lecturer/EditTeachCourse/'+classID}>
-    //             <button type="button" className="btn btn-success"> <i class="fa fa-eye" aria-hidden="true"> </i> </button>&nbsp;
-    //         </Link>
-    //     )
-    // }
+    editteachcourseandclass(teach){
+        let classID = teach.classID;
+        let courseCode = teach.courseCode;
+        let courseName = teach.courseName;
+        let namecourse = courseCode+" "+courseName;
+        return(
+            <Link to={'/lecturer/EditTeachCourse/'+classID+"/"+namecourse}>
+                <button type="button" className="btn btn-success"> <i class="fa fa-edit" aria-hidden="true"> </i> </button>&nbsp;
+            </Link>
+        )
+    }
 
     renderdelete(classID){
         return(
@@ -192,7 +195,7 @@ export default class Teachs extends Component {
                                                             <td>{teach.starttime +' - '+ teach.endtime} น.</td>
                                                             <td>{1+i} </td>
                                                             <td>  
-                                                                {/* {this.editteachcourse(teach)} */}
+                                                                {this.editteachcourseandclass(teach)}
                                                                 {this.renderdelete(teach.classID)}
                                                             </td>
                                                         </tr>
