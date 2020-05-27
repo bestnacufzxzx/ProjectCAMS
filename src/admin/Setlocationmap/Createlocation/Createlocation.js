@@ -48,10 +48,63 @@ export default class Createlocation extends Component {
             this.RefreshPage();
         })
         .catch(error => {
+            alert("ข้อมูลนี้มีอยู่แล้ว")
             console.log("====>",error.status);
         });
     }
 
+    // handleSubmit = (event) => {
+    //     this.validate();
+    //     if( this.state.buildingName != "" && this.state.roomname != "" ){
+    //         axios.post(baseurl+'api/Building/check_before',{
+    //             buildingName: this.state.buildingName,
+    //             roomname: this.state.roomname
+    //         })
+    //         .then(res =>{
+    //             if(res.status = false){
+    //                 alert(res.status);
+    //                 // window.location.href = 'http://localhost:3000/admin/Createlocation'; 
+    //             }
+    //             else{
+    //                 event.preventDefault();
+    //                 axios.post(baseurl+'api/location/create/', {
+    //                 buildingName: this.state.buildingName,
+    //                 roomname: this.state.roomname,
+    //                 location : this.state.test                    
+    //             })
+    //             .then(res => {
+    //             alert("บันทึกสำเร็จ")
+    //                 // this.RefreshPage();
+    //             })
+    //             .catch(error => {
+    //                 console.log("====>",error.status);
+    //             }); 
+    //             }
+                
+    //         })
+            
+    //     }
+    // }
+
+    validate = () =>{
+        let  buildingError = "";
+        let  roomError = "";
+
+        if (!this.state.buildingName) {
+            buildingError = "กรุณากรอกชื่ออาคารเรียน";
+        }
+
+        if (!this.state.roomname){
+            roomError = "กรุณากรอกชื่อห้องเรียน"
+        }
+
+        if(buildingError || roomError){
+            this.setState({ buildingError, roomError });
+            return false;
+        }
+        return true;
+
+    }
     
     RefreshPage = () => { 
         window.location.href = 'http://localhost:3000/admin/Showlocation'; 
@@ -76,17 +129,19 @@ export default class Createlocation extends Component {
                     <div className="box theader-search-sky">
                         <div className="box-header">
                         {/* <h4>GPS : {this.state.gps}</h4>  */}
+                        
                             <form onSubmit={this.handleSubmit}>
                                 <div className="row">
                                     <div className="col-md-5"></div>
-                                        <div className="col-md-2">
-                                        </div>
                                     <div className="col-md-12 form-group">
                                         <div className="input-group col-md-4">
                                             <input type="text" class="form-control" name="buildingName" id="buildingName" placeholder='ชื่ออาคาร' value={this.state.buildingName} onChange={this.handleChange}/>
+                                            <div style={{color: "red"}}>{this.state.buildingError}</div>
                                             <input type="text" class="form-control" name="roomname" id="roomname" placeholder='ชื่อห้อง' value={this.state.roomname} onChange={this.handleChange}/>
+                                            <div style={{color: "red"}}>{this.state.roomError}</div>
                                         </div>
                                     </div>
+                                    
                                     <div className="col-md-2 form-group text-center">
                                         <input type="hidden" name="" value=""/>
                                         <button type="submit" className="btn btn-block btn-info" onClick={ this.handleChange }><i className="fa fa-plus" aria-hidden="true"></i> บันทึก </button>
@@ -113,5 +168,4 @@ export default class Createlocation extends Component {
         )
     }
 }
-
 
